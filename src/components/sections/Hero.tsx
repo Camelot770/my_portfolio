@@ -10,9 +10,7 @@ const revealWords = ['iOS-приложения', 'Telegram Mini Apps', 'Веб-�
 function generateCircleHoleClipPath(
   cx: number,
   cy: number,
-  r: number,
-  width: number,
-  height: number
+  r: number
 ): string {
   const points = 36; // Number of points for circle approximation
   const circlePoints: string[] = [];
@@ -56,6 +54,7 @@ export function Hero() {
     }, 800); // Start moving after 800ms
 
     return () => clearTimeout(timer);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -118,9 +117,7 @@ export function Hero() {
     ? generateCircleHoleClipPath(
         mousePosition.x,
         mousePosition.y,
-        circleSize / 2,
-        window?.innerWidth || 1920,
-        window?.innerHeight || 1080
+        circleSize / 2
       )
     : 'none';
 

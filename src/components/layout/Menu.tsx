@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { menuSlideIn, staggerContainer, menuItemVariants } from '@/lib/animations';
@@ -19,10 +18,8 @@ const menuLinks = [
 
 export function Menu({ onClose }: MenuProps) {
   const router = useRouter();
-  const [isNavigating, setIsNavigating] = useState(false);
 
   const handleNavigation = (href: string) => {
-    setIsNavigating(true);
     onClose();
     setTimeout(() => {
       router.push(href);
