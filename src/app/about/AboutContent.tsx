@@ -1,10 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { fadeInUp, fadeInLeft, staggerContainer } from '@/lib/animations';
+import { fadeInUp, staggerContainer } from '@/lib/animations';
 import { useInView } from '@/hooks/useInView';
-import { Button } from '@/components/ui/Button';
 
 const stats = [
   { number: '15+', label: 'Проектов' },

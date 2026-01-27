@@ -21,9 +21,6 @@ export interface Project {
   featured: boolean;
 }
 
-// Используем placeholder изображение пока не добавлены реальные
-const placeholderImage = '/images/PreviewStackLab.jpg';
-
 export const projects: Project[] = [
   {
     id: '1',

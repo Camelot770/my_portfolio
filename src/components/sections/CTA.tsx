@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from '@/hooks/useInView';
 import { fadeInUp, staggerContainer } from '@/lib/animations';
-import { Button } from '@/components/ui/Button';
 
 export function CTA() {
   const [ref, isInView] = useInView({ threshold: 0.3 });
