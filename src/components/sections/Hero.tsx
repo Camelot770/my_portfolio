@@ -49,9 +49,9 @@ export function Hero() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Positions - different for mobile
-  const centerPosition = isMobile ? { x: 200, y: 250 } : { x: 680, y: 400 };
-  const defaultPosition = isMobile ? { x: 180, y: 200 } : { x: 120, y: 380 };
+  // Positions - different for mobile (moved more to the left)
+  const centerPosition = isMobile ? { x: 100, y: 250 } : { x: 680, y: 400 };
+  const defaultPosition = isMobile ? { x: 80, y: 200 } : { x: 120, y: 380 };
 
   const [mousePosition, setMousePosition] = useState(centerPosition);
   const [isHovering, setIsHovering] = useState(false);
@@ -60,12 +60,12 @@ export function Hero() {
 
   // Initial animation: center -> left
   useEffect(() => {
-    // Set initial position based on mobile state
-    const initialPos = isMobile ? { x: 200, y: 250 } : { x: 680, y: 400 };
+    // Set initial position based on mobile state (more to the left on mobile)
+    const initialPos = isMobile ? { x: 100, y: 250 } : { x: 680, y: 400 };
     setMousePosition(initialPos);
 
     const timer = setTimeout(() => {
-      const targetPos = isMobile ? { x: 180, y: 200 } : { x: 120, y: 380 };
+      const targetPos = isMobile ? { x: 80, y: 200 } : { x: 120, y: 380 };
       setMousePosition(targetPos);
       setHasAnimatedIn(true);
     }, 800); // Start moving after 800ms
