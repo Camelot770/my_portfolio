@@ -14,9 +14,28 @@ interface ButtonRect {
 const MAX_FILL_WIDTH = 350;
 const MAX_FILL_HEIGHT = 80;
 
+// Check if device is mobile/touch
+const isTouchDevice = () => {
+  if (typeof window === 'undefined') return false;
+  return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+};
+
 export function CustomCursor() {
   const [position, setPosition] = useState({ x: -100, y: -100 });
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check for mobile on mount
+  useEffect(() => {
+    setIsMobile(isTouchDevice() || window.innerWidth < 768);
+
+    const handleResize = () => {
+      setIsMobile(isTouchDevice() || window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   const [isOverHero, setIsOverHero] = useState(false);
   const [buttonRect, setButtonRect] = useState<ButtonRect | null>(null);
   const [isHoveringButton, setIsHoveringButton] = useState(false);
@@ -138,6 +157,9 @@ export function CustomCursor() {
   // Determine cursor size based on state
   const cursorSize = isHoveringProject ? projectCursorSize : (isHoveringButton && buttonRect ? buttonRect.width : size);
   const cursorHeight = isHoveringProject ? projectCursorSize : (isHoveringButton && buttonRect ? buttonRect.height : size);
+
+  // Don't render on mobile
+  if (isMobile) return null;
 
   return (
     <>
