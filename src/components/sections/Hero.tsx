@@ -37,9 +37,21 @@ function generateCircleHoleClipPath(
 }
 
 export function Hero() {
-  // Positions
-  const centerPosition = { x: 680, y: 400 }; // Center of screen (start)
-  const defaultPosition = { x: 120, y: 380 }; // Left side (rest position)
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check for mobile on mount
+  useEffect(() => {
+    const checkMobile = () => window.innerWidth < 768;
+    setIsMobile(checkMobile());
+
+    const handleResize = () => setIsMobile(checkMobile());
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Positions - different for mobile
+  const centerPosition = isMobile ? { x: 200, y: 250 } : { x: 680, y: 400 };
+  const defaultPosition = isMobile ? { x: 180, y: 200 } : { x: 120, y: 380 };
 
   const [mousePosition, setMousePosition] = useState(centerPosition);
   const [isHovering, setIsHovering] = useState(false);
@@ -48,14 +60,19 @@ export function Hero() {
 
   // Initial animation: center -> left
   useEffect(() => {
+    // Set initial position based on mobile state
+    const initialPos = isMobile ? { x: 200, y: 250 } : { x: 680, y: 400 };
+    setMousePosition(initialPos);
+
     const timer = setTimeout(() => {
-      setMousePosition(defaultPosition);
+      const targetPos = isMobile ? { x: 180, y: 200 } : { x: 120, y: 380 };
+      setMousePosition(targetPos);
       setHasAnimatedIn(true);
     }, 800); // Start moving after 800ms
 
     return () => clearTimeout(timer);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isMobile]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -88,7 +105,8 @@ export function Hero() {
     }
   };
 
-  const circleSize = 320;
+  // Smaller circle on mobile
+  const circleSize = isMobile ? 220 : 320;
 
   // Generate repeated text lines to fill the screen
   const generateTextLines = () => {
