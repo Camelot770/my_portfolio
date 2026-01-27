@@ -1,6 +1,7 @@
 import {
   Hero,
   Manifesto,
+  FounderSection,
   FeaturedProjects,
   AboutPreview,
   Services,
@@ -13,6 +14,7 @@ export default function Home() {
     <>
       <Hero />
       <Manifesto />
+      <FounderSection />
       <FeaturedProjects />
       <AboutPreview />
       <Services />

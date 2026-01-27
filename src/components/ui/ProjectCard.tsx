@@ -23,6 +23,7 @@ export function ProjectCard({ project, index = 0, layout = 'grid' }: ProjectCard
         <Link
           href={`/portfolio/${project.slug}`}
           className="group flex flex-col md:flex-row gap-6 md:gap-10 py-8 border-b border-border"
+          data-project-card
         >
           <div className="relative w-full md:w-80 h-48 md:h-56 rounded-xl overflow-hidden flex-shrink-0">
             <Image
@@ -74,13 +75,14 @@ export function ProjectCard({ project, index = 0, layout = 'grid' }: ProjectCard
       <Link
         href={`/portfolio/${project.slug}`}
         className="group block"
+        data-project-card
       >
-        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4">
+        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-gray-100">
           <Image
             src={project.images.preview}
             alt={project.title}
             fill
-            className="object-cover grayscale-hover group-hover:scale-105 transition-transform duration-500"
+            className="object-contain grayscale-hover group-hover:scale-105 transition-transform duration-500"
           />
         </div>
         <span className="text-sm text-accent font-medium">

@@ -21,10 +21,10 @@ export function ProjectDetail({
   return (
     <>
       {/* Hero */}
-      <section className="relative h-[60vh] md:h-[80vh] flex items-end">
+      <section className="relative h-[40vh] md:h-[50vh] flex items-end">
         <div className="absolute inset-0">
           <Image
-            src={project.images.hero}
+            src="/images/PreviewStackLab.jpg"
             alt={project.title}
             fill
             className="object-cover"
@@ -154,39 +154,6 @@ export function ProjectDetail({
         </div>
       </section>
 
-      {/* Gallery */}
-      <section className="section bg-background">
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-heading-2 font-bold mb-10">Галерея</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {project.images.gallery.map((image, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative aspect-[4/3] rounded-2xl overflow-hidden"
-                >
-                  <Image
-                    src={image}
-                    alt={`${project.title} - изображение ${index + 1}`}
-                    fill
-                    className="object-cover"
-                  />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Navigation */}
       <section className="py-12 border-t border-border">
         <div className="container">
@@ -260,7 +227,7 @@ export function ProjectDetail({
             </p>
             <Button
               href="/contact"
-              className="bg-white text-accent hover:bg-white/90"
+              className="bg-white text-dark hover:bg-white/90"
             >
               Обсудить проект
             </Button>

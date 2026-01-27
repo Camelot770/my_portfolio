@@ -7,9 +7,9 @@ import { useInView } from '@/hooks/useInView';
 import { Button } from '@/components/ui/Button';
 
 const stats = [
-  { number: '3+', label: 'Года в разработке' },
-  { number: '10+', label: 'Проектов' },
+  { number: '15+', label: 'Проектов' },
   { number: '100%', label: 'Довольных клиентов' },
+  { number: '0', label: 'Посредников между нами' },
 ];
 
 const skills = [
@@ -28,7 +28,7 @@ const values = [
   {
     title: 'Качество без шаблонов',
     description:
-      'Каждый проект — с нуля под конкретную задачу. Мы не натягиваем готовые решения на вашу идею.',
+      'Каждый проект — с нуля под конкретную задачу. Мы не используем готовые шаблоны для воплощения ваших идей.',
   },
   {
     title: 'Ответственность до конца',
@@ -49,53 +49,6 @@ export function AboutContent() {
 
   return (
     <div className="pt-32">
-      {/* Hero */}
-      <section className="pb-section">
-        <div className="container">
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            animate="visible"
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center"
-          >
-            <motion.div variants={fadeInLeft}>
-              <span className="text-accent font-medium tracking-wide uppercase">
-                Обо мне
-              </span>
-              <h1 className="text-display-2 font-heading font-bold mt-4 mb-6">
-                Привет, я создаю цифровые продукты
-              </h1>
-              <div className="space-y-4 text-lg text-muted">
-                <p>
-                  Всё началось с математики. Университетские годы, формулы, доказательства, поиск элегантных решений для сложных задач. В какой-то момент стало ясно: программирование — это та же математика, только результат можно увидеть и потрогать.
-                </p>
-                <p>
-                  Первый коммерческий проект — Telegram Mini App для заказа баббл-чая. Полноценный сервис с предоплатой, системой бонусов и интеграциями. Не учебный проект. Реальный бизнес, реальные пользователи, реальные транзакции.
-                </p>
-                <p>
-                  Этот опыт определил всё дальнейшее: работать напрямую с заказчиком, отвечать за результат лично, делать каждый проект как свой собственный продукт.
-                </p>
-                <p className="font-semibold text-foreground">
-                  Так появился StackLab.
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div variants={fadeInUp}>
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
-                <Image
-                  src="/images/preview.jpg"
-                  alt="StackLab"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Stats */}
       <section ref={statsRef} className="py-16 bg-dark text-white">
         <div className="container">
@@ -122,7 +75,7 @@ export function AboutContent() {
       </section>
 
       {/* Values */}
-      <section ref={valuesRef} className="section">
+      <section ref={valuesRef} className="py-16 md:py-20">
         <div className="container">
           <motion.div
             variants={staggerContainer}
@@ -155,7 +108,7 @@ export function AboutContent() {
       </section>
 
       {/* Skills */}
-      <section ref={skillsRef} className="section bg-background">
+      <section ref={skillsRef} className="py-16 md:py-20 bg-background">
         <div className="container">
           <motion.div
             variants={staggerContainer}
@@ -197,17 +150,17 @@ export function AboutContent() {
         <div className="container">
           <div className="text-center max-w-2xl mx-auto">
             <h2 className="text-display-3 font-heading font-bold mb-6">
-              Давайте создадим что-то вместе
+              Давайте создадим что&#8209;то&nbsp;вместе
             </h2>
             <p className="text-xl text-white/80 mb-8">
               Расскажите о своей идее — обсудим, как превратить её в работающий продукт
             </p>
-            <Button
+            <a
               href="/contact"
-              className="bg-white text-accent hover:bg-white/90"
+              className="inline-flex items-center justify-center px-10 py-5 text-lg font-medium rounded-full bg-white text-accent hover:bg-white/90 transition-all duration-300"
             >
               Написать
-            </Button>
+            </a>
           </div>
         </div>
       </section>

@@ -1,81 +1,214 @@
 'use client';
 
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { RotatingText } from '@/components/animations/RotatingText';
 import { fadeInUp, staggerContainer } from '@/lib/animations';
 
-const heroWords = ['iOS', 'Telegram', 'Web', 'Apps', 'Код'];
+const revealWords = ['iOS-приложения', 'Telegram Mini Apps', 'Веб-продукты'];
+
+// Generate circle points for clip-path polygon
+function generateCircleHoleClipPath(
+  cx: number,
+  cy: number,
+  r: number,
+  width: number,
+  height: number
+): string {
+  const points = 36; // Number of points for circle approximation
+  const circlePoints: string[] = [];
+
+  // Generate circle points (clockwise from top)
+  for (let i = 0; i <= points; i++) {
+    const angle = (i / points) * Math.PI * 2 - Math.PI / 2;
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    circlePoints.push(`${x}px ${y}px`);
+  }
+
+  // Create polygon: outer rectangle -> to circle start -> around circle -> back to rectangle
+  return `polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    0 100%,
+    0 0,
+    ${cx}px 0,
+    ${circlePoints.join(', ')},
+    ${cx}px 0
+  )`;
+}
 
 export function Hero() {
-  return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      <div className="container relative z-10">
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-          className="max-w-5xl"
+  // Positions
+  const centerPosition = { x: 680, y: 400 }; // Center of screen (start)
+  const defaultPosition = { x: 120, y: 380 }; // Left side (rest position)
+
+  const [mousePosition, setMousePosition] = useState(centerPosition);
+  const [isHovering, setIsHovering] = useState(false);
+  const [hasAnimatedIn, setHasAnimatedIn] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
+
+  // Initial animation: center -> left
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMousePosition(defaultPosition);
+      setHasAnimatedIn(true);
+    }, 800); // Start moving after 800ms
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (heroRef.current && isHovering && hasAnimatedIn) {
+        const rect = heroRef.current.getBoundingClientRect();
+        setMousePosition({
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top,
+        });
+      }
+    };
+
+    const heroElement = heroRef.current;
+    if (heroElement) {
+      heroElement.addEventListener('mousemove', handleMouseMove);
+    }
+
+    return () => {
+      if (heroElement) {
+        heroElement.removeEventListener('mousemove', handleMouseMove);
+      }
+    };
+  }, [isHovering, hasAnimatedIn]);
+
+  // Reset to default position when mouse leaves
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+    if (hasAnimatedIn) {
+      setMousePosition(defaultPosition);
+    }
+  };
+
+  const circleSize = 320;
+
+  // Generate repeated text lines to fill the screen
+  const generateTextLines = () => {
+    const lines = [];
+    for (let i = 0; i < 45; i++) {
+      lines.push(
+        <div
+          key={i}
+          className="whitespace-nowrap text-[1rem] md:text-[1.25rem] lg:text-[1.5rem] font-heading font-bold leading-[1.3] tracking-tight"
         >
-          <motion.div variants={fadeInUp} className="mb-8">
-            <span className="text-accent font-medium tracking-wide uppercase">
-              Студия разработки
-            </span>
-          </motion.div>
-
-          <motion.h1
-            variants={fadeInUp}
-            className="text-display-1 font-heading font-bold leading-tight mb-8"
-          >
-            <span className="block">Превращаю</span>
-            <span className="flex items-center gap-4 md:gap-8 flex-wrap">
-              <span>идеи в</span>
-              <span className="relative inline-flex items-center justify-center w-32 h-32 md:w-44 md:h-44">
-                <span className="absolute inset-0 bg-accent rounded-full" />
-                <RotatingText
-                  words={heroWords}
-                  radius={55}
-                  className="text-white"
-                />
+          {[...Array(8)].map((_, repeatIndex) => (
+            revealWords.map((word, wordIndex) => (
+              <span key={`${repeatIndex}-${wordIndex}`}>
+                {word}
+                <span className="mx-3 md:mx-5 opacity-60">•</span>
               </span>
-            </span>
-            <span className="block">продукты</span>
-          </motion.h1>
+            ))
+          ))}
+        </div>
+      );
+    }
+    return lines;
+  };
 
-          <motion.p
-            variants={fadeInUp}
-            className="text-xl md:text-2xl text-muted max-w-2xl mb-10"
-          >
-            iOS-приложения, Telegram Mini Apps и веб-продукты для стартапов и малого бизнеса. От идеи до публикации.
-          </motion.p>
+  const clipPathWithHole = isHovering
+    ? generateCircleHoleClipPath(
+        mousePosition.x,
+        mousePosition.y,
+        circleSize / 2,
+        window?.innerWidth || 1920,
+        window?.innerHeight || 1080
+      )
+    : 'none';
 
-          <motion.div
-            variants={fadeInUp}
-            className="flex flex-col sm:flex-row gap-4"
+  return (
+    <section
+      ref={heroRef}
+      data-hero
+      className="relative min-h-screen overflow-hidden bg-[#EDEDED]"
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* Hidden text layer - only visible through the circle */}
+      <div
+        className="absolute inset-0 overflow-hidden pointer-events-none"
+        style={{
+          clipPath: `circle(${circleSize / 2}px at ${mousePosition.x}px ${mousePosition.y}px)`,
+          backgroundColor: '#FF6B47',
+          willChange: 'clip-path',
+          transition: isHovering ? 'none' : 'clip-path 2s cubic-bezier(0.22, 1, 0.36, 1)',
+        }}
+      >
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div
+            className="text-white select-none"
+            style={{
+              transform: 'rotate(-12deg) scale(1.5)',
+              transformOrigin: 'center center',
+            }}
           >
-            <a href="/contact" className="btn btn-primary">
-              Обсудить проект
-            </a>
-            <a href="/portfolio" className="btn btn-secondary">
-              Смотреть работы
-            </a>
-          </motion.div>
-        </motion.div>
+            {generateTextLines()}
+          </div>
+        </div>
       </div>
 
+      {/* Main content overlay - with circle hole cut out */}
+      <div
+        className="relative z-10 min-h-screen flex flex-col justify-end pb-20 md:pb-32 pt-32"
+        style={{
+          clipPath: clipPathWithHole,
+        }}
+      >
+        <div className="container">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+            className="max-w-4xl"
+          >
+            <motion.h1
+              variants={fadeInUp}
+              className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold leading-tight mb-6 text-foreground"
+              style={{ letterSpacing: '-0.02em' }}
+            >
+              Превращаю идеи в работающие продукты: от iOS-приложений до Telegram Mini Apps и веб-сервисов
+            </motion.h1>
+
+            <motion.div
+              variants={fadeInUp}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <a href="/contact" className="btn btn-primary">
+                Обсудить проект
+              </a>
+              <a href="/portfolio" className="btn btn-secondary">
+                Смотреть работы
+              </a>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.05 }}
-        transition={{ duration: 1, delay: 0.5 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.5 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+        style={{
+          clipPath: clipPathWithHole,
+        }}
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
+          animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="flex flex-col items-center text-foreground"
+          className="flex flex-col items-center text-foreground/50"
         >
-          <span className="text-sm mb-2 opacity-50">Скролл</span>
           <svg
-            className="w-6 h-6 opacity-50"
+            className="w-6 h-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -83,7 +216,7 @@ export function Hero() {
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth={2}
+              strokeWidth={1.5}
               d="M19 14l-7 7m0 0l-7-7m7 7V3"
             />
           </svg>

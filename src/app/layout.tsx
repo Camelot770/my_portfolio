@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Manrope } from 'next/font/google';
 import './globals.css';
 import { Header, Footer, CookieBanner } from '@/components/layout';
+import { CustomCursor } from '@/components/ui/CustomCursor';
 
 const manrope = Manrope({
   subsets: ['latin', 'cyrillic'],
@@ -81,7 +82,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" className={`${manrope.variable} ${inter.variable}`}>
-      <body className="font-body antialiased bg-background text-foreground">
+      <body
+        className="font-body antialiased bg-background text-foreground bg-cover bg-center bg-no-repeat bg-fixed cursor-none"
+        style={{ backgroundImage: 'url(/images/podlozhka.jpeg)' }}
+      >
+        <CustomCursor />
         <Header />
         <main>{children}</main>
         <Footer />

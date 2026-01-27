@@ -1,7 +1,8 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { menuSlideIn, staggerContainer, menuItemVariants } from '@/lib/animations';
 
 interface MenuProps {
@@ -9,13 +10,25 @@ interface MenuProps {
 }
 
 const menuLinks = [
-  { href: '/portfolio', label: 'Портфолио' },
-  { href: '/services', label: 'Услуги' },
-  { href: '/about', label: 'Обо мне' },
-  { href: '/contact', label: 'Контакты' },
+  { href: '/', label: 'Главная', accent: true },
+  { href: '/portfolio', label: 'Портфолио', accent: false },
+  { href: '/services', label: 'Услуги', accent: false },
+  { href: '/about', label: 'Обо мне', accent: false },
+  { href: '/contact', label: 'Контакты', accent: false },
 ];
 
 export function Menu({ onClose }: MenuProps) {
+  const router = useRouter();
+  const [isNavigating, setIsNavigating] = useState(false);
+
+  const handleNavigation = (href: string) => {
+    setIsNavigating(true);
+    onClose();
+    setTimeout(() => {
+      router.push(href);
+    }, 500);
+  };
+
   return (
     <motion.div
       variants={menuSlideIn}
@@ -33,12 +46,12 @@ export function Menu({ onClose }: MenuProps) {
         >
           {menuLinks.map((link) => (
             <motion.div key={link.href} variants={menuItemVariants}>
-              <Link
-                href={link.href}
-                onClick={onClose}
-                className="group flex items-center gap-4"
+              <button
+                onClick={() => handleNavigation(link.href)}
+                className="group flex items-center gap-4 cursor-pointer"
+                data-no-cursor-fill
               >
-                <span className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white transition-colors group-hover:text-accent">
+                <span className={`font-heading font-bold transition-colors group-hover:text-accent ${link.accent ? 'text-5xl md:text-7xl lg:text-8xl text-white/90' : 'text-4xl md:text-6xl lg:text-7xl text-white'}`}>
                   {link.label}
                 </span>
                 <motion.span
@@ -46,7 +59,7 @@ export function Menu({ onClose }: MenuProps) {
                   whileHover={{ width: '60px' }}
                   className="h-1 bg-accent rounded-full"
                 />
-              </Link>
+              </button>
             </motion.div>
           ))}
         </motion.nav>
@@ -57,13 +70,12 @@ export function Menu({ onClose }: MenuProps) {
           transition={{ delay: 0.5 }}
           className="mt-12 md:mt-20"
         >
-          <Link
-            href="/contact"
-            onClick={onClose}
-            className="btn btn-accent text-lg"
+          <button
+            onClick={() => handleNavigation('/contact')}
+            className="btn btn-accent text-lg cursor-pointer"
           >
             Обсудить проект
-          </Link>
+          </button>
         </motion.div>
 
         <motion.div
@@ -72,23 +84,7 @@ export function Menu({ onClose }: MenuProps) {
           transition={{ delay: 0.6 }}
           className="absolute bottom-8 left-0 right-0 container"
         >
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-white/60">
-            <div className="flex flex-col md:flex-row gap-4 md:gap-8">
-              <a
-                href="mailto:naum_kogan@inbox.ru"
-                className="hover:text-white transition-colors"
-              >
-                naum_kogan@inbox.ru
-              </a>
-              <a
-                href="https://t.me/Naum0"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white transition-colors"
-              >
-                @Naum0
-              </a>
-            </div>
+          <div className="flex items-center justify-end text-white/60">
             <p className="text-sm">
               © {new Date().getFullYear()} StackLab
             </p>
