@@ -32,12 +32,12 @@ export function CTA() {
           </motion.p>
 
           <motion.div variants={fadeInUp}>
-            <Button
+            <a
               href="/contact"
-              className="bg-white text-accent hover:bg-white/90"
+              className="inline-flex items-center justify-center px-10 py-5 text-lg font-medium rounded-full bg-white text-[#4169E1] hover:bg-white/90 transition-all duration-300"
             >
               Обсудить проект
-            </Button>
+            </a>
           </motion.div>
         </motion.div>
       </div>

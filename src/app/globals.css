@@ -17,6 +17,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  cursor: none !important;
 }
 
 html {
@@ -129,7 +130,7 @@ body {
   transition: filter 0.4s ease;
 }
 
-.grayscale-hover:hover {
+.group:hover .grayscale-hover {
   filter: grayscale(0%);
 }
 

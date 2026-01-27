@@ -41,13 +41,13 @@ export function FeaturedProjects() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
               >
-                <Link href={`/portfolio/${project.slug}`} className="group block">
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6">
+                <Link href={`/portfolio/${project.slug}`} className="group block" data-project-card>
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6 bg-gray-100">
                     <Image
                       src={project.images.preview}
                       alt={project.title}
                       fill
-                      className="object-cover grayscale-hover group-hover:scale-105 transition-transform duration-500"
+                      className="object-contain grayscale-hover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-dark/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
@@ -86,7 +86,7 @@ export function FeaturedProjects() {
 
           <motion.div variants={fadeInUp} className="mt-12 text-center">
             <Button href="/portfolio" variant="secondary">
-              Все работы
+              Посмотреть подробнее
             </Button>
           </motion.div>
         </motion.div>

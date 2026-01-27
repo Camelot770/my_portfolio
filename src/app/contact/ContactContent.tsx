@@ -1,228 +1,101 @@
 'use client';
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { fadeInUp, fadeInLeft, staggerContainer } from '@/lib/animations';
-
-const projectTypes = [
-  'iOS-приложение',
-  'Telegram Mini App',
-  'Веб-сайт',
-  'Другое',
-];
+import { fadeInUp, staggerContainer } from '@/lib/animations';
 
 export function ContactContent() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    projectType: '',
-    message: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', formData);
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   return (
-    <div className="pt-32 pb-section">
+    <div className="pt-32 pb-section min-h-screen flex items-center">
       <div className="container">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20"
+          className="max-w-3xl mx-auto text-center"
         >
-          {/* Left Column - Info */}
-          <motion.div variants={fadeInLeft}>
-            <span className="text-accent font-medium tracking-wide uppercase">
-              Контакты
-            </span>
-            <h1 className="text-display-2 font-heading font-bold mt-4 mb-6">
-              Давайте работать вместе
-            </h1>
-            <p className="text-xl text-muted mb-10">
-              Расскажите о своей идее — обсудим, как превратить её в работающий продукт. Отвечаю в течение 24 часов.
-            </p>
+          <motion.span
+            variants={fadeInUp}
+            className="text-accent font-medium tracking-wide uppercase"
+          >
+            Контакты
+          </motion.span>
 
-            <div className="space-y-6">
-              <div>
-                <h3 className="font-semibold mb-2">Email</h3>
-                <a
-                  href="mailto:naum_kogan@inbox.ru"
-                  className="text-lg text-accent hover:underline"
-                >
-                  naum_kogan@inbox.ru
-                </a>
+          <motion.h1
+            variants={fadeInUp}
+            className="text-display-2 font-heading font-bold mt-4 mb-6"
+          >
+            Давайте работать вместе
+          </motion.h1>
+
+          <motion.p
+            variants={fadeInUp}
+            className="text-xl text-muted mb-16"
+          >
+            Расскажите о своей идее — обсудим, как превратить её в работающий продукт.
+          </motion.p>
+
+          <motion.div
+            variants={fadeInUp}
+            className="flex flex-col sm:flex-row items-center justify-center gap-6"
+          >
+            {/* Telegram */}
+            <motion.a
+              href="https://t.me/Naum0"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-5 px-8 py-6 bg-white rounded-[20px] w-full sm:w-auto shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.2)] transition-shadow duration-300"
+              whileHover={{ y: -8 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+            >
+              <div className="w-14 h-14 rounded-2xl bg-[#0088cc] flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                <svg className="w-7 h-7 text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                </svg>
               </div>
-
-              <div>
-                <h3 className="font-semibold mb-2">Telegram</h3>
-                <a
-                  href="https://t.me/Naum0"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-lg text-accent hover:underline"
-                >
-                  @Naum0
-                </a>
+              <div className="text-left">
+                <div className="text-sm text-gray-500">Telegram</div>
+                <div className="font-semibold text-lg text-gray-900">@Naum0</div>
               </div>
-            </div>
+              <svg className="w-5 h-5 text-gray-400 ml-2 group-hover:translate-x-1 group-hover:text-[#0088cc] transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </motion.a>
 
-            <div className="mt-12 p-6 bg-background rounded-2xl">
-              <h3 className="font-semibold mb-2">Что нужно, чтобы начать?</h3>
-              <p className="text-muted">
-                Просто напишите. Расскажите идею, опишите задачу — разберёмся вместе.
-                Техническое задание не обязательно: достаточно описать идею своими словами.
-              </p>
-            </div>
+            {/* Email */}
+            <motion.a
+              href="mailto:naum_kogan@inbox.ru"
+              className="group flex items-center gap-5 px-8 py-6 bg-white rounded-[20px] w-full sm:w-auto shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.2)] transition-shadow duration-300"
+              whileHover={{ y: -8 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+            >
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300">
+                <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div className="text-left">
+                <div className="text-sm text-gray-500">Email</div>
+                <div className="font-semibold text-lg text-gray-900">naum_kogan@inbox.ru</div>
+              </div>
+              <svg className="w-5 h-5 text-gray-400 ml-2 group-hover:translate-x-1 group-hover:text-purple-600 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </motion.a>
           </motion.div>
 
-          {/* Right Column - Form */}
-          <motion.div variants={fadeInUp}>
-            {isSubmitted ? (
-              <div className="h-full flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg
-                      className="w-8 h-8"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-bold mb-2">Сообщение отправлено!</h3>
-                  <p className="text-muted">
-                    Спасибо за обращение. Я свяжусь с вами в ближайшее время.
-                  </p>
-                </div>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium mb-2"
-                  >
-                    Имя
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:border-accent transition-colors"
-                    placeholder="Как вас зовут?"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium mb-2"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:border-accent transition-colors"
-                    placeholder="your@email.com"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="projectType"
-                    className="block text-sm font-medium mb-2"
-                  >
-                    Тип проекта
-                  </label>
-                  <select
-                    id="projectType"
-                    name="projectType"
-                    value={formData.projectType}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:border-accent transition-colors appearance-none cursor-pointer"
-                  >
-                    <option value="">Выберите тип проекта</option>
-                    {projectTypes.map((type) => (
-                      <option key={type} value={type}>
-                        {type}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium mb-2"
-                  >
-                    Сообщение
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:border-accent transition-colors resize-none"
-                    placeholder="Расскажите о вашей идее..."
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full btn btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isSubmitting ? 'Отправка...' : 'Отправить'}
-                </button>
-
-                <p className="text-sm text-muted text-center">
-                  Нажимая кнопку, вы соглашаетесь с{' '}
-                  <a href="/privacy" className="text-accent hover:underline">
-                    политикой конфиденциальности
-                  </a>
-                </p>
-              </form>
-            )}
+          <motion.div
+            variants={fadeInUp}
+            className="mt-20 p-8 bg-white rounded-[20px] text-left max-w-xl mx-auto shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
+            whileHover={{ y: -4, boxShadow: '0 16px 40px rgba(0,0,0,0.15)' }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+          >
+            <h3 className="font-semibold text-lg mb-3 text-gray-900">Что нужно, чтобы начать?</h3>
+            <p className="text-gray-600">
+              Просто напишите. Расскажите идею, опишите задачу — разберёмся вместе.
+              Техническое задание не обязательно: достаточно описать идею своими словами.
+            </p>
           </motion.div>
         </motion.div>
       </div>
