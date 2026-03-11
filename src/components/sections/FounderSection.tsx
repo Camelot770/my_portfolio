@@ -18,7 +18,7 @@ export function FounderSection() {
           {/* Left text */}
           <motion.div variants={fadeInLeft} className="lg:pr-8">
             <p className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed">
-              Я верю что лучшие продукты создаются людьми, которые берут на себя полную ответственность за результат.
+              Мы верим, что лучшие продукты создаются людьми, которые берут на себя полную ответственность за результат.
             </p>
           </motion.div>
 
@@ -27,7 +27,7 @@ export function FounderSection() {
             <div className="relative w-full max-w-md aspect-[3/4]">
               <Image
                 src="/images/my_photo.jpg"
-                alt="Наум Коган"
+                alt="Наум Коган и Камиль Исхаков"
                 fill
                 className="object-cover"
               />
@@ -37,13 +37,13 @@ export function FounderSection() {
           {/* Right text */}
           <motion.div variants={fadeInUp} className="lg:pl-8">
             <p className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed">
-              StackLab — это не студия с менеджерами и очередью задач. Это я: один разработчик с математическим образованием, который ведёт каждый проект от первого разговора до релиза.
+              StackLab — это не студия с менеджерами и очередью задач. Это два разработчика — Наум Коган и Камиль Исхаков — которые ведут каждый проект от первого разговора до релиза.
             </p>
             <p className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed mt-6">
-              Вы говорите напрямую с тем, кто пишет код. Без посредников, без потерянных требований, без сюрпризов.
+              Вы говорите напрямую с теми, кто пишет код. Без посредников, без потерянных требований, без сюрпризов.
             </p>
             <p className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed mt-6 text-accent">
-              Моя цель проста — чтобы вы получили продукт, который работает именно так, как вы задумали.
+              Наша цель проста — чтобы вы получили продукт, который работает именно так, как вы задумали.
             </p>
           </motion.div>
         </motion.div>

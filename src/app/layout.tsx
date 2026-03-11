@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     'веб-разработка',
     'мобильная разработка',
     'стартап',
-    'фриланс разработчик',
+    'студия разработки',
   ],
   authors: [{ name: 'StackLab' }],
   creator: 'StackLab',

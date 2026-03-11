@@ -12,7 +12,7 @@ const menuLinks = [
   { href: '/', label: 'Главная', accent: true },
   { href: '/portfolio', label: 'Портфолио', accent: false },
   { href: '/services', label: 'Услуги', accent: false },
-  { href: '/about', label: 'Обо мне', accent: false },
+  { href: '/about', label: 'О нас', accent: false },
   { href: '/contact', label: 'Контакты', accent: false },
 ];
 

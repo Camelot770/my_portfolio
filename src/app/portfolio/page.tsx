@@ -16,10 +16,10 @@ export default function PortfolioPage() {
         >
           <motion.div variants={fadeInUp} className="mb-12">
             <h1 className="text-display-2 font-heading font-bold mb-4">
-              Мои работы
+              Наши работы
             </h1>
             <p className="text-xl text-muted max-w-2xl">
-              Вот несколько примеров моих работ. Каждый проект — это решение реальной бизнес-задачи.
+              Вот несколько примеров наших работ. Каждый проект — это решение реальной бизнес-задачи.
             </p>
           </motion.div>
 

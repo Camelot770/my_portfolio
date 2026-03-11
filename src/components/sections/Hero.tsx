@@ -189,7 +189,7 @@ export function Hero() {
               className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold leading-tight mb-6 text-foreground"
               style={{ letterSpacing: '-0.02em' }}
             >
-              Превращаю идеи в работающие продукты: от iOS-приложений до MAX и Telegram Mini Apps и веб-сервисов
+              Превращаем идеи в работающие продукты: от iOS-приложений до MAX и Telegram Mini Apps и веб-сервисов
             </motion.h1>
 
             <motion.div

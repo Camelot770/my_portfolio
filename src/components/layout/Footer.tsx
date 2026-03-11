@@ -9,7 +9,7 @@ import { fadeInUp, staggerContainer } from '@/lib/animations';
 const footerLinks = [
   { href: '/portfolio', label: 'Портфолио' },
   { href: '/services', label: 'Услуги' },
-  { href: '/about', label: 'Обо мне' },
+  { href: '/about', label: 'О нас' },
   { href: '/contact', label: 'Контакты' },
 ];
 
