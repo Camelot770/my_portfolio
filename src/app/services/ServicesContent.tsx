@@ -56,7 +56,7 @@ export function ServicesContent() {
               Полный цикл разработки
             </motion.h1>
             <motion.p variants={fadeInUp} className="text-xl text-muted">
-              От идеи до работающего продукта. iOS-приложения, Telegram и Max Mini Apps, боты и веб-сайты для стартапов и малого бизнеса.
+              От идеи до работающего продукта. iOS-приложения, Max и Telegram Mini Apps, боты и веб-сайты для стартапов и малого бизнеса.
             </motion.p>
           </motion.div>
         </div>

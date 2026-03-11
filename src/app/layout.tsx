@@ -19,18 +19,18 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://stacklab.dev'),
   title: {
-    default: 'StackLab — Разработка iOS, Telegram и Max Mini Apps и веб-продуктов',
+    default: 'StackLab — Разработка iOS, Max и Telegram Mini Apps и веб-продуктов',
     template: '%s | StackLab',
   },
   description:
-    'Студия разработки полного цикла. iOS-приложения, Telegram и Max Mini Apps, боты и веб-продукты для стартапов и малого бизнеса. От идеи до публикации.',
+    'Студия разработки полного цикла. iOS-приложения, Max и Telegram Mini Apps, боты и веб-продукты для стартапов и малого бизнеса. От идеи до публикации.',
   keywords: [
     'разработка приложений',
     'iOS разработка',
-    'Telegram Mini App',
     'Max Mini App',
-    'боты Telegram',
+    'Telegram Mini App',
     'боты Max',
+    'боты Telegram',
     'веб-разработка',
     'мобильная разработка',
     'стартап',
@@ -43,9 +43,9 @@ export const metadata: Metadata = {
     locale: 'ru_RU',
     url: 'https://stacklab.dev',
     siteName: 'StackLab',
-    title: 'StackLab — Разработка iOS, Telegram и Max Mini Apps и веб-продуктов',
+    title: 'StackLab — Разработка iOS, Max и Telegram Mini Apps и веб-продуктов',
     description:
-      'Студия разработки полного цикла. iOS-приложения, Telegram и Max Mini Apps, боты и веб-продукты для стартапов и малого бизнеса.',
+      'Студия разработки полного цикла. iOS-приложения, Max и Telegram Mini Apps, боты и веб-продукты для стартапов и малого бизнеса.',
     images: [
       {
         url: '/images/og-image.jpg',
@@ -57,9 +57,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'StackLab — Разработка iOS, Telegram и Max Mini Apps и веб-продуктов',
+    title: 'StackLab — Разработка iOS, Max и Telegram Mini Apps и веб-продуктов',
     description:
-      'Студия разработки полного цикла. iOS-приложения, Telegram и Max Mini Apps, боты и веб-продукты для стартапов и малого бизнеса.',
+      'Студия разработки полного цикла. iOS-приложения, Max и Telegram Mini Apps, боты и веб-продукты для стартапов и малого бизнеса.',
     images: ['/images/og-image.jpg'],
   },
   robots: {

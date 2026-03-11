@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { fadeInUp, staggerContainer } from '@/lib/animations';
 
-const revealWords = ['iOS-приложения', 'Telegram и Max Mini Apps', 'Веб-продукты'];
+const revealWords = ['iOS-приложения', 'Max и Telegram Mini Apps', 'Веб-продукты'];
 
 // Generate circle points for clip-path polygon
 function generateCircleHoleClipPath(
@@ -189,7 +189,7 @@ export function Hero() {
               className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold leading-tight mb-6 text-foreground"
               style={{ letterSpacing: '-0.02em' }}
             >
-              Превращаю идеи в работающие продукты: от iOS-приложений до Telegram и Max Mini Apps и веб-сервисов
+              Превращаю идеи в работающие продукты: от iOS-приложений до Max и Telegram Mini Apps и веб-сервисов
             </motion.h1>
 
             <motion.div
