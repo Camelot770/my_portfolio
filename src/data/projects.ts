@@ -2,7 +2,7 @@ export interface Project {
   id: string;
   slug: string;
   title: string;
-  category: 'ios' | 'telegram' | 'web';
+  category: 'ios' | 'telegram' | 'max' | 'web';
   categoryLabel: string;
   shortDescription: string;
   fullDescription: string;
@@ -104,6 +104,27 @@ export const projects: Project[] = [
       gallery: [],
     },
     technologies: ['React', 'TypeScript', 'Telegram Bot API', 'PostgreSQL'],
+    featured: true,
+  },
+  {
+    id: '5',
+    slug: 'kitapkhane',
+    title: 'Китапханә',
+    category: 'max',
+    categoryLabel: 'MAX Bot',
+    shortDescription: 'MAX-бот для Национальной электронной библиотеки Татарстана',
+    fullDescription: 'Цифровой библиотечный сервис в MAX: мгновенный доступ к читательскому билету, генерация штрих-кода Code128, быстрый вход в каталог, коллекции, заказ документов и справочные сервисы kitap.tatar.ru. Бот принимает номер Единого читательского билета, проверяет формат, нормализует ввод и генерирует штрих-код.',
+    client: 'Национальная электронная библиотека Республики Татарстан',
+    year: '2025',
+    challenge: 'Собрать ключевые функции библиотеки в одном понятном интерфейсе и сократить путь пользователя до нужного действия до пары кликов.',
+    solution: 'Разработали MAX-бота, который принимает номер Единого читательского билета, проверяет формат, нормализует ввод и мгновенно генерирует штрих-код Code128. Бот стал быстрой точкой входа в экосистему kitap.tatar.ru: каталог, коллекции, заказ документов и справочные сервисы.',
+    result: 'Компактный цифровой сервис, который убирает лишние шаги, ускоряет доступ к библиотечным услугам и превращает разрозненные функции в единый пользовательский опыт.',
+    images: {
+      preview: '/images/Kitapkhane.jpg',
+      hero: '/images/Kitapkhane.jpg',
+      gallery: [],
+    },
+    technologies: ['JavaScript', 'Node.js', 'MAX Bot API'],
     featured: true,
   },
 ];
