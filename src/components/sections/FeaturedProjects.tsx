@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/Button';
 
 export function FeaturedProjects() {
   const [ref, isInView] = useInView({ threshold: 0.1 });
-  const projects = getFeaturedProjects();
+  const projects = getFeaturedProjects().slice(0, 4);
 
   return (
     <section ref={ref} className="section">
