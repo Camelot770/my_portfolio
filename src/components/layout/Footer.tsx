@@ -40,7 +40,7 @@ export function Footer() {
               />
             </Link>
             <p className="text-white/60 max-w-md mb-6">
-              Студия разработки полного цикла. iOS-приложения, Telegram Mini Apps и веб-продукты для стартапов и малого бизнеса.
+              Студия разработки полного цикла. iOS-приложения, Telegram и Max Mini Apps, боты и веб-продукты для стартапов и малого бизнеса.
             </p>
             <p className="text-lg font-medium text-accent">
               Идея → Код → Результат
