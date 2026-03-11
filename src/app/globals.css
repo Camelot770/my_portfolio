@@ -124,14 +124,9 @@ body {
   background: var(--foreground);
 }
 
-/* Image grayscale effect */
+/* Image hover effect */
 .grayscale-hover {
-  filter: grayscale(100%);
   transition: filter 0.4s ease;
-}
-
-.group:hover .grayscale-hover {
-  filter: grayscale(0%);
 }
 
 /* Rotating text animation */
