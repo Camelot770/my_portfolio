@@ -84,6 +84,16 @@ export function Footer() {
                   Telegram: @Naum0
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://max.ru/u/f9LHodD0cOLGKi7i1KndiYLJAU1rf7OCpsTt2VCnnAAN7qe3VUEjR99azyg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/60 hover:text-white transition-colors"
+                >
+                  MAX: StackLab
+                </a>
+              </li>
             </ul>
           </motion.div>
         </motion.div>
