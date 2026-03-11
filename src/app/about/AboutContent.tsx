@@ -12,7 +12,7 @@ const stats = [
 
 const skills = [
   { category: 'iOS', items: ['Swift', 'SwiftUI', 'UIKit', 'Core Data', 'HealthKit', 'CloudKit'] },
-  { category: 'Max и Telegram', items: ['Telegram Bot API', 'Max Bot API', 'Mini Apps', 'Payments API'] },
+  { category: 'MAX и Telegram', items: ['Telegram Bot API', 'MAX Bot API', 'Mini Apps', 'Payments API'] },
   { category: 'Web', items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Node.js'] },
   { category: 'Backend', items: ['PostgreSQL', 'Supabase', 'REST API', 'GraphQL'] },
 ];
