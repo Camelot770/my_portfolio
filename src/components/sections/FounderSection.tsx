@@ -27,7 +27,7 @@ export function FounderSection() {
             <div className="relative w-full max-w-md aspect-[3/4]">
               <Image
                 src="/images/my_photo.jpg"
-                alt="Наум Коган и Камиль Исхаков"
+                alt="Команда StackLab"
                 fill
                 className="object-cover"
               />
@@ -37,10 +37,10 @@ export function FounderSection() {
           {/* Right text */}
           <motion.div variants={fadeInUp} className="lg:pl-8">
             <p className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed">
-              StackLab — это не студия с менеджерами и очередью задач. Это два разработчика — Наум Коган и Камиль Исхаков — которые ведут каждый проект от первого разговора до релиза.
+              StackLab — это команда разработчиков, которая ведёт каждый проект от первого разговора до релиза. Никаких менеджеров-посредников — только прямая связь с теми, кто создаёт ваш продукт.
             </p>
             <p className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed mt-6">
-              Вы говорите напрямую с теми, кто пишет код. Без посредников, без потерянных требований, без сюрпризов.
+              Мы погружаемся в каждый проект на 100%. Без потерянных требований, без сюрпризов, без размытой ответственности.
             </p>
             <p className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed mt-6 text-accent">
               Наша цель проста — чтобы вы получили продукт, который работает именно так, как вы задумали.
