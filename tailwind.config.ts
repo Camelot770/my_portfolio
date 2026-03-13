@@ -34,8 +34,8 @@ const config: Config = {
         "body-sm": ["0.875rem", { lineHeight: "1.5" }],
       },
       spacing: {
-        section: "clamp(80px, 12vw, 160px)",
-        "section-sm": "clamp(60px, 8vw, 100px)",
+        section: "clamp(48px, 6vw, 80px)",
+        "section-sm": "clamp(32px, 4vw, 60px)",
       },
       transitionDuration: {
         "400": "400ms",
