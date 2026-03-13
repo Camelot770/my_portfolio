@@ -1,5 +1,6 @@
 'use client';
 
+import { useRef, useState, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -11,7 +12,31 @@ interface ProjectCardProps {
   layout?: 'grid' | 'list';
 }
 
+function useTilt() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    setTilt({
+      rotateX: (y - 0.5) * -12,
+      rotateY: (x - 0.5) * 12,
+    });
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setTilt({ rotateX: 0, rotateY: 0 });
+  }, []);
+
+  return { ref, tilt, handleMouseMove, handleMouseLeave };
+}
+
 export function ProjectCard({ project, index = 0, layout = 'grid' }: ProjectCardProps) {
+  const { ref, tilt, handleMouseMove, handleMouseLeave } = useTilt();
+
   if (layout === 'list') {
     return (
       <motion.div
@@ -77,13 +102,36 @@ export function ProjectCard({ project, index = 0, layout = 'grid' }: ProjectCard
         className="group block"
         data-project-card
       >
-        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-dark-secondary">
-          <Image
-            src={project.images.preview}
-            alt={project.title}
-            fill
-            className="object-contain grayscale-hover group-hover:scale-105 transition-transform duration-500"
-          />
+        <div
+          ref={ref}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          style={{ perspective: 800 }}
+        >
+          <motion.div
+            className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-dark-secondary"
+            animate={{
+              rotateX: tilt.rotateX,
+              rotateY: tilt.rotateY,
+            }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            style={{ transformStyle: 'preserve-3d' }}
+          >
+            <Image
+              src={project.images.preview}
+              alt={project.title}
+              fill
+              className="object-contain group-hover:scale-105 transition-transform duration-500"
+            />
+            {/* Gradient shine overlay on hover */}
+            <motion.div
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              style={{
+                background:
+                  'linear-gradient(135deg, rgba(124,58,237,0.15) 0%, transparent 50%, rgba(6,182,212,0.1) 100%)',
+              }}
+            />
+          </motion.div>
         </div>
         <span className="text-sm text-accent font-medium">
           {project.categoryLabel}

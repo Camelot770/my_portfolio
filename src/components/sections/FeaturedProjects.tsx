@@ -7,6 +7,7 @@ import { useInView } from '@/hooks/useInView';
 import { fadeInUp, staggerContainer } from '@/lib/animations';
 import { getFeaturedProjects } from '@/data/projects';
 import { Button } from '@/components/ui/Button';
+import { AnimatedHeading } from '@/components/ui/AnimatedHeading';
 
 export function FeaturedProjects() {
   const [ref, isInView] = useInView({ threshold: 0.1 });
@@ -20,14 +21,22 @@ export function FeaturedProjects() {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
         >
-          <motion.div variants={fadeInUp} className="mb-12 md:mb-16">
-            <h2 className="text-display-3 font-heading font-bold">
+          <div className="mb-12 md:mb-16">
+            <AnimatedHeading
+              className="text-display-3 font-heading font-bold"
+              inView={isInView}
+            >
               Избранные проекты
-            </h2>
-            <p className="mt-4 text-lg text-muted max-w-2xl">
+            </AnimatedHeading>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="mt-4 text-lg text-muted max-w-2xl"
+            >
               Каждый проект доведён до конца. Каждый клиент получил работающий продукт.
-            </p>
-          </motion.div>
+            </motion.p>
+          </div>
 
           <motion.div
             variants={fadeInUp}

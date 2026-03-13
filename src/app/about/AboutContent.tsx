@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { fadeInUp, staggerContainer } from '@/lib/animations';
 import { useInView } from '@/hooks/useInView';
@@ -199,6 +200,8 @@ export function AboutContent() {
   const [statsRef, statsInView] = useInView({ threshold: 0.2 });
   const [valuesRef, valuesInView] = useInView({ threshold: 0.1 });
   const [skillsRef, skillsInView] = useInView({ threshold: 0.1 });
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   return (
     <div className="pt-32">
@@ -261,29 +264,31 @@ export function AboutContent() {
               </p>
             </motion.div>
 
-            {/* Desktop: Orbit visualization */}
-            <motion.div variants={fadeInUp} className="hidden md:flex justify-center items-center overflow-hidden">
-              <div className="relative" style={{ width: 560, height: 560 }}>
-                {/* Central label */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                  <div className="w-20 h-20 rounded-full bg-dark-secondary border border-border flex items-center justify-center">
-                    <span className="gradient-text font-heading font-bold text-xl">
-                      SL
-                    </span>
+            {/* Desktop: Orbit visualization (client-only to avoid hydration mismatch from Math.cos/sin) */}
+            {mounted && (
+              <motion.div variants={fadeInUp} className="hidden md:flex justify-center items-center overflow-hidden">
+                <div className="relative" style={{ width: 560, height: 560 }}>
+                  {/* Central label */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+                    <div className="w-20 h-20 rounded-full bg-dark-secondary border border-border flex items-center justify-center">
+                      <span className="gradient-text font-heading font-bold text-xl">
+                        SL
+                      </span>
+                    </div>
                   </div>
-                </div>
 
-                {/* Orbit rings */}
-                {orbits.map((orbit, orbitIndex) => (
-                  <OrbitRing
-                    key={orbitIndex}
-                    orbit={orbit}
-                    orbitIndex={orbitIndex}
-                    containerSize={560}
-                  />
-                ))}
-              </div>
-            </motion.div>
+                  {/* Orbit rings */}
+                  {orbits.map((orbit, orbitIndex) => (
+                    <OrbitRing
+                      key={orbitIndex}
+                      orbit={orbit}
+                      orbitIndex={orbitIndex}
+                      containerSize={560}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            )}
 
             {/* Mobile: Grid fallback */}
             <motion.div

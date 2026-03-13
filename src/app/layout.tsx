@@ -3,6 +3,7 @@ import { Inter, Manrope } from 'next/font/google';
 import './globals.css';
 import { Header, Footer, CookieBanner } from '@/components/layout';
 import { CustomCursor } from '@/components/ui/CustomCursor';
+import { ScrollProgress } from '@/components/ui/ScrollProgress';
 
 const manrope = Manrope({
   subsets: ['latin', 'cyrillic'],
@@ -89,6 +90,7 @@ export default function RootLayout({
         className="font-body antialiased bg-background text-foreground cursor-none"
       >
         <CustomCursor />
+        <ScrollProgress />
         <Header />
         <main>{children}</main>
         <Footer />
