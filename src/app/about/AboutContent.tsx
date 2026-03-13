@@ -7,7 +7,7 @@ import { useInView } from '@/hooks/useInView';
 const stats = [
   { number: '15+', label: 'Проектов' },
   { number: '100%', label: 'Довольных клиентов' },
-  { number: '0', label: 'Посредников между нами' },
+  { number: '0', label: 'Посредников между вами и командой' },
 ];
 
 const skills = [
