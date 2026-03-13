@@ -21,7 +21,7 @@ function MarqueeLine({ text, reverse, speed = 20 }: { text: string; reverse?: bo
   ));
 
   return (
-    <div className="overflow-hidden whitespace-nowrap py-3 md:py-4">
+    <div className="overflow-hidden whitespace-nowrap py-1.5 md:py-2">
       <motion.div
         className="flex items-center gap-8"
         animate={{
@@ -44,12 +44,12 @@ function MarqueeLine({ text, reverse, speed = 20 }: { text: string; reverse?: bo
 
 export function FounderSection() {
   return (
-    <section className="bg-[#1a1a2e] text-white relative overflow-hidden py-20 md:py-28">
-      <div className="flex flex-col gap-2 md:gap-4">
+    <section className="bg-[#1a1a2e] text-white relative overflow-hidden py-10 md:py-14">
+      <div className="flex flex-col gap-1 md:gap-2">
         {lines.map((line, index) => (
           <div
             key={line}
-            className="text-4xl md:text-6xl lg:text-8xl xl:text-9xl font-heading font-bold tracking-tight text-white/90"
+            className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold tracking-tight text-white/90"
           >
             <MarqueeLine
               text={line}
