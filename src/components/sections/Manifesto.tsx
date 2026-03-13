@@ -1,15 +1,13 @@
 'use client';
 
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 
-const lines = [
-  { text: 'Мы верим, что за каждым великим', highlight: false },
-  { text: 'продуктом стоит простая идея.', highlight: false },
-  { text: 'Наша задача — взять эту идею', highlight: false },
-  { text: 'и превратить её в код,', highlight: true },
-  { text: 'который работает.', highlight: true },
-];
+const paragraph = `Мы верим, что за каждым великим продуктом стоит простая идея. Наша задача — взять эту идею и превратить её в код, который работает.`;
+
+const highlightWords = new Set([
+  'и', 'превратить', 'её', 'в', 'код,', 'который', 'работает.',
+]);
 
 const features = [
   'Сильная команда',
@@ -17,38 +15,73 @@ const features = [
   'Абсолютный контроль',
 ];
 
+function Word({
+  word,
+  index,
+  total,
+  progress,
+  isHighlight,
+}: {
+  word: string;
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+  isHighlight: boolean;
+}) {
+  const start = (index / total) * 0.8;
+  const end = start + 0.06;
+
+  const opacity = useTransform(progress, [start, end], [0.15, 1]);
+
+  return (
+    <motion.span
+      style={{ opacity }}
+      className={`inline-block mr-[0.3em] ${isHighlight ? 'text-accent' : 'text-foreground'}`}
+    >
+      {word}
+    </motion.span>
+  );
+}
+
 export function Manifesto() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start 0.8', 'start 0.1'],
+    offset: ['start 0.9', 'start 0.15'],
   });
 
+  const words = paragraph.split(/\s+/);
+
+  // Find where highlight starts (after "идею")
+  const highlightStartIndex = words.findIndex((w) => w === 'и' && words[words.indexOf('и', words.indexOf('идею')) - 1] === 'идею');
+  const actualHighlightStart = words.indexOf('идею') + 1;
+
   return (
-    <section ref={containerRef} className="py-16 md:py-24 bg-background flex items-center">
+    <section ref={containerRef} className="py-16 md:py-24 bg-background">
       <div className="container">
         <div className="max-w-5xl mx-auto">
-          {/* Main text with scroll-based line reveal */}
-          <div className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold leading-relaxed text-center">
-            {lines.map((line, index) => (
-              <Line
+          {/* Word-by-word scroll reveal */}
+          <div className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold leading-snug text-center">
+            {words.map((word, index) => (
+              <Word
                 key={index}
-                text={line.text}
-                isHighlight={line.highlight}
+                word={word}
                 index={index}
-                total={lines.length}
+                total={words.length}
                 progress={scrollYProgress}
+                isHighlight={index >= actualHighlightStart}
               />
             ))}
           </div>
 
-          {/* Features with delayed appearance */}
-          <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
+          {/* Features */}
+          <div className="mt-12 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
             {features.map((feature, index) => (
               <FeatureItem
                 key={feature}
                 feature={feature}
                 index={index}
+                total={words.length}
                 progress={scrollYProgress}
               />
             ))}
@@ -59,54 +92,25 @@ export function Manifesto() {
   );
 }
 
-function Line({
-  text,
-  isHighlight,
+function FeatureItem({
+  feature,
   index,
   total,
   progress,
 }: {
-  text: string;
-  isHighlight: boolean;
-  index: number;
-  total: number;
-  progress: ReturnType<typeof useScroll>['scrollYProgress'];
-}) {
-  // Each line appears in sequence
-  const lineStart = (index / total) * 0.7;
-  const lineEnd = lineStart + 0.2;
-
-  const opacity = useTransform(progress, [lineStart, lineEnd], [0, 1]);
-  const y = useTransform(progress, [lineStart, lineEnd], [-30, 0]);
-
-  return (
-    <motion.div
-      style={{ opacity, y }}
-      className={`block ${isHighlight ? 'text-accent' : 'text-foreground'}`}
-    >
-      {text}
-    </motion.div>
-  );
-}
-
-function FeatureItem({
-  feature,
-  index,
-  progress,
-}: {
   feature: string;
   index: number;
-  progress: ReturnType<typeof useScroll>['scrollYProgress'];
+  total: number;
+  progress: MotionValue<number>;
 }) {
-  const start = 0.75 + index * 0.06;
-  const end = start + 0.12;
+  const start = 0.85 + index * 0.04;
+  const end = start + 0.06;
 
-  const opacity = useTransform(progress, [start, end], [0, 1]);
-  const y = useTransform(progress, [start, end], [-20, 0]);
+  const opacity = useTransform(progress, [start, end], [0.15, 1]);
 
   return (
     <motion.div
-      style={{ opacity, y }}
+      style={{ opacity }}
       className="flex items-center gap-2 text-muted"
     >
       <span className="w-2 h-2 bg-accent rounded-full" />
