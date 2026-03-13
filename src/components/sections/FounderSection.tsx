@@ -7,8 +7,6 @@ const lines = [
   'MAX И TELEGRAM MINI APPS',
   'ЧАТБОТЫ И АВТОМАТИЗАЦИЯ',
   'ВЕБ-СЕРВИСЫ И ЛЕНДИНГИ',
-  'UI/UX ДИЗАЙН',
-  'ПОЛНЫЙ ЦИКЛ РАЗРАБОТКИ',
 ];
 
 function MarqueeLine({ text, reverse, speed = 20 }: { text: string; reverse?: boolean; speed?: number }) {
