@@ -3,6 +3,9 @@
 import { motion } from 'framer-motion';
 import { fadeInUp, staggerContainer } from '@/lib/animations';
 import { useInView } from '@/hooks/useInView';
+import { useCountUp } from '@/hooks/useCountUp';
+
+// --- Data ---
 
 const stats = [
   { number: '15+', label: 'Проектов' },
@@ -10,44 +13,196 @@ const stats = [
   { number: '0', label: 'Посредников между вами и командой' },
 ];
 
-const skills = [
-  { category: 'iOS', items: ['Swift', 'SwiftUI', 'UIKit', 'Core Data', 'HealthKit', 'CloudKit'] },
-  { category: 'MAX и Telegram', items: ['Telegram Bot API', 'MAX Bot API', 'Mini Apps', 'Payments API'] },
-  { category: 'Web', items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Node.js'] },
-  { category: 'Backend', items: ['PostgreSQL', 'Supabase', 'REST API', 'GraphQL'] },
-];
-
 const values = [
   {
+    num: '01',
     title: 'Прямая коммуникация',
     description:
       'Никаких менеджеров между вами и разработчиками. Вы говорите с теми, кто пишет код. Это быстрее, точнее и честнее.',
+    colSpan: 'lg:col-span-2',
+    rowSpan: '',
   },
   {
+    num: '02',
     title: 'Качество без шаблонов',
     description:
       'Каждый проект — с нуля под конкретную задачу. Мы не используем готовые шаблоны для воплощения ваших идей.',
+    colSpan: '',
+    rowSpan: 'lg:row-span-2',
   },
   {
+    num: '03',
     title: 'Ответственность до конца',
     description:
       'Проект не заканчивается, пока вы не довольны результатом. Не пока закончились часы. Не пока вышли сроки.',
+    colSpan: '',
+    rowSpan: '',
   },
   {
+    num: '04',
     title: 'Скорость без суеты',
     description:
       'Математический подход к разработке: сначала продумать, потом писать. Меньше переделок, быстрее результат.',
+    colSpan: '',
+    rowSpan: '',
   },
 ];
 
+const orbits = [
+  {
+    radius: 100,
+    duration: 30,
+    items: ['Swift', 'SwiftUI', 'UIKit', 'Core Data'],
+  },
+  {
+    radius: 170,
+    duration: 40,
+    items: ['React', 'Next.js', 'TypeScript', 'Tailwind', 'Node.js'],
+  },
+  {
+    radius: 240,
+    duration: 50,
+    items: ['PostgreSQL', 'Supabase', 'REST API', 'Bot API', 'Mini Apps', 'GraphQL'],
+  },
+];
+
+// --- Components ---
+
+function AnimatedStat({
+  stat,
+  inView,
+}: {
+  stat: (typeof stats)[number];
+  inView: boolean;
+}) {
+  const numericValue = parseInt(stat.number) || 0;
+  const suffix = stat.number.replace(/\d+/, '');
+  const display = useCountUp({
+    target: numericValue,
+    duration: numericValue === 0 ? 0.5 : 2,
+    inView,
+  });
+
+  return (
+    <motion.div variants={fadeInUp} className="text-center">
+      <span className="text-display-2 font-heading font-bold text-accent">
+        {display}
+        {suffix}
+      </span>
+      <p className="mt-2 text-white/60">{stat.label}</p>
+    </motion.div>
+  );
+}
+
+function BentoCard({
+  value,
+}: {
+  value: (typeof values)[number];
+}) {
+  return (
+    <motion.div
+      variants={fadeInUp}
+      className={`relative group ${value.colSpan} ${value.rowSpan}`}
+    >
+      {/* Static border (hidden on hover) */}
+      <div className="absolute inset-0 rounded-2xl border border-border transition-opacity duration-500 group-hover:opacity-0" />
+      {/* Gradient border (shown on hover) */}
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent to-[#06B6D4] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      {/* Content */}
+      <div className="relative m-[1px] h-[calc(100%-2px)] bg-dark-secondary rounded-[calc(1rem-1px)] p-8">
+        <span className="text-4xl font-heading font-bold text-accent/20 block mb-4">
+          {value.num}
+        </span>
+        <h3 className="text-xl font-bold mb-3">{value.title}</h3>
+        <p className="text-muted">{value.description}</p>
+      </div>
+    </motion.div>
+  );
+}
+
+function OrbitRing({
+  orbit,
+  orbitIndex,
+  containerSize,
+}: {
+  orbit: (typeof orbits)[number];
+  orbitIndex: number;
+  containerSize: number;
+}) {
+  const center = containerSize / 2;
+  return (
+    <>
+      {/* Dashed circle ring */}
+      <div
+        className="absolute rounded-full border border-dashed border-border/60"
+        style={{
+          width: orbit.radius * 2,
+          height: orbit.radius * 2,
+          top: center - orbit.radius,
+          left: center - orbit.radius,
+        }}
+      />
+      {/* Rotating group */}
+      <motion.div
+        className="absolute"
+        style={{
+          width: orbit.radius * 2,
+          height: orbit.radius * 2,
+          top: center - orbit.radius,
+          left: center - orbit.radius,
+        }}
+        animate={{ rotate: orbitIndex % 2 === 0 ? 360 : -360 }}
+        transition={{
+          duration: orbit.duration,
+          repeat: Infinity,
+          ease: 'linear',
+        }}
+      >
+        {orbit.items.map((item, itemIndex) => {
+          const angle = (itemIndex / orbit.items.length) * Math.PI * 2;
+          const x = orbit.radius + orbit.radius * Math.cos(angle);
+          const y = orbit.radius + orbit.radius * Math.sin(angle);
+          return (
+            <div
+              key={item}
+              className="absolute"
+              style={{
+                left: x,
+                top: y,
+              }}
+            >
+              {/* Counter-rotate to keep text upright */}
+              <motion.div
+                className="-translate-x-1/2 -translate-y-1/2"
+                animate={{ rotate: orbitIndex % 2 === 0 ? -360 : 360 }}
+                transition={{
+                  duration: orbit.duration,
+                  repeat: Infinity,
+                  ease: 'linear',
+                }}
+              >
+                <span className="px-3 py-1.5 bg-dark-secondary border border-border rounded-full text-sm text-muted whitespace-nowrap">
+                  {item}
+                </span>
+              </motion.div>
+            </div>
+          );
+        })}
+      </motion.div>
+    </>
+  );
+}
+
+// --- Main Component ---
+
 export function AboutContent() {
   const [statsRef, statsInView] = useInView({ threshold: 0.2 });
-  const [skillsRef, skillsInView] = useInView({ threshold: 0.2 });
   const [valuesRef, valuesInView] = useInView({ threshold: 0.1 });
+  const [skillsRef, skillsInView] = useInView({ threshold: 0.1 });
 
   return (
     <div className="pt-32">
-      {/* Stats */}
+      {/* Animated Stats */}
       <section ref={statsRef} className="py-16 bg-dark text-white">
         <div className="container">
           <motion.div
@@ -57,22 +212,13 @@ export function AboutContent() {
             className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12"
           >
             {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                className="text-center"
-              >
-                <span className="text-display-2 font-heading font-bold text-accent">
-                  {stat.number}
-                </span>
-                <p className="mt-2 text-white/60">{stat.label}</p>
-              </motion.div>
+              <AnimatedStat key={index} stat={stat} inView={statsInView} />
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Values */}
+      {/* Bento Grid Values */}
       <section ref={valuesRef} className="py-16 md:py-20">
         <div className="container">
           <motion.div
@@ -89,23 +235,16 @@ export function AboutContent() {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {values.map((value, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  className="p-8 bg-dark-secondary rounded-2xl border border-border"
-                >
-                  <h3 className="text-xl font-bold mb-3">{value.title}</h3>
-                  <p className="text-muted">{value.description}</p>
-                </motion.div>
+                <BentoCard key={index} value={value} />
               ))}
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Skills */}
+      {/* Orbiting Tech Stack */}
       <section ref={skillsRef} className="py-16 md:py-20 bg-background">
         <div className="container">
           <motion.div
@@ -122,36 +261,66 @@ export function AboutContent() {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {skills.map((skill, index) => (
-                <motion.div key={index} variants={fadeInUp}>
-                  <h3 className="text-lg font-bold mb-4 text-accent">
-                    {skill.category}
-                  </h3>
-                  <ul className="space-y-2">
-                    {skill.items.map((item, i) => (
-                      <li key={i} className="text-muted flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 bg-accent rounded-full" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+            {/* Desktop: Orbit visualization */}
+            <motion.div variants={fadeInUp} className="hidden md:flex justify-center items-center overflow-hidden">
+              <div className="relative" style={{ width: 560, height: 560 }}>
+                {/* Central label */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+                  <div className="w-20 h-20 rounded-full bg-dark-secondary border border-border flex items-center justify-center">
+                    <span className="gradient-text font-heading font-bold text-xl">
+                      SL
+                    </span>
+                  </div>
+                </div>
+
+                {/* Orbit rings */}
+                {orbits.map((orbit, orbitIndex) => (
+                  <OrbitRing
+                    key={orbitIndex}
+                    orbit={orbit}
+                    orbitIndex={orbitIndex}
+                    containerSize={560}
+                  />
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Mobile: Grid fallback */}
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              animate={skillsInView ? 'visible' : 'hidden'}
+              className="md:hidden grid grid-cols-2 gap-3"
+            >
+              {orbits.flatMap((orbit) => orbit.items).map((item) => (
+                <motion.div
+                  key={item}
+                  variants={fadeInUp}
+                  className="px-4 py-3 bg-dark-secondary border border-border rounded-xl text-center text-sm text-muted"
+                >
+                  {item}
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="section bg-accent text-white">
+      <section
+        className="section text-white"
+        style={{
+          background: 'linear-gradient(135deg, #7C3AED, #06B6D4)',
+        }}
+      >
         <div className="container">
           <div className="text-center max-w-2xl mx-auto">
             <h2 className="text-display-3 font-heading font-bold mb-6">
               Давайте создадим что&#8209;то&nbsp;вместе
             </h2>
             <p className="text-xl text-white/80 mb-8">
-              Расскажите о своей идее — обсудим, как превратить её в работающий продукт
+              Расскажите о своей идее — обсудим, как превратить её в работающий
+              продукт
             </p>
             <a
               href="/contact"
