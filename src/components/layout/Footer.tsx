@@ -32,11 +32,11 @@ export function Footer() {
           <motion.div variants={fadeInUp} className="lg:col-span-2">
             <Link href="/" className="inline-block mb-6">
               <Image
-                src="/images/LogoStackLab.jpg"
+                src="/images/logo.png"
                 alt="StackLab"
-                width={200}
-                height={60}
-                className="h-12 w-auto"
+                width={400}
+                height={120}
+                className="h-16 w-auto brightness-0 invert"
               />
             </Link>
             <p className="text-white/60 max-w-md mb-6">
