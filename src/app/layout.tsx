@@ -86,8 +86,7 @@ export default function RootLayout({
   return (
     <html lang="ru" className={`${manrope.variable} ${inter.variable}`}>
       <body
-        className="font-body antialiased bg-background text-foreground bg-cover bg-center bg-no-repeat bg-fixed cursor-none"
-        style={{ backgroundImage: 'url(/images/podlozhka.jpeg)' }}
+        className="font-body antialiased bg-background text-foreground cursor-none"
       >
         <CustomCursor />
         <Header />
