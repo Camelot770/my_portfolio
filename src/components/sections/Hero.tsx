@@ -143,7 +143,7 @@ export function Hero() {
     <section
       ref={heroRef}
       data-hero
-      className="relative min-h-screen overflow-hidden bg-[#EDEDED]"
+      className="relative min-h-screen overflow-hidden bg-background"
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={handleMouseLeave}
     >
@@ -152,7 +152,7 @@ export function Hero() {
         className="absolute inset-0 overflow-hidden pointer-events-none"
         style={{
           clipPath: `circle(${circleSize / 2}px at ${mousePosition.x}px ${mousePosition.y}px)`,
-          backgroundColor: '#FF6B47',
+          background: 'linear-gradient(135deg, #7C3AED, #06B6D4)',
           willChange: 'clip-path',
           transition: isHovering ? 'none' : 'clip-path 2s cubic-bezier(0.22, 1, 0.36, 1)',
         }}

@@ -77,7 +77,7 @@ export function ProjectCard({ project, index = 0, layout = 'grid' }: ProjectCard
         className="group block"
         data-project-card
       >
-        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-gray-100">
+        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-dark-secondary">
           <Image
             src={project.images.preview}
             alt={project.title}

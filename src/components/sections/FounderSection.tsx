@@ -42,7 +42,7 @@ function MarqueeLine({ text, reverse, speed = 20 }: { text: string; reverse?: bo
 
 export function FounderSection() {
   return (
-    <section className="bg-[#1a1a2e] text-white relative overflow-hidden py-10 md:py-14">
+    <section className="bg-dark-secondary text-white relative overflow-hidden py-10 md:py-14">
       <div className="flex flex-col gap-1 md:gap-2">
         {lines.map((line, index) => (
           <div

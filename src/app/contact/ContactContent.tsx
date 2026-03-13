@@ -44,7 +44,7 @@ export function ContactContent() {
               href="https://max.ru/u/f9LHodD0cOLGKi7i1KndiYLJAU1rf7OCpsTt2VCnnAAN7qe3VUEjR99azyg"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-5 px-8 py-6 bg-white rounded-[20px] w-full sm:w-auto shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.2)] transition-shadow duration-300"
+              className="group flex items-center gap-5 px-8 py-6 bg-dark-secondary border border-border rounded-[20px] w-full sm:w-auto shadow-none hover:shadow-[0_8px_30px_rgba(124,58,237,0.15)] transition-shadow duration-300"
               whileHover={{ y: -8 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 400, damping: 17 }}
@@ -59,10 +59,10 @@ export function ContactContent() {
                 />
               </div>
               <div className="text-left">
-                <div className="text-sm text-gray-500">MAX</div>
-                <div className="font-semibold text-lg text-gray-900">StackLab</div>
+                <div className="text-sm text-muted">MAX</div>
+                <div className="font-semibold text-lg text-foreground">StackLab</div>
               </div>
-              <svg className="w-5 h-5 text-gray-400 ml-2 group-hover:translate-x-1 group-hover:text-[#0077FF] transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-5 h-5 text-muted ml-2 group-hover:translate-x-1 group-hover:text-[#0077FF] transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </motion.a>
@@ -72,7 +72,7 @@ export function ContactContent() {
               href="https://t.me/Naum0"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-5 px-8 py-6 bg-white rounded-[20px] w-full sm:w-auto shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.2)] transition-shadow duration-300"
+              className="group flex items-center gap-5 px-8 py-6 bg-dark-secondary border border-border rounded-[20px] w-full sm:w-auto shadow-none hover:shadow-[0_8px_30px_rgba(124,58,237,0.15)] transition-shadow duration-300"
               whileHover={{ y: -8 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 400, damping: 17 }}
@@ -83,10 +83,10 @@ export function ContactContent() {
                 </svg>
               </div>
               <div className="text-left">
-                <div className="text-sm text-gray-500">Telegram</div>
-                <div className="font-semibold text-lg text-gray-900">@Naum0</div>
+                <div className="text-sm text-muted">Telegram</div>
+                <div className="font-semibold text-lg text-foreground">@Naum0</div>
               </div>
-              <svg className="w-5 h-5 text-gray-400 ml-2 group-hover:translate-x-1 group-hover:text-[#0088cc] transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-5 h-5 text-muted ml-2 group-hover:translate-x-1 group-hover:text-[#0088cc] transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </motion.a>
@@ -94,7 +94,7 @@ export function ContactContent() {
             {/* Email */}
             <motion.a
               href="mailto:naum_kogan@inbox.ru"
-              className="group flex items-center gap-5 px-8 py-6 bg-white rounded-[20px] w-full sm:w-auto shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.2)] transition-shadow duration-300"
+              className="group flex items-center gap-5 px-8 py-6 bg-dark-secondary border border-border rounded-[20px] w-full sm:w-auto shadow-none hover:shadow-[0_8px_30px_rgba(124,58,237,0.15)] transition-shadow duration-300"
               whileHover={{ y: -8 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 400, damping: 17 }}
@@ -105,10 +105,10 @@ export function ContactContent() {
                 </svg>
               </div>
               <div className="text-left">
-                <div className="text-sm text-gray-500">Email</div>
-                <div className="font-semibold text-lg text-gray-900">naum_kogan@inbox.ru</div>
+                <div className="text-sm text-muted">Email</div>
+                <div className="font-semibold text-lg text-foreground">naum_kogan@inbox.ru</div>
               </div>
-              <svg className="w-5 h-5 text-gray-400 ml-2 group-hover:translate-x-1 group-hover:text-purple-600 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-5 h-5 text-muted ml-2 group-hover:translate-x-1 group-hover:text-purple-600 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </motion.a>
@@ -116,12 +116,12 @@ export function ContactContent() {
 
           <motion.div
             variants={fadeInUp}
-            className="mt-20 p-8 bg-white rounded-[20px] text-left max-w-xl mx-auto shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
+            className="mt-20 p-8 bg-dark-secondary border border-border rounded-[20px] text-left max-w-xl mx-auto shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
             whileHover={{ y: -4, boxShadow: '0 16px 40px rgba(0,0,0,0.15)' }}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
           >
-            <h3 className="font-semibold text-lg mb-3 text-gray-900">Что нужно, чтобы начать?</h3>
-            <p className="text-gray-600">
+            <h3 className="font-semibold text-lg mb-3 text-foreground">Что нужно, чтобы начать?</h3>
+            <p className="text-muted">
               Просто напишите. Расскажите идею, опишите задачу — разберёмся вместе.
               Техническое задание не обязательно: достаточно описать идею своими словами.
             </p>
