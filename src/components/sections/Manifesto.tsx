@@ -25,7 +25,7 @@ export function Manifesto() {
   });
 
   return (
-    <section ref={containerRef} className="py-32 md:py-48 bg-background min-h-screen flex items-center">
+    <section ref={containerRef} className="py-16 md:py-24 bg-background flex items-center">
       <div className="container">
         <div className="max-w-5xl mx-auto">
           {/* Main text with scroll-based line reveal */}
