@@ -48,14 +48,14 @@ export function Header() {
                 alt="StackLab"
                 width={400}
                 height={120}
-                className="h-24 md:h-32 w-auto"
+                className="h-24 md:h-32 w-auto brightness-0 invert"
                 priority
               />
             </Link>
 
             <motion.button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="relative z-50 flex items-center gap-3 px-5 py-3 text-sm font-medium tracking-wide uppercase rounded-full overflow-hidden group"
+              className="relative z-50 flex items-center gap-3 px-5 py-3 text-sm font-medium tracking-wide uppercase rounded-full overflow-hidden group focus:outline-none focus:ring-0"
               aria-label={isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
