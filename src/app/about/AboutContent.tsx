@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { fadeInUp, staggerContainer } from '@/lib/animations';
 import { useInView } from '@/hooks/useInView';
 import { useCountUp } from '@/hooks/useCountUp';
@@ -266,14 +267,18 @@ export function AboutContent() {
 
             {/* Desktop: Orbit visualization (client-only to avoid hydration mismatch from Math.cos/sin) */}
             {mounted && (
-              <motion.div variants={fadeInUp} className="hidden md:flex justify-center items-center overflow-hidden">
+              <motion.div variants={fadeInUp} className="hidden md:flex justify-center items-center py-10">
                 <div className="relative" style={{ width: 560, height: 560 }}>
-                  {/* Central label */}
+                  {/* Central logo */}
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                    <div className="w-20 h-20 rounded-full bg-dark-secondary border border-border flex items-center justify-center">
-                      <span className="gradient-text font-heading font-bold text-xl">
-                        SL
-                      </span>
+                    <div className="w-24 h-24 rounded-full bg-dark-secondary border border-border flex items-center justify-center p-3">
+                      <Image
+                        src="/images/logo.png"
+                        alt="StackLab"
+                        width={80}
+                        height={80}
+                        className="w-full h-full object-contain brightness-0 invert"
+                      />
                     </div>
                   </div>
 
