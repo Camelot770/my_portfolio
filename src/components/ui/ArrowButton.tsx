@@ -8,7 +8,25 @@ interface ArrowButtonProps {
   variant?: 'light' | 'dark';
 }
 
-function ArrowIcon() {
+function ArrowLeft() {
+  return (
+    <svg
+      className="w-5 h-5"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M7 16l-4-4m0 0l4-4m-4 4h18"
+      />
+    </svg>
+  );
+}
+
+function ArrowRight() {
   return (
     <svg
       className="w-5 h-5"
@@ -38,7 +56,7 @@ export function ArrowButton({
       href={href}
       className="group inline-flex items-center rounded-full overflow-hidden"
     >
-      {/* Left arrow — hidden by default, slides in from left on hover */}
+      {/* Left arrow — hidden by default, slides in on hover, points RIGHT (toward button) */}
       <div
         className={`
           relative w-14 h-14 flex items-center justify-center rounded-full flex-shrink-0
@@ -50,7 +68,7 @@ export function ArrowButton({
           }
         `}
       >
-        <ArrowIcon />
+        <ArrowRight />
       </div>
 
       {/* Text */}
@@ -67,7 +85,7 @@ export function ArrowButton({
         {children}
       </span>
 
-      {/* Right arrow — visible by default, slides out to right on hover */}
+      {/* Right arrow — visible by default, points LEFT (toward button), slides out on hover */}
       <div
         className={`
           relative w-14 h-14 flex items-center justify-center rounded-full flex-shrink-0
@@ -79,7 +97,7 @@ export function ArrowButton({
           }
         `}
       >
-        <ArrowIcon />
+        <ArrowLeft />
       </div>
     </Link>
   );
