@@ -61,8 +61,8 @@ export function ArrowButton({
   return (
     <Link
       href={href}
-      className="group inline-flex items-center gap-2 relative outline-none ring-0 border-0 no-underline focus:outline-none focus-visible:outline-none focus:ring-0 active:outline-none"
-      style={{ outline: 'none', textDecoration: 'none' }}
+      className="group inline-flex items-center gap-2 relative"
+      data-no-cursor-fill
     >
       {/* Left arrow circle — hidden, appears on hover */}
       <div
