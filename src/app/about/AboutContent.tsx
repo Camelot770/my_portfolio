@@ -94,7 +94,7 @@ export function AboutContent() {
                 <motion.div
                   key={index}
                   variants={fadeInUp}
-                  className="p-8 bg-white rounded-2xl border border-border"
+                  className="p-8 bg-dark-secondary rounded-2xl border border-border"
                 >
                   <h3 className="text-xl font-bold mb-3">{value.title}</h3>
                   <p className="text-muted">{value.description}</p>
@@ -155,7 +155,7 @@ export function AboutContent() {
             </p>
             <a
               href="/contact"
-              className="inline-flex items-center justify-center px-10 py-5 text-lg font-medium rounded-full bg-white text-accent hover:bg-white/90 transition-all duration-300"
+              className="inline-flex items-center justify-center px-10 py-5 text-lg font-medium rounded-full bg-dark-secondary text-foreground border border-border hover:border-accent transition-all duration-300"
             >
               Написать
             </a>

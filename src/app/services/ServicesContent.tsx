@@ -75,7 +75,7 @@ export function ServicesContent() {
               <motion.div
                 key={service.id}
                 variants={fadeInUp}
-                className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start p-8 md:p-12 bg-white rounded-3xl"
+                className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start p-8 md:p-12 bg-dark-secondary border border-border rounded-3xl"
               >
                 <div>
                   <div className="w-16 h-16 flex items-center justify-center bg-accent/10 text-accent rounded-2xl mb-6">
@@ -161,7 +161,7 @@ export function ServicesContent() {
       </section>
 
       {/* CTA */}
-      <section className="section bg-accent text-white">
+      <section className="section text-white" style={{ background: 'linear-gradient(135deg, #7C3AED, #06B6D4)' }}>
         <div className="container">
           <div className="text-center max-w-2xl mx-auto">
             <h2 className="text-display-3 font-heading font-bold mb-6">
@@ -172,7 +172,7 @@ export function ServicesContent() {
             </p>
             <a
               href="/contact"
-              className="inline-flex items-center justify-center px-10 py-5 text-lg font-medium rounded-full bg-white text-[#4169E1] hover:bg-white/90 transition-all duration-300"
+              className="inline-flex items-center justify-center px-10 py-5 text-lg font-medium rounded-full bg-dark-secondary text-foreground border border-border hover:border-accent transition-all duration-300"
             >
               Обсудить проект
             </a>

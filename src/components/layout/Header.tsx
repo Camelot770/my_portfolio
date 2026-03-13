@@ -62,7 +62,7 @@ export function Header() {
               transition={{ type: 'spring', stiffness: 400, damping: 17 }}
             >
               <span
-                className={`relative z-10 ${isMenuOpen ? 'text-white' : 'text-black'}`}
+                className={`relative z-10 ${isMenuOpen ? 'text-white' : 'text-foreground'}`}
               >
                 {isMenuOpen ? 'Закрыть' : 'Меню'}
               </span>
@@ -76,7 +76,7 @@ export function Header() {
                   }}
                   transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                   className={`block h-0.5 w-full origin-center transition-colors ${
-                    isMenuOpen ? 'bg-white' : 'bg-black'
+                    isMenuOpen ? 'bg-white' : 'bg-foreground'
                   }`}
                 />
                 <motion.span
@@ -86,7 +86,7 @@ export function Header() {
                   }}
                   transition={{ duration: 0.2 }}
                   className={`block h-0.5 w-full transition-colors ${
-                    isMenuOpen ? 'bg-white' : 'bg-black'
+                    isMenuOpen ? 'bg-white' : 'bg-foreground'
                   }`}
                 />
                 <motion.span
@@ -97,7 +97,7 @@ export function Header() {
                   }}
                   transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                   className={`block h-0.5 w-full origin-center transition-colors ${
-                    isMenuOpen ? 'bg-white' : 'bg-black'
+                    isMenuOpen ? 'bg-white' : 'bg-foreground'
                   }`}
                 />
               </div>

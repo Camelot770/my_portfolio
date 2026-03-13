@@ -8,7 +8,7 @@ export function CTA() {
   const [ref, isInView] = useInView({ threshold: 0.3 });
 
   return (
-    <section ref={ref} className="section bg-accent text-white">
+    <section ref={ref} className="section text-white" style={{ background: 'linear-gradient(135deg, #7C3AED, #06B6D4)' }}>
       <div className="container">
         <motion.div
           variants={staggerContainer}
@@ -33,7 +33,7 @@ export function CTA() {
           <motion.div variants={fadeInUp}>
             <a
               href="/contact"
-              className="inline-flex items-center justify-center px-10 py-5 text-lg font-medium rounded-full bg-white text-[#4169E1] hover:bg-white/90 transition-all duration-300"
+              className="inline-flex items-center justify-center px-10 py-5 text-lg font-medium rounded-full bg-dark text-foreground hover:bg-dark-secondary transition-all duration-300"
             >
               Обсудить проект
             </a>

@@ -227,7 +227,7 @@ export function ProjectDetail({
             </p>
             <Button
               href="/contact"
-              className="bg-white text-dark hover:bg-white/90"
+              className="bg-dark text-foreground hover:bg-dark-secondary"
             >
               Обсудить проект
             </Button>

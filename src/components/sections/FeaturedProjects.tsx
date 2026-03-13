@@ -42,7 +42,7 @@ export function FeaturedProjects() {
                 transition={{ duration: 0.5, delay: index * 0.15 }}
               >
                 <Link href={`/portfolio/${project.slug}`} className="group block" data-project-card>
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6 bg-gray-100">
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6 bg-dark-secondary">
                     <Image
                       src={project.images.preview}
                       alt={project.title}

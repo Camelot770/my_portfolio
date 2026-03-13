@@ -5,10 +5,6 @@ import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 
 const paragraph = `Мы верим, что за каждым великим продуктом стоит простая идея. Наша задача — взять эту идею и превратить её в код, который работает.`;
 
-const highlightWords = new Set([
-  'и', 'превратить', 'её', 'в', 'код,', 'который', 'работает.',
-]);
-
 const features = [
   'Сильная команда',
   'Полный цикл',
@@ -52,8 +48,6 @@ export function Manifesto() {
 
   const words = paragraph.split(/\s+/);
 
-  // Find where highlight starts (after "идею")
-  const highlightStartIndex = words.findIndex((w) => w === 'и' && words[words.indexOf('и', words.indexOf('идею')) - 1] === 'идею');
   const actualHighlightStart = words.indexOf('идею') + 1;
 
   return (
@@ -81,7 +75,6 @@ export function Manifesto() {
                 key={feature}
                 feature={feature}
                 index={index}
-                total={words.length}
                 progress={scrollYProgress}
               />
             ))}
@@ -95,12 +88,10 @@ export function Manifesto() {
 function FeatureItem({
   feature,
   index,
-  total,
   progress,
 }: {
   feature: string;
   index: number;
-  total: number;
   progress: MotionValue<number>;
 }) {
   const start = 0.85 + index * 0.04;
