@@ -1,52 +1,63 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { fadeInUp, fadeInLeft, staggerContainer } from '@/lib/animations';
+
+const lines = [
+  'iOS-ПРИЛОЖЕНИЯ',
+  'MAX И TELEGRAM MINI APPS',
+  'ЧАТБОТЫ И АВТОМАТИЗАЦИЯ',
+  'ВЕБ-СЕРВИСЫ И ЛЕНДИНГИ',
+  'UI/UX ДИЗАЙН',
+  'ПОЛНЫЙ ЦИКЛ РАЗРАБОТКИ',
+];
+
+function MarqueeLine({ text, reverse, speed = 20 }: { text: string; reverse?: boolean; speed?: number }) {
+  // Repeat the text enough times to fill the screen seamlessly
+  const repeated = Array.from({ length: 6 }, (_, i) => (
+    <span key={i} className="flex items-center gap-8 shrink-0">
+      <span>{text}</span>
+      <span className="w-3 h-3 bg-accent rounded-full shrink-0" />
+    </span>
+  ));
+
+  return (
+    <div className="overflow-hidden whitespace-nowrap py-3 md:py-4">
+      <motion.div
+        className="flex items-center gap-8"
+        animate={{
+          x: reverse ? ['0%', '-50%'] : ['-50%', '0%'],
+        }}
+        transition={{
+          x: {
+            repeat: Infinity,
+            repeatType: 'loop',
+            duration: speed,
+            ease: 'linear',
+          },
+        }}
+      >
+        {repeated}
+      </motion.div>
+    </div>
+  );
+}
 
 export function FounderSection() {
   return (
-    <section className="min-h-screen bg-[#1a1a2e] text-white relative overflow-hidden">
-      <div className="container h-full">
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 min-h-screen items-center py-20"
-        >
-          {/* Left text */}
-          <motion.div variants={fadeInLeft} className="lg:pr-8">
-            <p className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed">
-              Мы верим, что лучшие продукты создаются людьми, которые берут на себя полную ответственность за результат.
-            </p>
-          </motion.div>
-
-          {/* Center photo */}
-          <motion.div variants={fadeInUp} className="relative flex justify-center items-center">
-            <div className="relative w-full max-w-md aspect-[3/4]">
-              <Image
-                src="/images/my_photo.jpg"
-                alt="Команда StackLab"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </motion.div>
-
-          {/* Right text */}
-          <motion.div variants={fadeInUp} className="lg:pl-8">
-            <p className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed">
-              StackLab — это команда разработчиков, которая ведёт каждый проект от первого разговора до релиза. Никаких менеджеров-посредников — только прямая связь с теми, кто создаёт ваш продукт.
-            </p>
-            <p className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed mt-6">
-              Мы погружаемся в каждый проект на 100%. Без потерянных требований, без сюрпризов, без размытой ответственности.
-            </p>
-            <p className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed mt-6 text-accent">
-              Наша цель проста — чтобы вы получили продукт, который работает именно так, как вы задумали.
-            </p>
-          </motion.div>
-        </motion.div>
+    <section className="bg-[#1a1a2e] text-white relative overflow-hidden py-20 md:py-28">
+      <div className="flex flex-col gap-2 md:gap-4">
+        {lines.map((line, index) => (
+          <div
+            key={line}
+            className="text-4xl md:text-6xl lg:text-8xl xl:text-9xl font-heading font-bold tracking-tight text-white/90"
+          >
+            <MarqueeLine
+              text={line}
+              reverse={index % 2 === 1}
+              speed={25 + index * 3}
+            />
+          </div>
+        ))}
       </div>
     </section>
   );
