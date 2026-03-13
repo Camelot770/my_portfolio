@@ -3,8 +3,35 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { fadeInUp, staggerContainer } from '@/lib/animations';
+import { GradientBlobs } from '@/components/ui/GradientBlobs';
 
 const revealWords = ['iOS-приложения', 'MAX и Telegram Mini Apps', 'Веб-продукты'];
+
+function MagneticButton({ href, className, children }: { href: string; className: string; children: React.ReactNode }) {
+  const ref = useRef<HTMLAnchorElement>(null);
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+
+  return (
+    <motion.a
+      ref={ref}
+      href={href}
+      className={className}
+      animate={{ x: pos.x, y: pos.y }}
+      transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+      onMouseMove={(e) => {
+        if (!ref.current) return;
+        const rect = ref.current.getBoundingClientRect();
+        setPos({
+          x: (e.clientX - rect.left - rect.width / 2) * 0.25,
+          y: (e.clientY - rect.top - rect.height / 2) * 0.25,
+        });
+      }}
+      onMouseLeave={() => setPos({ x: 0, y: 0 })}
+    >
+      {children}
+    </motion.a>
+  );
+}
 
 // Generate circle points for clip-path polygon
 function generateCircleHoleClipPath(
@@ -147,6 +174,9 @@ export function Hero() {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={handleMouseLeave}
     >
+      {/* Animated gradient blobs */}
+      <GradientBlobs />
+
       {/* Hidden text layer - only visible through the circle */}
       <div
         className="absolute inset-0 overflow-hidden pointer-events-none"
@@ -196,12 +226,12 @@ export function Hero() {
               variants={fadeInUp}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <a href="/contact" className="btn btn-primary">
+              <MagneticButton href="/contact" className="btn btn-primary">
                 Обсудить проект
-              </a>
-              <a href="/portfolio" className="btn btn-secondary">
+              </MagneticButton>
+              <MagneticButton href="/portfolio" className="btn btn-secondary">
                 Смотреть работы
-              </a>
+              </MagneticButton>
             </motion.div>
           </motion.div>
         </div>

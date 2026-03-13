@@ -5,6 +5,7 @@ import { useInView } from '@/hooks/useInView';
 import { fadeInUp, staggerContainer } from '@/lib/animations';
 import { services } from '@/data/services';
 import { Accordion } from '@/components/ui/Accordion';
+import { AnimatedHeading } from '@/components/ui/AnimatedHeading';
 
 export function Services() {
   const [ref, isInView] = useInView({ threshold: 0.1 });
@@ -37,14 +38,22 @@ export function Services() {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
         >
-          <motion.div variants={fadeInUp} className="mb-12 md:mb-16">
-            <h2 className="text-display-3 font-heading font-bold">
+          <div className="mb-12 md:mb-16">
+            <AnimatedHeading
+              className="text-display-3 font-heading font-bold"
+              inView={isInView}
+            >
               Услуги
-            </h2>
-            <p className="mt-4 text-lg text-white/60 max-w-2xl">
+            </AnimatedHeading>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="mt-4 text-lg text-white/60 max-w-2xl"
+            >
               Полный цикл разработки: от идеи до работающего продукта
-            </p>
-          </motion.div>
+            </motion.p>
+          </div>
 
           <motion.div variants={fadeInUp}>
             <Accordion
