@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { fadeInUp, staggerContainer } from '@/lib/animations';
 import { GradientBlobs } from '@/components/ui/GradientBlobs';
+import { ArrowButton } from '@/components/ui/ArrowButton';
 
 const revealWords = ['iOS-приложения', 'MAX и Telegram Mini Apps', 'Веб-продукты'];
 
@@ -226,9 +227,9 @@ export function Hero() {
               variants={fadeInUp}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <MagneticButton href="/contact" className="btn btn-primary">
+              <ArrowButton href="/contact">
                 Обсудить проект
-              </MagneticButton>
+              </ArrowButton>
               <MagneticButton href="/portfolio" className="btn btn-secondary">
                 Смотреть работы
               </MagneticButton>

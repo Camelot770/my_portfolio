@@ -1,29 +1,12 @@
 'use client';
 
-import { useRef, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from '@/hooks/useInView';
 import { fadeInUp, staggerContainer } from '@/lib/animations';
+import { ArrowButton } from '@/components/ui/ArrowButton';
 
 export function CTA() {
   const [ref, isInView] = useInView({ threshold: 0.3 });
-
-  // Magnetic button
-  const btnRef = useRef<HTMLAnchorElement>(null);
-  const [btnPos, setBtnPos] = useState({ x: 0, y: 0 });
-
-  const handleBtnMove = useCallback((e: React.MouseEvent) => {
-    if (!btnRef.current) return;
-    const rect = btnRef.current.getBoundingClientRect();
-    setBtnPos({
-      x: (e.clientX - rect.left - rect.width / 2) * 0.3,
-      y: (e.clientY - rect.top - rect.height / 2) * 0.3,
-    });
-  }, []);
-
-  const handleBtnLeave = useCallback(() => {
-    setBtnPos({ x: 0, y: 0 });
-  }, []);
 
   return (
     <section
@@ -52,18 +35,10 @@ export function CTA() {
             Напишите с описанием задачи — обсудим, как реализовать ваш проект
           </motion.p>
 
-          <motion.div variants={fadeInUp}>
-            <motion.a
-              ref={btnRef}
-              href="/contact"
-              className="inline-flex items-center justify-center px-10 py-5 text-lg font-medium rounded-full bg-dark text-foreground hover:bg-dark-secondary transition-colors duration-300"
-              animate={{ x: btnPos.x, y: btnPos.y }}
-              transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-              onMouseMove={handleBtnMove}
-              onMouseLeave={handleBtnLeave}
-            >
+          <motion.div variants={fadeInUp} className="flex justify-center">
+            <ArrowButton href="/contact" variant="dark">
               Обсудить проект
-            </motion.a>
+            </ArrowButton>
           </motion.div>
         </motion.div>
       </div>
