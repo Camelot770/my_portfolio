@@ -222,6 +222,12 @@ export function Hero() {
             >
               Превращаем идеи в работающие продукты: от iOS-приложений до MAX и Telegram Mini Apps и веб-сервисов
             </motion.h1>
+            <motion.p
+              variants={fadeInUp}
+              className="text-lg md:text-xl text-muted max-w-2xl mb-8"
+            >
+              Разработка Mini Apps, чат-ботов и сервисов для MAX — для бизнеса, госструктур и стартапов. Полный цикл: от идеи до запуска.
+            </motion.p>
 
             <motion.div
               variants={fadeInUp}

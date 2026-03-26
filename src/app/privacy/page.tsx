@@ -2,7 +2,10 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Политика конфиденциальности',
-  description: 'Политика конфиденциальности StackLab',
+  description: 'Политика конфиденциальности студии разработки StackLab. Информация о сборе, хранении и обработке персональных данных.',
+  alternates: {
+    canonical: 'https://stacklab.su/privacy',
+  },
 };
 
 export default function PrivacyPage() {

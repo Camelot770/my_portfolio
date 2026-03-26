@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { projects, getProjectBySlug, getAdjacentProjects } from '@/data/projects';
 import { ProjectDetail } from './ProjectDetail';
+import { ProjectJsonLd } from '@/components/seo/JsonLd';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -18,11 +19,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: project.title,
+    title: `${project.title} — ${project.categoryLabel}`,
     description: project.shortDescription,
+    alternates: {
+      canonical: `https://stacklab.su/portfolio/${slug}`,
+    },
     openGraph: {
-      title: `${project.title} | StackLab`,
-      description: project.shortDescription,
+      title: `${project.title} — ${project.categoryLabel} | StackLab`,
+      description: project.fullDescription.slice(0, 200),
       images: [project.images.hero],
     },
   };
@@ -45,10 +49,21 @@ export default async function ProjectPage({ params }: Props) {
   const { prevProject, nextProject } = getAdjacentProjects(slug);
 
   return (
-    <ProjectDetail
-      project={project}
-      prevProject={prevProject}
-      nextProject={nextProject}
-    />
+    <>
+      <ProjectJsonLd
+        name={project.title}
+        description={project.fullDescription.slice(0, 300)}
+        url={`/portfolio/${slug}`}
+        image={project.images.hero}
+        category={project.categoryLabel}
+        technologies={project.technologies}
+        datePublished={`${project.year}-01-01`}
+      />
+      <ProjectDetail
+        project={project}
+        prevProject={prevProject}
+        nextProject={nextProject}
+      />
+    </>
   );
 }

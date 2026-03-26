@@ -4,6 +4,7 @@ import './globals.css';
 import { Header, Footer, CookieBanner } from '@/components/layout';
 import { CustomCursor } from '@/components/ui/CustomCursor';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
+import { OrganizationJsonLd, WebSiteJsonLd } from '@/components/seo/JsonLd';
 
 const manrope = Manrope({
   subsets: ['latin', 'cyrillic'],
@@ -18,49 +19,57 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://stacklab.dev'),
+  metadataBase: new URL('https://stacklab.su'),
   title: {
-    default: 'StackLab — Разработка iOS, MAX и Telegram Mini Apps и веб-продуктов',
-    template: '%s | StackLab',
+    default: 'StackLab — Разработка Mini Apps и чат-ботов для MAX, iOS-приложений и веб-сервисов',
+    template: '%s | StackLab — студия разработки',
   },
   description:
-    'Студия разработки полного цикла. iOS-приложения, MAX и Telegram Mini Apps, боты и веб-продукты для стартапов и малого бизнеса. От идеи до публикации.',
+    'Разработка Mini Apps и чат-ботов для MAX, iOS-приложений и веб-продуктов. Полный цикл: от идеи до запуска. Сервисы для бизнеса, госструктур и стартапов в экосистеме MAX.',
   keywords: [
-    'разработка приложений',
+    'разработка mini app MAX',
+    'разработка mini apps MAX',
+    'разработка ботов MAX',
+    'чат-боты для MAX',
+    'MAX messenger mini app',
+    'разработка приложений для MAX',
+    'MAX для бизнеса',
     'iOS разработка',
-    'MAX Mini App',
     'Telegram Mini App',
-    'боты MAX',
     'боты Telegram',
     'веб-разработка',
-    'мобильная разработка',
-    'стартап',
     'студия разработки',
+    'разработка мобильных приложений',
+    'MAX WebApp разработка',
   ],
   authors: [{ name: 'StackLab' }],
   creator: 'StackLab',
+  publisher: 'StackLab',
+  alternates: {
+    canonical: 'https://stacklab.su',
+  },
   openGraph: {
     type: 'website',
     locale: 'ru_RU',
-    url: 'https://stacklab.dev',
+    url: 'https://stacklab.su',
     siteName: 'StackLab',
-    title: 'StackLab — Разработка iOS, MAX и Telegram Mini Apps и веб-продуктов',
+    title: 'StackLab — Разработка Mini Apps и ботов для MAX, iOS и веб',
     description:
-      'Студия разработки полного цикла. iOS-приложения, MAX и Telegram Mini Apps, боты и веб-продукты для стартапов и малого бизнеса.',
+      'Студия разработки полного цикла. Mini Apps и чат-боты для MAX, iOS-приложения, Telegram Mini Apps и веб-сервисы для бизнеса и госструктур.',
     images: [
       {
         url: '/images/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'StackLab',
+        alt: 'StackLab — разработка Mini Apps и ботов для MAX',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'StackLab — Разработка iOS, MAX и Telegram Mini Apps и веб-продуктов',
+    title: 'StackLab — Разработка Mini Apps и ботов для MAX',
     description:
-      'Студия разработки полного цикла. iOS-приложения, MAX и Telegram Mini Apps, боты и веб-продукты для стартапов и малого бизнеса.',
+      'Mini Apps и чат-боты для MAX, iOS-приложения, Telegram Mini Apps и веб-сервисы. Полный цикл разработки для бизнеса и госструктур.',
     images: ['/images/og-image.jpg'],
   },
   robots: {
@@ -74,9 +83,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'your-google-verification-code',
-  },
 };
 
 export default function RootLayout({
@@ -86,6 +92,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" className={`${manrope.variable} ${inter.variable}`}>
+      <head>
+        <OrganizationJsonLd />
+        <WebSiteJsonLd />
+      </head>
       <body
         className="font-body antialiased bg-background text-foreground cursor-none"
       >
