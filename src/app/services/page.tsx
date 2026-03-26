@@ -2,9 +2,12 @@ import { Metadata } from 'next';
 import { ServicesContent } from './ServicesContent';
 
 export const metadata: Metadata = {
-  title: 'Услуги',
+  title: 'Услуги — разработка Mini Apps, ботов для MAX, iOS и веб',
   description:
-    'iOS-приложения, MAX и Telegram Mini Apps, боты и веб-разработка. Полный цикл разработки: от идеи до работающего продукта.',
+    'Разработка Mini Apps и чат-ботов для MAX, iOS-приложений и веб-сервисов. Сервисы для бизнеса, госструктур и стартапов: e-commerce, автоматизация, личные кабинеты, интеграции в экосистеме MAX.',
+  alternates: {
+    canonical: 'https://stacklab.su/services',
+  },
 };
 
 export default function ServicesPage() {
