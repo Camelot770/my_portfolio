@@ -139,13 +139,15 @@ export function Hero() {
   // Generate repeated text lines to fill the screen
   const generateTextLines = () => {
     const lines = [];
-    for (let i = 0; i < 45; i++) {
+    const lineCount = isMobile ? 20 : 45;
+    const repeatCount = isMobile ? 3 : 8;
+    for (let i = 0; i < lineCount; i++) {
       lines.push(
         <div
           key={i}
           className="whitespace-nowrap text-[1rem] md:text-[1.25rem] lg:text-[1.5rem] font-heading font-bold leading-[1.3] tracking-tight"
         >
-          {[...Array(8)].map((_, repeatIndex) => (
+          {[...Array(repeatCount)].map((_, repeatIndex) => (
             revealWords.map((word, wordIndex) => (
               <span key={`${repeatIndex}-${wordIndex}`}>
                 {word}
