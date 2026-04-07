@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useCallback } from 'react';
+import { useRef, useState, useCallback, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -15,9 +15,14 @@ interface ProjectCardProps {
 function useTilt() {
   const ref = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    if (!ref.current) return;
+    if (isMobile || !ref.current) return;
     const rect = ref.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
@@ -25,11 +30,12 @@ function useTilt() {
       rotateX: (y - 0.5) * -12,
       rotateY: (x - 0.5) * 12,
     });
-  }, []);
+  }, [isMobile]);
 
   const handleMouseLeave = useCallback(() => {
+    if (isMobile) return;
     setTilt({ rotateX: 0, rotateY: 0 });
-  }, []);
+  }, [isMobile]);
 
   return { ref, tilt, handleMouseMove, handleMouseLeave };
 }

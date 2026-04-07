@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 interface GradientBlobsProps {
@@ -7,6 +8,38 @@ interface GradientBlobsProps {
 }
 
 export function GradientBlobs({ className = '' }: GradientBlobsProps) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
+  // On mobile: static blobs, no animation, smaller blur
+  if (isMobile) {
+    return (
+      <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+        <div
+          className="absolute w-[250px] h-[250px] rounded-full opacity-15"
+          style={{
+            background: 'radial-gradient(circle, #7C3AED 0%, transparent 70%)',
+            filter: 'blur(40px)',
+            top: '-10%',
+            left: '-5%',
+          }}
+        />
+        <div
+          className="absolute w-[200px] h-[200px] rounded-full opacity-10"
+          style={{
+            background: 'radial-gradient(circle, #06B6D4 0%, transparent 70%)',
+            filter: 'blur(40px)',
+            top: '20%',
+            right: '-5%',
+          }}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
       <motion.div
