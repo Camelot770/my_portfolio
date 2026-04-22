@@ -109,7 +109,7 @@ function BentoCard({
       {/* Static border (hidden on hover) */}
       <div className="absolute inset-0 rounded-2xl border border-border transition-opacity duration-500 group-hover:opacity-0" />
       {/* Gradient border (shown on hover) */}
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent to-[#06B6D4] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-peach opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       {/* Content */}
       <div className="relative m-[1px] h-[calc(100%-2px)] bg-dark-secondary rounded-[calc(1rem-1px)] p-8">
         <span className="text-4xl font-heading font-bold text-accent/20 block mb-4">
@@ -320,7 +320,7 @@ export function AboutContent() {
       <section
         className="section text-white"
         style={{
-          background: 'linear-gradient(135deg, #7C3AED, #06B6D4)',
+          background: 'linear-gradient(135deg, #1F2F6A, #E3B7A0)',
         }}
       >
         <div className="container">

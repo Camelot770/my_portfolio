@@ -12,7 +12,7 @@ export function CTA() {
     <section
       ref={ref}
       className="section text-white relative overflow-hidden"
-      style={{ background: 'linear-gradient(135deg, #7C3AED, #06B6D4)' }}
+      style={{ background: 'linear-gradient(135deg, #1F2F6A, #E3B7A0)' }}
     >
       <div className="container relative z-10">
         <motion.div

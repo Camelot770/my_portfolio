@@ -21,7 +21,7 @@ export function GradientBlobs({ className = '' }: GradientBlobsProps) {
         <div
           className="absolute w-[250px] h-[250px] rounded-full opacity-15"
           style={{
-            background: 'radial-gradient(circle, #7C3AED 0%, transparent 70%)',
+            background: 'radial-gradient(circle, #1F2F6A 0%, transparent 70%)',
             filter: 'blur(40px)',
             top: '-10%',
             left: '-5%',
@@ -30,7 +30,7 @@ export function GradientBlobs({ className = '' }: GradientBlobsProps) {
         <div
           className="absolute w-[200px] h-[200px] rounded-full opacity-10"
           style={{
-            background: 'radial-gradient(circle, #06B6D4 0%, transparent 70%)',
+            background: 'radial-gradient(circle, #E3B7A0 0%, transparent 70%)',
             filter: 'blur(40px)',
             top: '20%',
             right: '-5%',
@@ -45,7 +45,7 @@ export function GradientBlobs({ className = '' }: GradientBlobsProps) {
       <motion.div
         className="absolute w-[500px] h-[500px] rounded-full opacity-20"
         style={{
-          background: 'radial-gradient(circle, #7C3AED 0%, transparent 70%)',
+          background: 'radial-gradient(circle, #1F2F6A 0%, transparent 70%)',
           filter: 'blur(80px)',
           top: '-10%',
           left: '-5%',
@@ -64,7 +64,7 @@ export function GradientBlobs({ className = '' }: GradientBlobsProps) {
       <motion.div
         className="absolute w-[400px] h-[400px] rounded-full opacity-15"
         style={{
-          background: 'radial-gradient(circle, #06B6D4 0%, transparent 70%)',
+          background: 'radial-gradient(circle, #E3B7A0 0%, transparent 70%)',
           filter: 'blur(80px)',
           top: '20%',
           right: '-5%',
@@ -83,7 +83,7 @@ export function GradientBlobs({ className = '' }: GradientBlobsProps) {
       <motion.div
         className="absolute w-[300px] h-[300px] rounded-full opacity-10"
         style={{
-          background: 'radial-gradient(circle, #7C3AED 0%, transparent 70%)',
+          background: 'radial-gradient(circle, #1F2F6A 0%, transparent 70%)',
           filter: 'blur(60px)',
           bottom: '10%',
           left: '30%',

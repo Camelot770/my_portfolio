@@ -3,14 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --background: #0A0A0F;
-  --foreground: #F5F5F5;
-  --accent: #7C3AED;
-  --accent-hover: #6D28D9;
-  --dark: #050508;
-  --dark-secondary: #111118;
-  --muted: #A0A0B0;
-  --border: #1E1E2E;
+  --background: #0B1030;
+  --foreground: #F5EBDF;
+  --accent: #E3B7A0;
+  --accent-hover: #D9A385;
+  --dark: #070B22;
+  --dark-secondary: #131A3F;
+  --brand-blue: #1F2F6A;
+  --brand-peach: #E3B7A0;
+  --muted: #A5ADCC;
+  --border: #24305F;
 }
 
 * {
@@ -111,7 +113,7 @@ body {
   }
 
   .btn-primary {
-    background: linear-gradient(135deg, #7C3AED, #06B6D4);
+    background: linear-gradient(135deg, #1F2F6A, #E3B7A0);
     @apply text-white hover:opacity-90;
   }
 
@@ -120,7 +122,7 @@ body {
   }
 
   .btn-accent {
-    background: linear-gradient(135deg, #7C3AED, #06B6D4);
+    background: linear-gradient(135deg, #1F2F6A, #E3B7A0);
     @apply text-white hover:opacity-90;
   }
 
@@ -147,7 +149,7 @@ body {
 
   .gradient-text {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #7C3AED, #06B6D4);
+    background-image: linear-gradient(135deg, #1F2F6A, #E3B7A0);
   }
 
   .animate-on-scroll {
