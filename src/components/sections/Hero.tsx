@@ -105,8 +105,8 @@ export function Hero() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Initial mouse positions
-  const defaultPosition = isMobile ? { x: 80, y: 200 } : { x: 120, y: 380 };
+  // Initial mouse positions (higher on screen)
+  const defaultPosition = isMobile ? { x: 80, y: 140 } : { x: 120, y: 220 };
 
   const [mousePosition, setMousePosition] = useState(defaultPosition);
   const [isHovering, setIsHovering] = useState(false);
@@ -114,11 +114,11 @@ export function Hero() {
 
   // Initial animation: center -> left
   useEffect(() => {
-    const initialPos = isMobile ? { x: 100, y: 250 } : { x: 680, y: 400 };
+    const initialPos = isMobile ? { x: 100, y: 180 } : { x: 680, y: 260 };
     setMousePosition(initialPos);
 
     const timer = setTimeout(() => {
-      const targetPos = isMobile ? { x: 80, y: 200 } : { x: 120, y: 380 };
+      const targetPos = isMobile ? { x: 80, y: 140 } : { x: 120, y: 220 };
       setMousePosition(targetPos);
       setHasAnimatedIn(true);
     }, 800);
