@@ -52,6 +52,9 @@ export function Accordion({ items, className = '', variant = 'default' }: Accord
             <button
               onClick={() => toggle(item.id)}
               className="w-full py-6 flex items-center justify-between text-left group pl-4"
+              aria-expanded={isOpen}
+              aria-controls={`accordion-panel-${item.id}`}
+              id={`accordion-trigger-${item.id}`}
             >
               <div className="flex items-center gap-4 md:gap-8">
                 {variant === 'numbered' && item.number && (
@@ -93,6 +96,9 @@ export function Accordion({ items, className = '', variant = 'default' }: Accord
             <AnimatePresence>
               {isOpen && (
                 <motion.div
+                  id={`accordion-panel-${item.id}`}
+                  role="region"
+                  aria-labelledby={`accordion-trigger-${item.id}`}
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}

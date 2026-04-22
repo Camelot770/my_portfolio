@@ -8,6 +8,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://stacklab.su/portfolio',
   },
+  openGraph: {
+    title: 'Портфолио StackLab — кейсы Mini Apps и ботов для MAX',
+    description:
+      'Реальные проекты: MAX WebApp, чат-боты, Telegram Mini Apps, iOS-приложения и веб-сервисы для бизнеса и госструктур.',
+    url: 'https://stacklab.su/portfolio',
+    images: ['/images/og-image.jpg'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Портфолио StackLab',
+    description: 'Кейсы Mini Apps и чат-ботов для MAX, iOS и веб-проекты.',
+    images: ['/images/og-image.jpg'],
+  },
 };
 
 export default function PortfolioPage() {

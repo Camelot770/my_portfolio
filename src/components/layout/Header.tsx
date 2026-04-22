@@ -55,8 +55,10 @@ export function Header() {
 
             <motion.button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="relative z-50 flex items-center gap-3 px-5 py-3 text-sm font-medium tracking-wide uppercase rounded-full overflow-hidden group focus:outline-none focus:ring-0"
+              className="relative z-50 flex items-center gap-3 px-5 py-3 text-sm font-medium tracking-wide uppercase rounded-full overflow-hidden group"
               aria-label={isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
+              aria-expanded={isMenuOpen}
+              aria-controls="main-navigation-menu"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: 'spring', stiffness: 400, damping: 17 }}

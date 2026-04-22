@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { menuSlideIn, staggerContainer, menuItemVariants } from '@/lib/animations';
 
 interface MenuProps {
@@ -18,6 +18,7 @@ const menuLinks = [
 
 export function Menu({ onClose }: MenuProps) {
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleNavigation = (href: string) => {
     onClose();
@@ -28,11 +29,15 @@ export function Menu({ onClose }: MenuProps) {
 
   return (
     <motion.div
+      id="main-navigation-menu"
       variants={menuSlideIn}
       initial="hidden"
       animate="visible"
       exit="exit"
       className="fixed inset-0 z-40 bg-dark"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Главное меню"
     >
       <div className="container h-full flex flex-col justify-center">
         <motion.nav
@@ -40,25 +45,30 @@ export function Menu({ onClose }: MenuProps) {
           initial="hidden"
           animate="visible"
           className="flex flex-col gap-4 md:gap-6"
+          aria-label="Основная навигация"
         >
-          {menuLinks.map((link) => (
-            <motion.div key={link.href} variants={menuItemVariants}>
-              <button
-                onClick={() => handleNavigation(link.href)}
-                className="group flex items-center gap-4 cursor-pointer"
-                data-no-cursor-fill
-              >
-                <span className={`font-heading font-bold transition-colors group-hover:text-accent ${link.accent ? 'text-5xl md:text-7xl lg:text-8xl text-white/90' : 'text-4xl md:text-6xl lg:text-7xl text-white'}`}>
-                  {link.label}
-                </span>
-                <motion.span
-                  initial={{ width: 0 }}
-                  whileHover={{ width: '60px' }}
-                  className="h-1 bg-accent rounded-full"
-                />
-              </button>
-            </motion.div>
-          ))}
+          {menuLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <motion.div key={link.href} variants={menuItemVariants}>
+                <button
+                  onClick={() => handleNavigation(link.href)}
+                  className="group flex items-center gap-4 cursor-pointer"
+                  data-no-cursor-fill
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  <span className={`font-heading font-bold transition-colors group-hover:text-accent ${isActive ? 'text-accent' : ''} ${link.accent ? 'text-5xl md:text-7xl lg:text-8xl text-white/90' : 'text-4xl md:text-6xl lg:text-7xl text-white'}`}>
+                    {link.label}
+                  </span>
+                  <motion.span
+                    initial={{ width: isActive ? 60 : 0 }}
+                    whileHover={{ width: '60px' }}
+                    className="h-1 bg-accent rounded-full"
+                  />
+                </button>
+              </motion.div>
+            );
+          })}
         </motion.nav>
 
         <motion.div

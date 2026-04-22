@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { projects, getProjectBySlug, getAdjacentProjects } from '@/data/projects';
 import { ProjectDetail } from './ProjectDetail';
-import { ProjectJsonLd } from '@/components/seo/JsonLd';
+import { ProjectJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -59,6 +59,15 @@ export default async function ProjectPage({ params }: Props) {
         technologies={project.technologies}
         datePublished={`${project.year}-01-01`}
       />
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Главная', url: '/' },
+          { name: 'Портфолио', url: '/portfolio' },
+          { name: project.title, url: `/portfolio/${slug}` },
+        ]}
+      />
+      <meta property="og:type" content="article" />
+      <meta name="twitter:card" content="summary_large_image" />
       <ProjectDetail
         project={project}
         prevProject={prevProject}
