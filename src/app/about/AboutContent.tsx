@@ -317,12 +317,7 @@ export function AboutContent() {
       </section>
 
       {/* CTA */}
-      <section
-        className="section text-white"
-        style={{
-          background: 'linear-gradient(135deg, #1F2F6A, #E3B7A0)',
-        }}
-      >
+      <section className="section text-white bg-gradient-brand">
         <div className="container">
           <div className="text-center max-w-2xl mx-auto">
             <h2 className="text-display-3 font-heading font-bold mb-6">

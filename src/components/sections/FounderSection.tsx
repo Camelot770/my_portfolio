@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 const lines = [
   'iOS-ПРИЛОЖЕНИЯ',
@@ -9,12 +9,26 @@ const lines = [
   'ВЕБ-СЕРВИСЫ И ЛЕНДИНГИ',
 ];
 
-function MarqueeLine({ text, reverse, speed = 20 }: { text: string; reverse?: boolean; speed?: number }) {
-  // Repeat the text enough times to fill the screen seamlessly
+function MarqueeLine({
+  text,
+  reverse,
+  speed = 20,
+  prefersReducedMotion,
+}: {
+  text: string;
+  reverse?: boolean;
+  speed?: number;
+  prefersReducedMotion: boolean;
+}) {
+  // First repetition is visible to SR; the rest are decorative duplicates
   const repeated = Array.from({ length: 6 }, (_, i) => (
-    <span key={i} className="flex items-center gap-8 shrink-0">
+    <span
+      key={i}
+      className="flex items-center gap-8 shrink-0"
+      aria-hidden={i > 0 ? 'true' : undefined}
+    >
       <span>{text}</span>
-      <span className="w-3 h-3 bg-accent rounded-full shrink-0" />
+      <span aria-hidden="true" className="w-3 h-3 bg-accent rounded-full shrink-0" />
     </span>
   ));
 
@@ -22,17 +36,23 @@ function MarqueeLine({ text, reverse, speed = 20 }: { text: string; reverse?: bo
     <div className="overflow-hidden whitespace-nowrap py-1.5 md:py-2">
       <motion.div
         className="flex items-center gap-8"
-        animate={{
-          x: reverse ? ['0%', '-50%'] : ['-50%', '0%'],
-        }}
-        transition={{
-          x: {
-            repeat: Infinity,
-            repeatType: 'loop',
-            duration: speed,
-            ease: 'linear',
-          },
-        }}
+        animate={
+          prefersReducedMotion
+            ? { x: 0 }
+            : { x: reverse ? ['0%', '-50%'] : ['-50%', '0%'] }
+        }
+        transition={
+          prefersReducedMotion
+            ? { duration: 0 }
+            : {
+                x: {
+                  repeat: Infinity,
+                  repeatType: 'loop',
+                  duration: speed,
+                  ease: 'linear',
+                },
+              }
+        }
       >
         {repeated}
       </motion.div>
@@ -41,18 +61,20 @@ function MarqueeLine({ text, reverse, speed = 20 }: { text: string; reverse?: bo
 }
 
 export function FounderSection() {
+  const prefersReducedMotion = useReducedMotion() ?? false;
   return (
-    <section className="bg-dark-secondary text-white relative overflow-hidden py-10 md:py-14">
+    <section className="bg-dark-secondary text-foreground relative overflow-hidden py-10 md:py-14">
       <div className="flex flex-col gap-1 md:gap-2">
         {lines.map((line, index) => (
           <div
             key={line}
-            className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold tracking-tight text-white/90"
+            className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold tracking-tight text-foreground/90"
           >
             <MarqueeLine
               text={line}
               reverse={index % 2 === 1}
               speed={25 + index * 3}
+              prefersReducedMotion={prefersReducedMotion}
             />
           </div>
         ))}

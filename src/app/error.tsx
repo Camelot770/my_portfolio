@@ -24,7 +24,7 @@ export default function Error({
           Что-то пошло не так
         </h1>
         <p className="text-lg text-muted mb-8">
-          Произошла непредвиденная ошибка. Попробуйте обновить страницу или вернуться на главную.
+          Страница недоступна. Обновите её или вернитесь на главную.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button

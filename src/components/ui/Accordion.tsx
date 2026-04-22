@@ -51,6 +51,12 @@ export function Accordion({ items, className = '', variant = 'default' }: Accord
 
             <button
               onClick={() => toggle(item.id)}
+              onKeyDown={(e) => {
+                if (e.key === 'Escape' && isOpen) {
+                  e.preventDefault();
+                  setOpenId(null);
+                }
+              }}
               className="w-full py-6 flex items-center justify-between text-left group pl-4"
               aria-expanded={isOpen}
               aria-controls={`accordion-panel-${item.id}`}

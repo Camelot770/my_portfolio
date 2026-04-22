@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 
-const paragraph = `Мы верим, что за каждым великим продуктом стоит простая идея. Наша задача — взять эту идею и превратить её в код, который работает.`;
+const paragraph = `Мы верим, что за каждым рабочим продуктом стоит ясная идея. Наша задача — взять эту идею и превратить её в код, который работает.`;
 
 const features = [
   'Сильная команда',

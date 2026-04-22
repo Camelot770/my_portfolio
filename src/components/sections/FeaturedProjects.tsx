@@ -34,7 +34,7 @@ export function FeaturedProjects() {
               transition={{ delay: 0.4, duration: 0.5 }}
               className="mt-4 text-lg text-muted max-w-2xl"
             >
-              Каждый проект доведён до конца. Каждый клиент получил работающий продукт.
+              Доводим до конца. Клиенты получают работающие продукты.
             </motion.p>
           </div>
 

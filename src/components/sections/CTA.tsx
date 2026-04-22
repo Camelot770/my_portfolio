@@ -11,8 +11,7 @@ export function CTA() {
   return (
     <section
       ref={ref}
-      className="section text-white relative overflow-hidden"
-      style={{ background: 'linear-gradient(135deg, #1F2F6A, #E3B7A0)' }}
+      className="section text-white relative overflow-hidden bg-gradient-brand"
     >
       <div className="container relative z-10">
         <motion.div
@@ -37,7 +36,7 @@ export function CTA() {
 
           <motion.div variants={fadeInUp} className="flex justify-center">
             <ArrowButton href="/contact" variant="dark">
-              Обсудить проект
+              Поговорить с нами
             </ArrowButton>
           </motion.div>
         </motion.div>

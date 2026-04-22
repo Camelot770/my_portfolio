@@ -42,6 +42,8 @@ function MagneticButton({
         });
       }}
       onMouseLeave={() => setPos({ x: 0, y: 0 })}
+      onFocus={() => setPos({ x: 0, y: -4 })}
+      onBlur={() => setPos({ x: 0, y: 0 })}
     >
       {children}
     </motion.a>
@@ -301,18 +303,24 @@ export function Hero() {
               animate="visible"
               className="max-w-4xl"
             >
+              <motion.span
+                variants={fadeInUp}
+                className="inline-block text-sm md:text-base uppercase tracking-[0.2em] text-accent font-medium mb-4"
+              >
+                Студия разработки
+              </motion.span>
               <motion.h1
                 variants={fadeInUp}
-                className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold leading-tight mb-6 text-foreground"
+                className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-[1.05] mb-6 text-foreground"
                 style={{ letterSpacing: '-0.02em' }}
               >
-                Превращаем идеи в работающие продукты: от iOS-приложений до MAX и Telegram Mini Apps и веб-сервисов
+                Mini Apps и чат-боты<br />для&nbsp;MAX
               </motion.h1>
               <motion.p
                 variants={fadeInUp}
-                className="text-lg md:text-xl text-muted max-w-2xl mb-8"
+                className="text-lg md:text-xl text-foreground/80 max-w-2xl mb-8"
               >
-                Разработка Mini Apps, чат-ботов и сервисов для MAX — для бизнеса, госструктур и стартапов. Полный цикл: от идеи до запуска.
+                Плюс iOS-приложения, Telegram Mini Apps и веб-сервисы. Полный цикл: от идеи до запуска. Работаем с бизнесом, госструктурами и стартапами.
               </motion.p>
 
               <motion.div
@@ -320,7 +328,7 @@ export function Hero() {
                 className="flex flex-col sm:flex-row gap-4"
               >
                 <ArrowButton href="/contact">
-                  Обсудить проект
+                  Запустить проект
                 </ArrowButton>
                 <MagneticButton href="/portfolio" className="btn btn-secondary">
                   Смотреть работы

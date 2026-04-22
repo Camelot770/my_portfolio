@@ -18,8 +18,8 @@ export function Services() {
       <div className="space-y-4 pl-0 md:pl-16">
         <p>{service.shortDescription}</p>
         <div>
-          <h4 className="font-semibold text-white mb-2">Что входит:</h4>
-          <ul className="list-disc list-inside space-y-1 text-white/70">
+          <h4 className="font-semibold text-foreground mb-2">Что входит:</h4>
+          <ul className="list-disc list-inside space-y-1 text-foreground/70">
             {service.includes.map((item, i) => (
               <li key={i}>{item}</li>
             ))}
@@ -31,7 +31,7 @@ export function Services() {
   }));
 
   return (
-    <section ref={ref} className="section bg-dark text-white">
+    <section ref={ref} className="section bg-dark text-foreground">
       <div className="container">
         <motion.div
           variants={staggerContainer}
@@ -49,9 +49,9 @@ export function Services() {
               initial={{ opacity: 0, y: 10 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="mt-4 text-lg text-white/60 max-w-2xl"
+              className="mt-4 text-lg text-foreground/60 max-w-2xl"
             >
-              Полный цикл разработки: от идеи до работающего продукта
+              Три направления. От проектирования до запуска. Без посредников.
             </motion.p>
           </div>
 
@@ -59,7 +59,7 @@ export function Services() {
             <Accordion
               items={accordionItems}
               variant="numbered"
-              className="[&_button]:text-white [&_button]:border-white/20 [&_span]:text-white/60"
+              className="[&_button]:text-foreground [&_button]:border-foreground/20 [&_span]:text-foreground/60"
             />
           </motion.div>
 

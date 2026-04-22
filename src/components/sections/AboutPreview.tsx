@@ -19,18 +19,35 @@ export function AboutPreview() {
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center"
         >
           <motion.div variants={fadeInLeft} className="order-2 lg:order-1">
-            <span className="text-accent font-medium tracking-wide uppercase">
-              О студии
+            <span className="text-accent font-medium tracking-[0.2em] uppercase text-sm">
+              Кто мы
             </span>
             <h2 className="text-display-3 font-heading font-bold mt-4 mb-6">
-              StackLab — студия, где каждый проект создаётся с нуля под вашу задачу
+              StackLab: проекты под вас,<br />разработчики на связи
             </h2>
-            <p className="text-lg text-muted mb-6">
-              Команда, которая работает напрямую с клиентом. Между вами и вашим продуктом нет посредников, менеджеров и потерянных в переводе требований.
+            <p className="text-lg text-foreground/80 mb-6">
+              Команда работает напрямую с клиентом. Между вами и продуктом нет посредников, менеджеров и потерянных в переводе требований.
             </p>
-            <p className="text-lg text-muted mb-8">
-              Вы говорите напрямую с теми, кто пишет код. Решения принимаются быстро. Правки вносятся сразу. Результат — в срок.
+            <p className="text-lg text-foreground/80 mb-8">
+              Вы говорите с теми, кто пишет код. Решения принимаются быстро, правки вносятся сразу, результат — в срок.
             </p>
+
+            {/* Mini-stats */}
+            <div className="grid grid-cols-3 gap-4 mb-8 pb-8 border-b border-border">
+              <div>
+                <div className="text-3xl md:text-4xl font-heading font-bold text-accent">15+</div>
+                <div className="text-sm text-muted mt-1">Проектов</div>
+              </div>
+              <div>
+                <div className="text-3xl md:text-4xl font-heading font-bold text-accent">100%</div>
+                <div className="text-sm text-muted mt-1">Доведено до запуска</div>
+              </div>
+              <div>
+                <div className="text-3xl md:text-4xl font-heading font-bold text-accent">0</div>
+                <div className="text-sm text-muted mt-1">Посредников</div>
+              </div>
+            </div>
+
             <Button href="/about" variant="secondary">
               Подробнее о нас
             </Button>

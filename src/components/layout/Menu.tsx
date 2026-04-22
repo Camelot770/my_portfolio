@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter, usePathname } from 'next/navigation';
 import { menuSlideIn, staggerContainer, menuItemVariants } from '@/lib/animations';
@@ -19,6 +20,7 @@ const menuLinks = [
 export function Menu({ onClose }: MenuProps) {
   const router = useRouter();
   const pathname = usePathname();
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   const handleNavigation = (href: string) => {
     onClose();
@@ -27,8 +29,41 @@ export function Menu({ onClose }: MenuProps) {
     }, 500);
   };
 
+  // Escape key to close + focus trap
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        onClose();
+        return;
+      }
+      if (e.key !== 'Tab' || !dialogRef.current) return;
+      const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+        'button, a, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener('keydown', handleKey);
+    // Focus first button in menu on open
+    setTimeout(() => {
+      const firstBtn = dialogRef.current?.querySelector<HTMLElement>('button, a');
+      firstBtn?.focus();
+    }, 100);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [onClose]);
+
   return (
     <motion.div
+      ref={dialogRef}
       id="main-navigation-menu"
       variants={menuSlideIn}
       initial="hidden"
@@ -57,7 +92,7 @@ export function Menu({ onClose }: MenuProps) {
                   data-no-cursor-fill
                   aria-current={isActive ? 'page' : undefined}
                 >
-                  <span className={`font-heading font-bold transition-colors group-hover:text-accent ${isActive ? 'text-accent' : ''} ${link.accent ? 'text-5xl md:text-7xl lg:text-8xl text-white/90' : 'text-4xl md:text-6xl lg:text-7xl text-white'}`}>
+                  <span className={`font-heading font-bold transition-colors group-hover:text-accent ${isActive ? 'text-accent' : ''} ${link.accent ? 'text-5xl md:text-7xl lg:text-8xl text-foreground/90' : 'text-4xl md:text-6xl lg:text-7xl text-foreground'}`}>
                     {link.label}
                   </span>
                   <motion.span
@@ -81,7 +116,7 @@ export function Menu({ onClose }: MenuProps) {
             onClick={() => handleNavigation('/contact')}
             className="btn btn-accent text-lg cursor-pointer"
           >
-            Обсудить проект
+            Поговорить с нами
           </button>
         </motion.div>
 
@@ -91,7 +126,7 @@ export function Menu({ onClose }: MenuProps) {
           transition={{ delay: 0.6 }}
           className="absolute bottom-8 left-0 right-0 container"
         >
-          <div className="flex items-center justify-end text-white/60">
+          <div className="flex items-center justify-end text-foreground/60">
             <p className="text-sm">
               © {new Date().getFullYear()} StackLab
             </p>

@@ -43,6 +43,17 @@ const config: Config = {
         "400": "400ms",
         "600": "600ms",
       },
+      transitionTimingFunction: {
+        brand: "cubic-bezier(0.22, 1, 0.36, 1)",
+      },
+      borderRadius: {
+        card: "20px",
+      },
+      backgroundImage: {
+        "gradient-brand": "linear-gradient(135deg, #1F2F6A, #E3B7A0)",
+        "gradient-brand-vertical": "linear-gradient(180deg, #1F2F6A, #E3B7A0)",
+        "gradient-brand-horizontal": "linear-gradient(90deg, #1F2F6A, #E3B7A0)",
+      },
       animation: {
         "spin-slow": "spin 20s linear infinite",
         "fade-in": "fadeIn 0.6s ease-out forwards",
