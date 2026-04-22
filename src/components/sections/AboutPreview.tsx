@@ -1,13 +1,47 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { useInView } from '@/hooks/useInView';
+import { useCountUp } from '@/hooks/useCountUp';
 import { fadeInUp, fadeInLeft, staggerContainer } from '@/lib/animations';
 import { Button } from '@/components/ui/Button';
 
+function AnimatedStat({
+  target,
+  suffix,
+  label,
+  inView,
+}: {
+  target: number;
+  suffix?: string;
+  label: string;
+  inView: boolean;
+}) {
+  const value = useCountUp({ target, duration: 2, inView });
+  return (
+    <div>
+      <div className="text-3xl md:text-4xl font-heading font-bold text-accent tabular-nums">
+        {value}
+        {suffix}
+      </div>
+      <div className="text-sm text-muted mt-1">{label}</div>
+    </div>
+  );
+}
+
 export function AboutPreview() {
   const [ref, isInView] = useInView({ threshold: 0.2 });
+  const parallaxRef = useRef<HTMLDivElement>(null);
+
+  // Parallax on image: moves up slower than scroll
+  const { scrollYProgress } = useScroll({
+    target: parallaxRef,
+    offset: ['start end', 'end start'],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], ['8%', '-8%']);
+  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.05, 1, 1.05]);
 
   return (
     <section ref={ref} className="section bg-background">
@@ -32,20 +66,11 @@ export function AboutPreview() {
               Вы говорите с теми, кто пишет код. Решения принимаются быстро, правки вносятся сразу, результат — в срок.
             </p>
 
-            {/* Mini-stats */}
+            {/* Animated stats */}
             <div className="grid grid-cols-3 gap-4 mb-8 pb-8 border-b border-border">
-              <div>
-                <div className="text-3xl md:text-4xl font-heading font-bold text-accent">15+</div>
-                <div className="text-sm text-muted mt-1">Проектов</div>
-              </div>
-              <div>
-                <div className="text-3xl md:text-4xl font-heading font-bold text-accent">100%</div>
-                <div className="text-sm text-muted mt-1">Доведено до запуска</div>
-              </div>
-              <div>
-                <div className="text-3xl md:text-4xl font-heading font-bold text-accent">0</div>
-                <div className="text-sm text-muted mt-1">Посредников</div>
-              </div>
+              <AnimatedStat target={15} suffix="+" label="Проектов" inView={isInView} />
+              <AnimatedStat target={100} suffix="%" label="Доведено до запуска" inView={isInView} />
+              <AnimatedStat target={0} label="Посредников" inView={isInView} />
             </div>
 
             <Button href="/about" variant="secondary">
@@ -53,14 +78,19 @@ export function AboutPreview() {
             </Button>
           </motion.div>
 
-          <motion.div variants={fadeInUp} className="order-1 lg:order-2">
+          <motion.div variants={fadeInUp} className="order-1 lg:order-2" ref={parallaxRef}>
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
-              <Image
-                src="/images/preview.jpg"
-                alt="StackLab"
-                fill
-                className="object-cover"
-              />
+              <motion.div
+                className="absolute inset-0"
+                style={{ y: imageY, scale: imageScale }}
+              >
+                <Image
+                  src="/images/preview.jpg"
+                  alt="StackLab"
+                  fill
+                  className="object-cover"
+                />
+              </motion.div>
             </div>
           </motion.div>
         </motion.div>
