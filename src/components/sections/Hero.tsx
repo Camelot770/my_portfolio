@@ -261,7 +261,7 @@ export function Hero() {
           className="absolute inset-0 overflow-hidden pointer-events-none"
           style={{
             clipPath: revealClipPath,
-            background: 'linear-gradient(135deg, #7C3AED, #06B6D4)',
+            background: 'linear-gradient(135deg, #1F2F6A, #E3B7A0)',
             willChange: 'clip-path',
             opacity: revealedTextOpacity,
           }}

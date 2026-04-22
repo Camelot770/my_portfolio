@@ -40,7 +40,7 @@ export function Accordion({ items, className = '', variant = 'default' }: Accord
             {/* Gradient left accent on hover */}
             <motion.div
               className="absolute left-0 top-0 bottom-0 w-[2px] rounded-full"
-              style={{ background: 'linear-gradient(180deg, #7C3AED, #06B6D4)' }}
+              style={{ background: 'linear-gradient(180deg, #1F2F6A, #E3B7A0)' }}
               initial={{ scaleY: 0, opacity: 0 }}
               animate={{
                 scaleY: isHovered || isOpen ? 1 : 0,
@@ -61,7 +61,7 @@ export function Accordion({ items, className = '', variant = 'default' }: Accord
                   <motion.span
                     className="font-bold text-xl md:text-2xl"
                     animate={{
-                      color: isHovered || isOpen ? '#7C3AED' : 'rgba(136, 136, 153, 0.6)',
+                      color: isHovered || isOpen ? '#E3B7A0' : 'rgba(136, 136, 153, 0.6)',
                       scale: isHovered ? 1.1 : 1,
                     }}
                     transition={{ duration: 0.3 }}
@@ -84,7 +84,7 @@ export function Accordion({ items, className = '', variant = 'default' }: Accord
               <motion.span
                 animate={{
                   rotate: isOpen ? 45 : 0,
-                  color: isHovered || isOpen ? '#7C3AED' : undefined,
+                  color: isHovered || isOpen ? '#E3B7A0' : undefined,
                 }}
                 transition={{ duration: 0.3 }}
                 className="text-3xl font-light text-muted"
