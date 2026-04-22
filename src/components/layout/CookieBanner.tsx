@@ -42,7 +42,7 @@ export function CookieBanner() {
                   <h3 className="text-lg font-semibold mb-2">
                     Мы уважаем вашу приватность
                   </h3>
-                  <p className="text-white/70 text-sm md:text-base">
+                  <p className="text-foreground/70 text-sm md:text-base">
                     Этот сайт не использует cookies для отслеживания.
                     Подробнее в{' '}
                     <Link
@@ -57,7 +57,7 @@ export function CookieBanner() {
                 <div className="flex gap-3 flex-shrink-0">
                   <button
                     onClick={handleDecline}
-                    className="px-6 py-3 text-sm font-medium text-white/70 hover:text-white transition-colors"
+                    className="px-6 py-3 text-sm font-medium text-foreground/70 hover:text-white transition-colors"
                   >
                     Закрыть
                   </button>

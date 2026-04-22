@@ -164,6 +164,8 @@ export function CustomCursor() {
   return (
     <>
       <motion.div
+        aria-hidden="true"
+        role="presentation"
         className="fixed top-0 left-0 pointer-events-none z-[9999] flex items-center justify-center"
         style={{
           x: isHoveringButton && buttonRect ? buttonRect.x : position.x - (isHoveringProject ? projectCursorSize / 2 : size / 2),

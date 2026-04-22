@@ -39,7 +39,7 @@ export function Footer() {
                 className="h-16 w-auto brightness-0 invert"
               />
             </Link>
-            <p className="text-white/60 max-w-md mb-6">
+            <p className="text-foreground/60 max-w-md mb-6">
               Студия разработки полного цикла. iOS-приложения, MAX и Telegram Mini Apps, боты и веб-продукты для стартапов и малого бизнеса.
             </p>
             <p className="text-lg font-medium text-accent">
@@ -54,7 +54,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white/60 hover:text-white transition-colors"
+                    className="text-foreground/60 hover:text-white transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -69,7 +69,7 @@ export function Footer() {
               <li>
                 <a
                   href="mailto:naum_kogan@inbox.ru"
-                  className="text-white/60 hover:text-white transition-colors"
+                  className="text-foreground/60 hover:text-white transition-colors"
                 >
                   naum_kogan@inbox.ru
                 </a>
@@ -79,7 +79,7 @@ export function Footer() {
                   href="https://t.me/Naum0"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/60 hover:text-white transition-colors"
+                  className="text-foreground/60 hover:text-white transition-colors"
                 >
                   Telegram: @Naum0
                 </a>
@@ -89,7 +89,7 @@ export function Footer() {
                   href="https://max.ru/u/f9LHodD0cOLGKi7i1KndiYLJAU1rf7OCpsTt2VCnnAAN7qe3VUEjR99azyg"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/60 hover:text-white transition-colors"
+                  className="text-foreground/60 hover:text-white transition-colors"
                 >
                   MAX: StackLab
                 </a>
@@ -102,10 +102,10 @@ export function Footer() {
           variants={fadeInUp}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="mt-12 pt-8 border-t border-white/10"
+          className="mt-12 pt-8 border-t border-foreground/10"
         >
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <p className="text-white/40 text-sm">
+            <p className="text-foreground/40 text-sm">
               © {new Date().getFullYear()} StackLab. Все права защищены.
             </p>
             <div className="flex gap-6">
@@ -113,7 +113,7 @@ export function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-white/40 text-sm hover:text-white/60 transition-colors"
+                  className="text-foreground/40 text-sm hover:text-foreground/60 transition-colors"
                 >
                   {link.label}
                 </Link>

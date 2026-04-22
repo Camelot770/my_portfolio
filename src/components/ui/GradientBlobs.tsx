@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 interface GradientBlobsProps {
   className?: string;
@@ -9,15 +9,19 @@ interface GradientBlobsProps {
 
 export function GradientBlobs({ className = '' }: GradientBlobsProps) {
   const [isMobile, setIsMobile] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 768);
   }, []);
 
-  // On mobile: static blobs, no animation, smaller blur
-  if (isMobile) {
+  // On mobile OR reduced motion: static blobs, no animation, smaller blur
+  if (isMobile || prefersReducedMotion) {
     return (
-      <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+      <div
+        aria-hidden="true"
+        className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}
+      >
         <div
           className="absolute w-[250px] h-[250px] rounded-full opacity-15"
           style={{
@@ -41,7 +45,10 @@ export function GradientBlobs({ className = '' }: GradientBlobsProps) {
   }
 
   return (
-    <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+    <div
+      aria-hidden="true"
+      className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}
+    >
       <motion.div
         className="absolute w-[500px] h-[500px] rounded-full opacity-20"
         style={{
