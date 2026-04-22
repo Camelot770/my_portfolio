@@ -4,6 +4,7 @@ import './globals.css';
 import { Header, Footer, CookieBanner } from '@/components/layout';
 import { CustomCursor } from '@/components/ui/CustomCursor';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
+import { MorphBackground } from '@/components/ui/MorphBackground';
 import { OrganizationJsonLd, WebSiteJsonLd } from '@/components/seo/JsonLd';
 
 const manrope = Manrope({
@@ -105,6 +106,7 @@ export default function RootLayout({
         >
           Перейти к основному контенту
         </a>
+        <MorphBackground />
         <CustomCursor />
         <ScrollProgress />
         <Header />

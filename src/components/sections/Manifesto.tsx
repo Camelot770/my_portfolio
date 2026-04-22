@@ -51,7 +51,7 @@ export function Manifesto() {
   const actualHighlightStart = words.indexOf('идею') + 1;
 
   return (
-    <section ref={containerRef} className="py-16 md:py-24 bg-background" aria-labelledby="manifesto-heading">
+    <section ref={containerRef} className="py-16 md:py-24" aria-labelledby="manifesto-heading">
       <div className="container">
         <div className="max-w-5xl mx-auto">
           {/* Word-by-word scroll reveal */}

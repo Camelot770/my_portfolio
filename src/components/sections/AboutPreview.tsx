@@ -44,7 +44,7 @@ export function AboutPreview() {
   const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.05, 1, 1.05]);
 
   return (
-    <section ref={ref} className="section bg-background">
+    <section ref={ref} className="section">
       <div className="container">
         <motion.div
           variants={staggerContainer}
