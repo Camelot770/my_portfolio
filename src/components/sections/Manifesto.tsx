@@ -51,11 +51,14 @@ export function Manifesto() {
   const actualHighlightStart = words.indexOf('идею') + 1;
 
   return (
-    <section ref={containerRef} className="py-16 md:py-24 bg-background">
+    <section ref={containerRef} className="py-16 md:py-24 bg-background" aria-labelledby="manifesto-heading">
       <div className="container">
         <div className="max-w-5xl mx-auto">
           {/* Word-by-word scroll reveal */}
-          <div className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold leading-snug text-center">
+          <h2
+            id="manifesto-heading"
+            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold leading-snug text-center"
+          >
             {words.map((word, index) => (
               <Word
                 key={index}
@@ -66,7 +69,7 @@ export function Manifesto() {
                 isHighlight={index >= actualHighlightStart}
               />
             ))}
-          </div>
+          </h2>
 
           {/* Features */}
           <div className="mt-12 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">

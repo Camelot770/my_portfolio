@@ -15,7 +15,7 @@ const config: Config = {
         "accent-hover": "#6D28D9",
         dark: "#050508",
         "dark-secondary": "#111118",
-        muted: "#888899",
+        muted: "#A0A0B0",
         border: "#1E1E2E",
       },
       fontFamily: {
