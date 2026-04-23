@@ -803,9 +803,22 @@ a {
   gap: 40px;
 }
 
+.works__head > div:first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.works__head .sec__head {
+  font-size: clamp(40px, 5.4vw, 88px);
+  line-height: 0.98;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
 .works__head-r {
   text-align: right;
   max-width: 360px;
+  flex: 0 0 auto;
   color: var(--fg-dim);
   font-size: 14px;
   line-height: 1.5;
@@ -1051,6 +1064,14 @@ a {
   position: sticky;
   top: 120px;
   align-self: start;
+  min-width: 0;
+}
+
+.process__head .sec__head {
+  font-size: clamp(32px, 3.4vw, 56px);
+  line-height: 1;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .process__lead {
@@ -1253,6 +1274,14 @@ a {
   position: sticky;
   top: 120px;
   align-self: start;
+  min-width: 0;
+}
+
+.faq__head .sec__head {
+  font-size: clamp(32px, 3.4vw, 56px);
+  line-height: 1;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .faq__lead {
