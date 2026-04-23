@@ -623,11 +623,11 @@ a {
 
 .marq__track {
   display: inline-flex;
-  gap: 60px;
+  gap: 48px;
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: clamp(60px, 11vw, 160px);
-  letter-spacing: -0.045em;
+  font-size: clamp(40px, 6vw, 88px);
+  letter-spacing: -0.04em;
   line-height: 1;
   will-change: transform;
 }
