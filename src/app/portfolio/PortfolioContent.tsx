@@ -40,9 +40,10 @@ export function PortfolioContent() {
           </span>
         </h1>
         <p className="page__lead">
-          {projects.length} запущенных продуктов для бизнеса, госструктур и
-          стартапов. MAX Mini Apps и боты, iOS-приложения, Telegram Mini Apps,
-          веб-сервисы.
+          18 запущенных продуктов для бизнеса, госструктур и стартапов. MAX
+          Mini Apps и боты, iOS-приложения, Telegram Mini Apps, веб-сервисы.
+          Ниже — {projects.length} кейсов, которые можем показать публично;
+          остальные под NDA.
         </p>
 
         <div

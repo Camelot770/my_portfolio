@@ -95,10 +95,10 @@ export function AboutContent() {
           <div className="about__cell">
             <div className="k">К · 01</div>
             <div className="v">
-              8 <em>запусков</em>
+              18 <em>запусков</em>
             </div>
             <div className="p">
-              Работающие продукты в MAX, Telegram, App Store и вебе.
+              Работающие продукты в MAX, Telegram, App Store и вебе. Часть под NDA — в портфолио показываем только то, что можем.
             </div>
           </div>
           <div className="about__cell">
@@ -122,7 +122,7 @@ export function AboutContent() {
           <div className="about__cell">
             <div className="k">К · 04</div>
             <div className="v">
-              4–12 <em>недель</em>
+              2–10 <em>недель</em>
             </div>
             <div className="p">
               Цикл от первого контакта до запуска продукта.

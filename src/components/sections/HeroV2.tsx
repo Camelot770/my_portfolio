@@ -108,9 +108,9 @@ export function HeroV2() {
             Удалённо · RU / EN
           </div>
           <div className="hero__meta">
-            <b>Портфолио</b>8 запущенных продуктов
+            <b>Портфолио</b>18 запущенных продуктов
             <br />
-            MAX · iOS · Telegram · веб
+            MAX · iOS · Telegram · веб · часть NDA
           </div>
           <div className="hero__scroll">Скролл↓</div>
         </div>
