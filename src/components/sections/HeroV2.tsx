@@ -1,0 +1,114 @@
+'use client';
+
+import dynamic from 'next/dynamic';
+import { useEffect, useRef } from 'react';
+
+const HeroScene = dynamic(
+  () => import('@/components/scenes/WebGLScenes').then((m) => m.HeroScene),
+  { ssr: false }
+);
+
+const LINES: Array<{ text: string; italic?: boolean }> = [
+  { text: 'Мы строим' },
+  { text: 'софт,', italic: true },
+  { text: 'который хочется' },
+  { text: 'обсуждать.' },
+];
+
+export function HeroV2() {
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const kickerRef = useRef<HTMLDivElement>(null);
+  const footRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const introDone = sessionStorage.getItem('sl-intro-done') === '1';
+    const introDelay = introDone ? 200 : 4200;
+
+    const tStart = setTimeout(() => {
+      const letters =
+        titleRef.current?.querySelectorAll<HTMLSpanElement>('.letter');
+      letters?.forEach((el, i) => {
+        setTimeout(() => {
+          el.style.transform = 'translateY(0) rotate(0deg)';
+          el.style.opacity = '1';
+        }, 40 * i);
+      });
+      setTimeout(() => kickerRef.current?.classList.add('in'), 100);
+      setTimeout(() => footRef.current?.classList.add('in'), 300);
+    }, introDelay);
+
+    return () => clearTimeout(tStart);
+  }, []);
+
+  return (
+    <section className="hero" id="top">
+      <div className="hero__canvas">
+        <HeroScene />
+      </div>
+      <div className="hero__stage">
+        <div className="hero__over">
+          <div className="hero__kicker" ref={kickerRef}>
+            Инженерная студия · Москва → везде
+          </div>
+          <h1 className="hero__title" ref={titleRef}>
+            {LINES.map((line, li) => (
+              <span className="line" key={li}>
+                {line.italic ? (
+                  <em>
+                    {Array.from(line.text).map((c, i) => (
+                      <span
+                        key={i}
+                        className="letter"
+                        style={{
+                          opacity: 0,
+                          transform: 'translateY(100%) rotate(10deg)',
+                          transition:
+                            'transform .9s cubic-bezier(.16,1,.3,1), opacity .9s',
+                        }}
+                      >
+                        {c === ' ' ? '\u00A0' : c}
+                      </span>
+                    ))}
+                  </em>
+                ) : (
+                  Array.from(line.text).map((c, i) => (
+                    <span
+                      key={i}
+                      className="letter"
+                      style={{
+                        opacity: 0,
+                        transform: 'translateY(100%) rotate(6deg)',
+                        transition:
+                          'transform .9s cubic-bezier(.16,1,.3,1), opacity .9s',
+                      }}
+                    >
+                      {c === ' ' ? '\u00A0' : c}
+                    </span>
+                  ))
+                )}{' '}
+              </span>
+            ))}
+          </h1>
+        </div>
+        <div className="hero__foot" ref={footRef}>
+          <div className="hero__lead">
+            Mini Apps для MAX, Telegram и нативные iOS-приложения —{' '}
+            <em>напрямую</em> с теми, кто пишет код. Без менеджеров-посредников.
+          </div>
+          <div className="hero__meta">
+            <b>Локация</b>Москва · Санкт-Петербург
+            <br />
+            Удалённо · RU / EN
+          </div>
+          <div className="hero__meta">
+            <b>Портфолио</b>8 запущенных продуктов
+            <br />
+            MAX · iOS · Telegram · веб
+          </div>
+          <div className="hero__scroll">Скролл↓</div>
+        </div>
+      </div>
+    </section>
+  );
+}
