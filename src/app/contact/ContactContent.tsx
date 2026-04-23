@@ -72,7 +72,7 @@ export function ContactContent() {
         </a>
         <a
           ref={mailRef}
-          href="mailto:naum_kogan@inbox.ru"
+          href="mailto:stacklab@mail.ru"
           className="about__cell"
           data-cur="link"
           style={{
@@ -99,7 +99,7 @@ export function ContactContent() {
             className="p"
             style={{ marginTop: 12, color: 'var(--fg)', fontSize: 15 }}
           >
-            naum_kogan@inbox.ru — для подробного брифа.
+            stacklab@mail.ru — для подробного брифа.
           </div>
         </a>
         <a
