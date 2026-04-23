@@ -1,73 +1,35 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       colors: {
-        background: "#0B1030",
-        foreground: "#F5EBDF",
-        accent: "#E3B7A0",
-        "accent-hover": "#D9A385",
-        dark: "#070B22",
-        "dark-secondary": "#131A3F",
-        "brand-blue": "#1F2F6A",
-        "brand-peach": "#E3B7A0",
-        muted: "#A5ADCC",
-        border: "#24305F",
+        bg: '#000000',
+        'bg-2': '#080809',
+        'bg-3': '#0e0e10',
+        fg: '#f3f0ea',
+        'fg-dim': '#8a8680',
+        'fg-mute': '#4a4742',
+        line: '#1a1a1c',
+        'line-soft': '#121214',
+        accent: '#ff5a1f',
+        'accent-2': '#c9ff3f',
       },
       fontFamily: {
-        heading: ["var(--font-heading)", "system-ui", "sans-serif"],
-        body: ["var(--font-body)", "system-ui", "sans-serif"],
-      },
-      fontSize: {
-        "display-1": ["clamp(3rem, 8vw, 7rem)", { lineHeight: "1.05", letterSpacing: "-0.02em" }],
-        "display-2": ["clamp(2.5rem, 6vw, 5rem)", { lineHeight: "1.1", letterSpacing: "-0.02em" }],
-        "display-3": ["clamp(2rem, 4vw, 3.5rem)", { lineHeight: "1.15", letterSpacing: "-0.01em" }],
-        "heading-1": ["clamp(1.75rem, 3vw, 2.5rem)", { lineHeight: "1.2" }],
-        "heading-2": ["clamp(1.5rem, 2.5vw, 2rem)", { lineHeight: "1.25" }],
-        "heading-3": ["clamp(1.25rem, 2vw, 1.5rem)", { lineHeight: "1.3" }],
-        "body-lg": ["1.125rem", { lineHeight: "1.6" }],
-        "body-base": ["1rem", { lineHeight: "1.6" }],
-        "body-sm": ["0.875rem", { lineHeight: "1.5" }],
-      },
-      spacing: {
-        section: "clamp(48px, 6vw, 80px)",
-        "section-sm": "clamp(32px, 4vw, 60px)",
-      },
-      transitionDuration: {
-        "400": "400ms",
-        "600": "600ms",
+        display: ['var(--font-display)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
+        serif: ['var(--font-serif)', 'Times New Roman', 'serif'],
       },
       transitionTimingFunction: {
-        brand: "cubic-bezier(0.22, 1, 0.36, 1)",
-      },
-      borderRadius: {
-        card: "20px",
-      },
-      backgroundImage: {
-        "gradient-brand": "linear-gradient(135deg, #1F2F6A, #E3B7A0)",
-        "gradient-brand-vertical": "linear-gradient(180deg, #1F2F6A, #E3B7A0)",
-        "gradient-brand-horizontal": "linear-gradient(90deg, #1F2F6A, #E3B7A0)",
-      },
-      animation: {
-        "spin-slow": "spin 20s linear infinite",
-        "fade-in": "fadeIn 0.6s ease-out forwards",
-        "slide-up": "slideUp 0.6s ease-out forwards",
-      },
-      keyframes: {
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
-        slideUp: {
-          "0%": { opacity: "0", transform: "translateY(30px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
+        brand: 'cubic-bezier(0.2, 0.7, 0.2, 1)',
+        out: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        inout: 'cubic-bezier(0.76, 0, 0.24, 1)',
       },
     },
   },

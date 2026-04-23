@@ -1,45 +1,69 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { fadeInUp, staggerContainer } from '@/lib/animations';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center pt-20">
-      <div className="container">
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-          className="text-center max-w-2xl mx-auto"
+    <div
+      style={{
+        minHeight: '80vh',
+        display: 'grid',
+        placeItems: 'center',
+        padding: '180px 38px 80px',
+      }}
+    >
+      <div style={{ textAlign: 'center', maxWidth: 760 }}>
+        <div
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(120px, 20vw, 280px)',
+            fontWeight: 300,
+            lineHeight: 0.85,
+            letterSpacing: '-0.06em',
+            color: 'var(--accent)',
+          }}
         >
-          <motion.div variants={fadeInUp}>
-            <span className="text-[10rem] md:text-[15rem] font-heading font-bold text-accent/20 leading-none">
-              404
-            </span>
-          </motion.div>
-
-          <motion.h1
-            variants={fadeInUp}
-            className="text-display-3 font-heading font-bold -mt-10 md:-mt-16 relative z-10"
-          >
-            Страница не найдена
-          </motion.h1>
-
-          <motion.p variants={fadeInUp} className="text-xl text-muted mt-4 mb-8">
-            Возможно, страница была перемещена или удалена. Попробуйте начать с главной.
-          </motion.p>
-
-          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/" className="btn btn-primary">
-              На главную
-            </Link>
-            <Link href="/contact" className="btn btn-secondary">
-              Связаться
-            </Link>
-          </motion.div>
-        </motion.div>
+          404
+        </div>
+        <h1
+          style={{
+            marginTop: 20,
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(28px, 3.5vw, 54px)',
+            fontWeight: 300,
+            lineHeight: 1,
+            letterSpacing: '-0.035em',
+          }}
+        >
+          Сигнал <em style={{ fontFamily: 'var(--font-serif)', color: 'var(--accent)', fontStyle: 'italic' }}>потерян</em>
+        </h1>
+        <p
+          style={{
+            marginTop: 24,
+            color: 'var(--fg-dim)',
+            fontSize: 16,
+            lineHeight: 1.5,
+          }}
+        >
+          Страница была перемещена, удалена или никогда не существовала.
+          Попробуйте начать с главной.
+        </p>
+        <div
+          style={{
+            marginTop: 40,
+            display: 'inline-flex',
+            gap: 14,
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+          }}
+        >
+          <Link href="/" className="cta__btn" data-cur="link">
+            <span className="d" />
+            На главную
+          </Link>
+          <Link href="/portfolio" className="cta__btn alt" data-cur="link">
+            <span className="d" />
+            Портфолио
+          </Link>
+        </div>
       </div>
     </div>
   );

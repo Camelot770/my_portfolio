@@ -1,11 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Project } from '@/data/projects';
-import { fadeInUp, staggerContainer } from '@/lib/animations';
-import { Button } from '@/components/ui/Button';
 
 interface ProjectDetailProps {
   project: Project;
@@ -19,221 +15,268 @@ export function ProjectDetail({
   nextProject,
 }: ProjectDetailProps) {
   return (
-    <>
-      {/* Hero */}
-      <section className="relative h-[40vh] md:h-[50vh] flex items-end">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/PreviewStackLab.jpg"
+    <article>
+      <header className="page">
+        <Link
+          href="/portfolio"
+          className="page__tag"
+          style={{ cursor: 'none' }}
+          data-cur="link"
+        >
+          ← {project.categoryLabel}
+        </Link>
+        <h1 className="page__title">
+          {project.title}
+        </h1>
+        <p className="page__lead">{project.shortDescription}</p>
+
+        <div
+          style={{
+            marginTop: 50,
+            display: 'flex',
+            gap: 32,
+            flexWrap: 'wrap',
+            paddingTop: 30,
+            borderTop: '1px solid var(--line)',
+          }}
+        >
+          <div
+            style={{
+              font: '500 10px/1.5 var(--font-mono)',
+              color: 'var(--fg-dim)',
+              letterSpacing: '.12em',
+              textTransform: 'uppercase',
+            }}
+          >
+            <b
+              style={{
+                color: 'var(--fg)',
+                display: 'block',
+                fontSize: 12,
+                marginBottom: 6,
+              }}
+            >
+              Клиент
+            </b>
+            {project.client}
+          </div>
+          <div
+            style={{
+              font: '500 10px/1.5 var(--font-mono)',
+              color: 'var(--fg-dim)',
+              letterSpacing: '.12em',
+              textTransform: 'uppercase',
+            }}
+          >
+            <b
+              style={{
+                color: 'var(--fg)',
+                display: 'block',
+                fontSize: 12,
+                marginBottom: 6,
+              }}
+            >
+              Год
+            </b>
+            {project.year}
+          </div>
+          <div
+            style={{
+              font: '500 10px/1.5 var(--font-mono)',
+              color: 'var(--fg-dim)',
+              letterSpacing: '.12em',
+              textTransform: 'uppercase',
+            }}
+          >
+            <b
+              style={{
+                color: 'var(--fg)',
+                display: 'block',
+                fontSize: 12,
+                marginBottom: 6,
+              }}
+            >
+              Стек
+            </b>
+            {project.technologies.join(' · ')}
+          </div>
+        </div>
+      </header>
+
+      <section
+        style={{
+          maxWidth: 1400,
+          margin: '0 auto',
+          padding: '0 38px 80px',
+        }}
+      >
+        <div
+          style={{
+            position: 'relative',
+            width: '100%',
+            aspectRatio: '16 / 9',
+            overflow: 'hidden',
+            background: 'var(--bg-2)',
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={project.images.hero}
             alt={project.title}
-            fill
-            className="object-cover"
-            priority
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent" />
         </div>
-        <div className="container relative z-10 pb-12 md:pb-20">
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            animate="visible"
+      </section>
+
+      <section
+        style={{
+          maxWidth: 1400,
+          margin: '0 auto',
+          padding: '40px 38px 120px',
+          display: 'grid',
+          gap: 80,
+          gridTemplateColumns: 'minmax(0, 1fr)',
+        }}
+      >
+        <Block n="01" title="Задача" text={project.challenge} />
+        <Block n="02" title="Решение" text={project.solution} />
+        <Block n="03" title="Результат" text={project.result} />
+        <Block n="04" title="Описание" text={project.fullDescription} />
+      </section>
+
+      <nav
+        style={{
+          borderTop: '1px solid var(--line)',
+          padding: '60px 38px',
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: 40,
+          maxWidth: 1400,
+          margin: '0 auto',
+        }}
+      >
+        <Link
+          href={`/portfolio/${prevProject.slug}`}
+          data-cur="link"
+          style={{ display: 'block' }}
+        >
+          <div
+            style={{
+              font: '500 10px/1 var(--font-mono)',
+              color: 'var(--fg-mute)',
+              letterSpacing: '.14em',
+              textTransform: 'uppercase',
+              marginBottom: 12,
+            }}
           >
-            <motion.span
-              variants={fadeInUp}
-              className="inline-block px-4 py-2 bg-accent text-white text-sm font-medium rounded-full mb-4"
-            >
-              {project.categoryLabel}
-            </motion.span>
-            <motion.h1
-              variants={fadeInUp}
-              className="text-display-2 font-heading font-bold text-white"
-            >
-              {project.title}
-            </motion.h1>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Info */}
-      <section className="py-12 md:py-16 border-b border-border">
-        <div className="container">
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8"
+            ← Предыдущий
+          </div>
+          <div
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(24px, 3vw, 42px)',
+              fontWeight: 300,
+              lineHeight: 1.05,
+              letterSpacing: '-0.03em',
+            }}
           >
-            <motion.div variants={fadeInUp}>
-              <span className="text-sm text-muted uppercase tracking-wider">
-                Клиент
-              </span>
-              <p className="mt-2 font-medium">{project.client}</p>
-            </motion.div>
-            <motion.div variants={fadeInUp}>
-              <span className="text-sm text-muted uppercase tracking-wider">
-                Год
-              </span>
-              <p className="mt-2 font-medium">{project.year}</p>
-            </motion.div>
-            <motion.div variants={fadeInUp}>
-              <span className="text-sm text-muted uppercase tracking-wider">
-                Категория
-              </span>
-              <p className="mt-2 font-medium">{project.categoryLabel}</p>
-            </motion.div>
-            {project.link && (
-              <motion.div variants={fadeInUp}>
-                <span className="text-sm text-muted uppercase tracking-wider">
-                  Ссылка
-                </span>
-                <p className="mt-2">
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium text-accent hover:underline"
-                  >
-                    Открыть →
-                  </a>
-                </p>
-              </motion.div>
-            )}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Description */}
-      <section className="section">
-        <div className="container">
-          <div className="max-w-3xl">
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="space-y-12"
-            >
-              <motion.div variants={fadeInUp}>
-                <h2 className="text-heading-2 font-bold mb-4">О проекте</h2>
-                <p className="text-lg text-muted leading-relaxed">
-                  {project.fullDescription}
-                </p>
-              </motion.div>
-
-              <motion.div variants={fadeInUp}>
-                <h3 className="text-heading-3 font-bold mb-3">Задача</h3>
-                <p className="text-muted leading-relaxed">{project.challenge}</p>
-              </motion.div>
-
-              <motion.div variants={fadeInUp}>
-                <h3 className="text-heading-3 font-bold mb-3">Решение</h3>
-                <p className="text-muted leading-relaxed">{project.solution}</p>
-              </motion.div>
-
-              <motion.div variants={fadeInUp}>
-                <h3 className="text-heading-3 font-bold mb-3">Результат</h3>
-                <p className="text-muted leading-relaxed">{project.result}</p>
-              </motion.div>
-
-              <motion.div variants={fadeInUp}>
-                <h3 className="text-heading-3 font-bold mb-4">Технологии</h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-4 py-2 bg-background border border-border rounded-full text-sm"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            </motion.div>
+            {prevProject.title}
           </div>
-        </div>
-      </section>
-
-      {/* Navigation */}
-      <section className="py-12 border-t border-border">
-        <div className="container">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            <Link
-              href={`/portfolio/${prevProject.slug}`}
-              className="group flex items-center gap-4"
-            >
-              <span className="w-12 h-12 flex items-center justify-center rounded-full border border-foreground group-hover:bg-foreground group-hover:text-background transition-all">
-                <svg
-                  className="w-5 h-5 transform rotate-180"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </span>
-              <div>
-                <span className="text-sm text-muted">Предыдущий</span>
-                <p className="font-medium group-hover:text-accent transition-colors">
-                  {prevProject.title}
-                </p>
-              </div>
-            </Link>
-
-            <Link
-              href={`/portfolio/${nextProject.slug}`}
-              className="group flex items-center gap-4 md:flex-row-reverse md:text-right"
-            >
-              <span className="w-12 h-12 flex items-center justify-center rounded-full border border-foreground group-hover:bg-foreground group-hover:text-background transition-all">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </span>
-              <div>
-                <span className="text-sm text-muted">Следующий</span>
-                <p className="font-medium group-hover:text-accent transition-colors">
-                  {nextProject.title}
-                </p>
-              </div>
-            </Link>
+        </Link>
+        <Link
+          href={`/portfolio/${nextProject.slug}`}
+          data-cur="link"
+          style={{ display: 'block', textAlign: 'right' }}
+        >
+          <div
+            style={{
+              font: '500 10px/1 var(--font-mono)',
+              color: 'var(--fg-mute)',
+              letterSpacing: '.14em',
+              textTransform: 'uppercase',
+              marginBottom: 12,
+            }}
+          >
+            Следующий →
           </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="section bg-accent text-white">
-        <div className="container">
-          <div className="text-center max-w-2xl mx-auto">
-            <h2 className="text-display-3 font-heading font-bold mb-6">
-              Хотите так же?
-            </h2>
-            <p className="text-xl text-white/80 mb-8">
-              Обсудим ваш проект и найдём лучшее решение
-            </p>
-            <Button
-              href="/contact"
-              className="bg-dark text-foreground hover:bg-dark-secondary"
-            >
-              Обсудить проект
-            </Button>
+          <div
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(24px, 3vw, 42px)',
+              fontWeight: 300,
+              lineHeight: 1.05,
+              letterSpacing: '-0.03em',
+            }}
+          >
+            {nextProject.title}
           </div>
-        </div>
-      </section>
-    </>
+        </Link>
+      </nav>
+    </article>
+  );
+}
+
+function Block({
+  n,
+  title,
+  text,
+}: {
+  n: string;
+  title: string;
+  text: string;
+}) {
+  return (
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: '80px 1fr',
+        gap: 40,
+        paddingTop: 50,
+        borderTop: '1px solid var(--line)',
+      }}
+    >
+      <div
+        style={{
+          fontFamily: 'var(--font-display)',
+          fontWeight: 300,
+          fontSize: 'clamp(40px, 4vw, 64px)',
+          letterSpacing: '-0.04em',
+          color: 'var(--accent)',
+          lineHeight: 0.9,
+        }}
+      >
+        {n}
+      </div>
+      <div>
+        <h2
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontWeight: 300,
+            fontSize: 'clamp(28px, 3vw, 46px)',
+            letterSpacing: '-0.035em',
+            lineHeight: 1,
+            marginBottom: 24,
+          }}
+        >
+          {title}
+        </h2>
+        <p
+          style={{
+            fontSize: 16,
+            lineHeight: 1.6,
+            color: 'var(--fg-dim)',
+            maxWidth: 820,
+          }}
+        >
+          {text}
+        </p>
+      </div>
+    </div>
   );
 }

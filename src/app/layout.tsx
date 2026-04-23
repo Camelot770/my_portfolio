@@ -1,76 +1,71 @@
 import type { Metadata } from 'next';
-import { Inter, Manrope } from 'next/font/google';
+import { Unbounded, Instrument_Serif } from 'next/font/google';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 import './globals.css';
-import { Header, Footer, CookieBanner } from '@/components/layout';
-import { CustomCursor } from '@/components/ui/CustomCursor';
-import { ScrollProgress } from '@/components/ui/ScrollProgress';
-import { MorphBackground } from '@/components/ui/MorphBackground';
+import { SiteShell } from '@/components/layout/SiteShell';
 import { OrganizationJsonLd, WebSiteJsonLd } from '@/components/seo/JsonLd';
 
-const manrope = Manrope({
+const display = Unbounded({
   subsets: ['latin', 'cyrillic'],
-  variable: '--font-heading',
+  weight: ['300', '400', '500'],
+  variable: '--font-display',
   display: 'swap',
 });
 
-const inter = Inter({
-  subsets: ['latin', 'cyrillic'],
-  variable: '--font-body',
+const serif = Instrument_Serif({
+  subsets: ['latin'],
+  weight: ['400'],
+  style: ['normal', 'italic'],
+  variable: '--font-serif',
   display: 'swap',
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://stacklab.su'),
   title: {
-    default: 'StackLab — Разработка Mini Apps и чат-ботов для MAX, iOS-приложений и веб-сервисов',
-    template: '%s | StackLab — студия разработки',
+    default: 'StackLab — Инженерная студия. Mini Apps для MAX, Telegram, iOS и веб',
+    template: '%s | StackLab',
   },
   description:
-    'Разработка Mini Apps и чат-ботов для MAX, iOS-приложений и веб-продуктов. Полный цикл: от идеи до запуска. Сервисы для бизнеса, госструктур и стартапов в экосистеме MAX.',
+    'Инженерная студия StackLab. Разработка Mini Apps и чат-ботов для MAX, Telegram, iOS-приложений и веб-сервисов. Полный цикл — напрямую с инженерами, без менеджеров-посредников.',
   keywords: [
     'разработка mini app MAX',
-    'разработка mini apps MAX',
-    'разработка ботов MAX',
-    'чат-боты для MAX',
+    'чат-боты MAX',
     'MAX messenger mini app',
-    'разработка приложений для MAX',
-    'MAX для бизнеса',
     'iOS разработка',
     'Telegram Mini App',
     'боты Telegram',
     'веб-разработка',
     'студия разработки',
     'разработка мобильных приложений',
-    'MAX WebApp разработка',
   ],
   authors: [{ name: 'StackLab' }],
   creator: 'StackLab',
   publisher: 'StackLab',
-  alternates: {
-    canonical: 'https://stacklab.su',
-  },
+  alternates: { canonical: 'https://stacklab.su' },
   openGraph: {
     type: 'website',
     locale: 'ru_RU',
     url: 'https://stacklab.su',
     siteName: 'StackLab',
-    title: 'StackLab — Разработка Mini Apps и ботов для MAX, iOS и веб',
+    title: 'StackLab — Инженерная студия',
     description:
-      'Студия разработки полного цикла. Mini Apps и чат-боты для MAX, iOS-приложения, Telegram Mini Apps и веб-сервисы для бизнеса и госструктур.',
+      'Mini Apps для MAX и Telegram, нативный iOS, веб-сервисы на Next.js. Работаем напрямую с клиентом.',
     images: [
       {
         url: '/images/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'StackLab — разработка Mini Apps и ботов для MAX',
+        alt: 'StackLab',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'StackLab — Разработка Mini Apps и ботов для MAX',
+    title: 'StackLab — Инженерная студия',
     description:
-      'Mini Apps и чат-боты для MAX, iOS-приложения, Telegram Mini Apps и веб-сервисы. Полный цикл разработки для бизнеса и госструктур.',
+      'Mini Apps для MAX и Telegram, нативный iOS, веб-сервисы. Работаем напрямую.',
     images: ['/images/og-image.jpg'],
   },
   robots: {
@@ -88,31 +83,30 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ru" className={`${manrope.variable} ${inter.variable}`}>
+    <html
+      lang="ru"
+      className={`${display.variable} ${serif.variable} ${GeistSans.variable} ${GeistMono.variable}`}
+      style={
+        {
+          '--font-sans': 'var(--font-geist-sans)',
+          '--font-mono': 'var(--font-geist-mono)',
+        } as React.CSSProperties
+      }
+    >
       <head>
         <OrganizationJsonLd />
         <WebSiteJsonLd />
       </head>
-      <body
-        className="font-body antialiased bg-background text-foreground cursor-none"
-      >
+      <body>
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded-md"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10001] focus:px-4 focus:py-2 focus:bg-accent focus:text-black focus:rounded-md"
         >
           Перейти к основному контенту
         </a>
-        <MorphBackground />
-        <CustomCursor />
-        <ScrollProgress />
-        <Header />
-        <main id="main-content">{children}</main>
-        <Footer />
-        <CookieBanner />
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   );
