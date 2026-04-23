@@ -48,6 +48,7 @@ export function ServicesContent() {
         {services.map((s, idx) => (
           <div
             key={s.id}
+            id={s.slug}
             className="about__cell"
             style={{
               padding: '56px 48px',
@@ -56,6 +57,7 @@ export function ServicesContent() {
               gap: 60,
               alignItems: 'start',
               minHeight: 0,
+              scrollMarginTop: 100,
             }}
           >
             <div>
