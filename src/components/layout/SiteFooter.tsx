@@ -8,9 +8,9 @@ export function SiteFooter() {
           stacklab<em>/</em>
         </div>
         <div className="footer__desc">
-          Инженерная студия. Mini Apps и чат-боты для MAX и Telegram, нативный
-          iOS, веб-сервисы на Next.js. Работаем напрямую — без менеджеров
-          между вами и кодом.
+          Инженерная студия полного цикла. Mini Apps и чат-боты для MAX и
+          Telegram, нативный iOS, веб-сервисы на Next.js. Архитектура, код и
+          релиз — внутри одной команды.
         </div>
       </div>
       <div className="footer__col">

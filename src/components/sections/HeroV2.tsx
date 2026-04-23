@@ -99,8 +99,8 @@ export function HeroV2() {
         </div>
         <div className="hero__foot" ref={footRef}>
           <div className="hero__lead">
-            Mini Apps для MAX, Telegram и нативные iOS-приложения —{' '}
-            <em>напрямую</em> с теми, кто пишет код. Без менеджеров-посредников.
+            Mini Apps для MAX, Telegram и нативные iOS-приложения.{' '}
+            <em>Инженерная</em> команда полного цикла — от архитектуры до релиза.
           </div>
           <div className="hero__meta">
             <b>Локация</b>Москва · Санкт-Петербург
