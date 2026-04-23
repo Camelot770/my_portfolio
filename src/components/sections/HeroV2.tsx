@@ -15,6 +15,44 @@ const LINES: Array<{ text: string; italic?: boolean }> = [
   { text: 'обсуждать.' },
 ];
 
+const LETTER_STYLE_BASE: React.CSSProperties = {
+  display: 'inline-block',
+  opacity: 0,
+  transition: 'transform .9s cubic-bezier(.16,1,.3,1), opacity .9s',
+};
+
+function renderWord(word: string, rot: number, keyPrefix: string) {
+  return (
+    <span
+      key={keyPrefix}
+      style={{ display: 'inline-block', whiteSpace: 'nowrap' }}
+    >
+      {Array.from(word).map((c, i) => (
+        <span
+          key={i}
+          className="letter"
+          style={{
+            ...LETTER_STYLE_BASE,
+            transform: `translateY(100%) rotate(${rot}deg)`,
+          }}
+        >
+          {c}
+        </span>
+      ))}
+    </span>
+  );
+}
+
+function renderLine(text: string, italic: boolean) {
+  const rot = italic ? 10 : 6;
+  const words = text.split(/(\s+)/);
+  const nodes = words.map((chunk, i) => {
+    if (/^\s+$/.test(chunk)) return <span key={`s${i}`}>{'\u00A0'}</span>;
+    return renderWord(chunk, rot, `w${i}`);
+  });
+  return italic ? <em>{nodes}</em> : <>{nodes}</>;
+}
+
 export function HeroV2() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const kickerRef = useRef<HTMLDivElement>(null);
@@ -54,39 +92,7 @@ export function HeroV2() {
           <h1 className="hero__title" ref={titleRef}>
             {LINES.map((line, li) => (
               <span className="line" key={li}>
-                {line.italic ? (
-                  <em>
-                    {Array.from(line.text).map((c, i) => (
-                      <span
-                        key={i}
-                        className="letter"
-                        style={{
-                          opacity: 0,
-                          transform: 'translateY(100%) rotate(10deg)',
-                          transition:
-                            'transform .9s cubic-bezier(.16,1,.3,1), opacity .9s',
-                        }}
-                      >
-                        {c === ' ' ? '\u00A0' : c}
-                      </span>
-                    ))}
-                  </em>
-                ) : (
-                  Array.from(line.text).map((c, i) => (
-                    <span
-                      key={i}
-                      className="letter"
-                      style={{
-                        opacity: 0,
-                        transform: 'translateY(100%) rotate(6deg)',
-                        transition:
-                          'transform .9s cubic-bezier(.16,1,.3,1), opacity .9s',
-                      }}
-                    >
-                      {c === ' ' ? '\u00A0' : c}
-                    </span>
-                  ))
-                )}{' '}
+                {renderLine(line.text, !!line.italic)}{' '}
               </span>
             ))}
           </h1>
