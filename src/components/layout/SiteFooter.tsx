@@ -15,7 +15,7 @@ export function SiteFooter() {
       </div>
       <div className="footer__col">
         <h5>Связь</h5>
-        <a href="mailto:naum_kogan@inbox.ru">naum_kogan@inbox.ru</a>
+        <a href="mailto:stacklab@mail.ru">stacklab@mail.ru</a>
         <a
           href="https://t.me/Naum0"
           target="_blank"

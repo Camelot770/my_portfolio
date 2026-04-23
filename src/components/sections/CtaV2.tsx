@@ -48,12 +48,12 @@ export function CtaV2() {
           </a>
           <a
             ref={altRef}
-            href="mailto:naum_kogan@inbox.ru"
+            href="mailto:stacklab@mail.ru"
             className="cta__btn alt"
             data-cur="link"
           >
             <span className="d" />
-            naum_kogan@inbox.ru
+            stacklab@mail.ru
           </a>
         </div>
       </div>

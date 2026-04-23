@@ -7,7 +7,7 @@ export function OrganizationJsonLd() {
     logo: 'https://stacklab.su/images/logo.png',
     description:
       'Студия разработки Mini Apps и чат-ботов для MAX, iOS-приложений и веб-сервисов. Полный цикл: от идеи до запуска.',
-    email: 'naum_kogan@inbox.ru',
+    email: 'stacklab@mail.ru',
     areaServed: {
       '@type': 'Country',
       name: 'Россия',

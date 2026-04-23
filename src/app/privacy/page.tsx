@@ -86,8 +86,8 @@ const SECTIONS: Array<{ n: string; title: string; content: React.ReactNode }> = 
         </ul>
         <p>
           Для реализации — напишите на{' '}
-          <a href="mailto:naum_kogan@inbox.ru" style={{ color: 'var(--accent)' }}>
-            naum_kogan@inbox.ru
+          <a href="mailto:stacklab@mail.ru" style={{ color: 'var(--accent)' }}>
+            stacklab@mail.ru
           </a>
           .
         </p>
