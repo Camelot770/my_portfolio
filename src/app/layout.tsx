@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: '%s | StackLab',
   },
   description:
-    'Инженерная студия StackLab. Разработка Mini Apps и чат-ботов для MAX, Telegram, iOS-приложений и веб-сервисов. Полный цикл — напрямую с инженерами, без менеджеров-посредников.',
+    'Инженерная студия StackLab. Разработка Mini Apps и чат-ботов для MAX, Telegram, нативных iOS-приложений и веб-сервисов. Полный инженерный цикл: архитектура, код, инфраструктура, релиз.',
   keywords: [
     'разработка mini app MAX',
     'чат-боты MAX',
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     siteName: 'StackLab',
     title: 'StackLab — Инженерная студия',
     description:
-      'Mini Apps для MAX и Telegram, нативный iOS, веб-сервисы на Next.js. Работаем напрямую с клиентом.',
+      'Mini Apps для MAX и Telegram, нативный iOS, веб-сервисы на Next.js. Архитектура, разработка и релиз — внутри одной команды.',
     images: [
       {
         url: '/images/og-image.jpg',
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'StackLab — Инженерная студия',
     description:
-      'Mini Apps для MAX и Telegram, нативный iOS, веб-сервисы. Работаем напрямую.',
+      'Mini Apps для MAX и Telegram, нативный iOS, веб-сервисы. Инженерная студия полного цикла.',
     images: ['/images/og-image.jpg'],
   },
   robots: {

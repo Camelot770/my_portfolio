@@ -24,10 +24,10 @@ export function FounderV2() {
       <div className="founder__body">
         <div className="sec__tag">05 · Люди</div>
         <blockquote className="founder__quote">
-          «В StackLab нет менеджеров проектов, потому что в коде нет
-          менеджеров функций. С вами разговаривают те, кто{' '}
-          <em>пишет</em> и <em>отвечает</em> — от первого созвона до
-          ночного хот-фикса.»
+          «StackLab — про инженерию, а не про менеджмент. Архитектурные,
+          продуктовые и технические решения{' '}
+          <em>принимаются</em> и <em>исполняются</em> одной командой —
+          от первого созвона до ночного хот-фикса.»
         </blockquote>
         <div className="founder__meta">
           <div className="row">
@@ -40,7 +40,7 @@ export function FounderV2() {
             <b>Полный цикл</b>От идеи до публикации и поддержки
           </div>
           <div className="row">
-            <b>Без посредников</b>Говорите с тем, кто пишет код
+            <b>Senior-уровень</b>Архитектура, iOS, MAX, веб — одна команда
           </div>
         </div>
       </div>
