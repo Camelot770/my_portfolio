@@ -46,7 +46,7 @@ export function SiteFooter() {
         <Link href="/privacy">Политика</Link>
       </div>
       <div className="footer__foot">
-        <span>© StackLab 2019—{new Date().getFullYear()}</span>
+        <span>© StackLab 2024—{new Date().getFullYear()}</span>
         <span>V2 · сигнал-частота 60 Гц</span>
       </div>
     </footer>
