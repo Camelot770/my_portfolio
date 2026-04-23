@@ -33,10 +33,10 @@ export function SiteFooter() {
       </div>
       <div className="footer__col">
         <h5>Направления</h5>
-        <Link href="/services">iOS-приложения</Link>
-        <Link href="/services">MAX Mini Apps и боты</Link>
-        <Link href="/services">Telegram Mini Apps</Link>
-        <Link href="/services">Веб на Next.js</Link>
+        <Link href="/services#ios-apps">iOS-приложения</Link>
+        <Link href="/services#telegram-max-apps">MAX Mini Apps и боты</Link>
+        <Link href="/services#telegram-max-apps">Telegram Mini Apps</Link>
+        <Link href="/services#web-development">Веб на Next.js</Link>
       </div>
       <div className="footer__col">
         <h5>Навигация</h5>
