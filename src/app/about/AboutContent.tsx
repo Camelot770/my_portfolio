@@ -122,7 +122,7 @@ export function AboutContent() {
           <div className="about__cell">
             <div className="k">К · 04</div>
             <div className="v">
-              2–10 <em>недель</em>
+              4–12 <em>недель</em>
             </div>
             <div className="p">
               Цикл от первого контакта до запуска продукта.
