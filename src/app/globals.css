@@ -1716,7 +1716,7 @@ a {
   .copy-toggle__btn { padding: 5px 8px; font-size: 10px; }
   .hero { padding: 0 22px; }
   .hero__stage { padding: 120px 0 30px; }
-  .hero__foot { grid-template-columns: 1fr 1fr; }
+  .hero__foot { grid-template-columns: 1fr 1fr; align-items: start; }
   .hero__lead { grid-column: 1 / -1; max-width: none; }
   .hero__scroll { display: none; }
   .about { padding: 100px 22px 140px; }
