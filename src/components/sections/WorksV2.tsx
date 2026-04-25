@@ -60,7 +60,11 @@ export function WorksV2() {
             key={p.id}
             data-cur="view"
           >
-            <div className="work__media">
+            <div
+              className={`work__media${
+                p.previewMode === 'contain' ? ' work__media--contain' : ''
+              }`}
+            >
               <div className="work__idx">
                 <span className="ac">
                   {String(i + 1).padStart(2, '0')}
