@@ -157,7 +157,7 @@ export interface SiteCopy {
 // ─────────────────────────────────────────────────────────────────────────
 export const PRO_COPY: SiteCopy = {
   hero: {
-    kicker: 'Студия разработки · Москва → удалённо',
+    kicker: 'Студия разработки · Москва и вся Россия',
     title: [
       { text: 'Создаём' },
       { text: 'цифровые', italic: true },
@@ -167,8 +167,8 @@ export const PRO_COPY: SiteCopy = {
     lead: 'Мобильные приложения, мини-приложения для MAX и Telegram, а также веб-сервисы. ',
     leadEm: 'Полный цикл',
     metaLocationLabel: 'Расположение',
-    metaLocationLine1: 'Москва · Санкт-Петербург',
-    metaLocationLine2: 'Удалённо · RU / EN',
+    metaLocationLine1: 'Москва · вся Россия',
+    metaLocationLine2: 'RU / EN',
     metaPortfolioLabel: 'Портфолио',
     metaPortfolioLine1: '18 запущенных проектов',
     metaPortfolioLine2: 'iOS · MAX · Telegram · Веб',
@@ -323,7 +323,7 @@ export const PRO_COPY: SiteCopy = {
 // ─────────────────────────────────────────────────────────────────────────
 export const DEV_COPY: SiteCopy = {
   hero: {
-    kicker: 'Инженерная студия · Москва → везде',
+    kicker: 'Инженерная студия · Москва и вся Россия',
     title: [
       { text: 'Мы строим' },
       { text: 'софт,', italic: true },
@@ -333,8 +333,8 @@ export const DEV_COPY: SiteCopy = {
     lead: 'Mini Apps для MAX, Telegram и нативные iOS-приложения. ',
     leadEm: 'Инженерная',
     metaLocationLabel: 'Локация',
-    metaLocationLine1: 'Москва · Санкт-Петербург',
-    metaLocationLine2: 'Удалённо · RU / EN',
+    metaLocationLine1: 'Москва · вся Россия',
+    metaLocationLine2: 'RU / EN',
     metaPortfolioLabel: 'Портфолио',
     metaPortfolioLine1: '18 запущенных продуктов',
     metaPortfolioLine2: 'MAX · iOS · Telegram · веб · часть NDA',
