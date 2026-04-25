@@ -34,31 +34,13 @@ export function ServicesContent() {
         </p>
       </header>
 
-      <section
-        style={{
-          maxWidth: 1400,
-          margin: '0 auto',
-          padding: '0 38px 120px',
-          display: 'grid',
-          gap: 1,
-          background: 'var(--line)',
-          border: '1px solid var(--line)',
-        }}
-      >
+      <section className="services-grid">
         {services.map((s, idx) => (
           <div
             key={s.id}
             id={s.slug}
-            className="about__cell"
-            style={{
-              padding: '56px 48px',
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: 60,
-              alignItems: 'start',
-              minHeight: 0,
-              scrollMarginTop: 100,
-            }}
+            className="about__cell services-grid__row"
+            style={{ scrollMarginTop: 100 }}
           >
             <div>
               <div className="k">№ {String(idx + 1).padStart(2, '0')}</div>
