@@ -47,6 +47,18 @@ body {
   letter-spacing: -0.01em;
 }
 
+/* Never split words across lines — keep them whole on every screen. */
+h1, h2, h3, h4, h5, h6,
+.hero__title, .sec__head, .page__title, .cta__big,
+.work__title, .step__title, .faq__q,
+.about__text, .footer__brand, .nav__logo,
+.about__cell .v {
+  hyphens: none;
+  -webkit-hyphens: none;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -526,7 +538,9 @@ a {
   line-height: 0.88;
   letter-spacing: -0.045em;
   min-width: 0;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: keep-all;
+  hyphens: none;
 }
 
 .hero__title em {
@@ -687,7 +701,9 @@ a {
   line-height: 0.92;
   letter-spacing: -0.04em;
   min-width: 0;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: keep-all;
+  hyphens: none;
 }
 
 .sec__head em {
@@ -821,10 +837,11 @@ a {
 }
 
 .works__head .sec__head {
-  font-size: clamp(40px, 5.4vw, 88px);
+  font-size: clamp(28px, 5.4vw, 88px);
   line-height: 0.98;
-  word-break: break-word;
-  overflow-wrap: anywhere;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  hyphens: none;
 }
 
 .works__head-r {
@@ -1101,8 +1118,9 @@ a {
 .process__head .sec__head {
   font-size: clamp(32px, 3.4vw, 56px);
   line-height: 1;
-  word-break: break-word;
-  overflow-wrap: anywhere;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  hyphens: none;
 }
 
 .process__lead {
@@ -1313,8 +1331,9 @@ a {
 .faq__head .sec__head {
   font-size: clamp(32px, 3.4vw, 56px);
   line-height: 1;
-  word-break: break-word;
-  overflow-wrap: anywhere;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  hyphens: none;
 }
 
 .faq__lead {
@@ -1420,7 +1439,9 @@ a {
   line-height: 0.84;
   letter-spacing: -0.055em;
   min-width: 0;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: keep-all;
+  hyphens: none;
 }
 
 .cta__big em {
@@ -1609,7 +1630,9 @@ a {
   line-height: 0.92;
   letter-spacing: -0.04em;
   min-width: 0;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: keep-all;
+  hyphens: none;
 }
 
 .page__title em {
