@@ -159,7 +159,7 @@ export const PRO_COPY: SiteCopy = {
   hero: {
     kicker: 'Студия разработки · Москва → удалённо',
     title: [
-      { text: 'Разрабатываем' },
+      { text: 'Создаём' },
       { text: 'цифровые', italic: true },
       { text: 'продукты для' },
       { text: 'бизнеса.' },
