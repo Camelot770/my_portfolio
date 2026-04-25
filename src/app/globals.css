@@ -874,9 +874,28 @@ a {
   filter: saturate(.85) contrast(1.05);
 }
 
+.work__media--contain {
+  background: var(--bg-2);
+}
+
+.work__media--contain img {
+  object-fit: contain;
+  padding: 14%;
+  filter: none;
+}
+
+.work__media--contain::after {
+  background: linear-gradient(180deg, transparent 70%, rgba(0,0,0,.55) 100%);
+}
+
 .work:hover .work__media img {
   transform: scale(1.04);
   filter: saturate(1) contrast(1.1);
+}
+
+.work:hover .work__media--contain img {
+  transform: scale(1.04);
+  filter: none;
 }
 
 .work__media::after {

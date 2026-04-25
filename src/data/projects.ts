@@ -17,6 +17,9 @@ export interface Project {
     hero: string;
     gallery: string[];
   };
+  // 'cover' (default) crops to fill the card; 'contain' fits the whole image
+  // inside with padding — use for square logos.
+  previewMode?: 'cover' | 'contain';
   technologies: string[];
   featured: boolean;
 }
@@ -40,6 +43,7 @@ export const projects: Project[] = [
       hero: '/images/ZdorovieSemyi.png',
       gallery: [],
     },
+    previewMode: 'contain',
     technologies: ['TypeScript', 'React', 'Zustand', 'Python', 'FastAPI', '1С МИС', 'MAX WebApp API'],
     featured: true,
   },
@@ -82,6 +86,7 @@ export const projects: Project[] = [
       hero: '/images/RozaTsvetov.png',
       gallery: [],
     },
+    previewMode: 'contain',
     technologies: ['TypeScript', 'React', 'Zustand', 'Tailwind CSS', 'Node.js', 'Express', 'Prisma', 'SQLite', 'ЮKassa', 'MAX WebApp API'],
     featured: true,
   },
