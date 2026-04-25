@@ -2,33 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
-
-const VALUES = [
-  {
-    num: '01',
-    title: 'Инженерный подход',
-    description:
-      'Архитектурные и продуктовые решения принимают инженеры с опытом в продакшне. Меньше согласований — больше качества кода.',
-  },
-  {
-    num: '02',
-    title: 'Качество без шаблонов',
-    description:
-      'Каждый проект — с нуля под конкретную задачу. Не используем готовые шаблоны для воплощения ваших идей.',
-  },
-  {
-    num: '03',
-    title: 'Ответственность до конца',
-    description:
-      'Проект не заканчивается, пока вы не довольны результатом. Не пока закончились часы. Не пока вышли сроки.',
-  },
-  {
-    num: '04',
-    title: 'Скорость без суеты',
-    description:
-      'Математический подход: сначала продумать, потом писать. Меньше переделок, быстрее результат.',
-  },
-];
+import { useCopy } from '@/components/CopyProvider';
 
 const TECH = [
   'Swift',
@@ -55,6 +29,10 @@ const TECH = [
 
 export function AboutContent() {
   const headRef = useRef<HTMLHeadingElement>(null);
+  const { copy } = useCopy();
+  const a = copy.aboutPage;
+  const ab = copy.about; // home cells used here as well
+  const VALUES = a.values;
 
   useEffect(() => {
     const el = headRef.current;
@@ -71,17 +49,15 @@ export function AboutContent() {
   return (
     <div>
       <header className="page">
-        <div className="page__tag">О студии</div>
+        <div className="page__tag">{a.tag}</div>
         <h1 className="page__title r-mask" ref={headRef}>
           <span className="r-in">
-            <em>Инженерная</em> студия полного цикла.
+            {a.titlePlain}
+            <em>{a.titleEm}</em>
+            {a.titleSuffix}
           </span>
         </h1>
-        <p className="page__lead">
-          StackLab — команда инженеров, которая проектирует, пишет и запускает
-          продукты для MAX, Telegram, iOS и веба. Глубокая экспертиза в каждом
-          слое стека — от клиента до инфраструктуры.
-        </p>
+        <p className="page__lead">{a.lead}</p>
       </header>
 
       <section
@@ -92,42 +68,15 @@ export function AboutContent() {
         }}
       >
         <div className="about__grid">
-          <div className="about__cell">
-            <div className="k">К · 01</div>
-            <div className="v">
-              18 <em>запусков</em>
+          {ab.cells.map((c, i) => (
+            <div className="about__cell" key={i}>
+              <div className="k">{c.k}</div>
+              <div className="v">
+                {c.vMain} <em>{c.vEm}</em>
+              </div>
+              <div className="p">{c.p}</div>
             </div>
-            <div className="p">
-              Работающие продукты в MAX, Telegram, App Store и вебе. Часть под NDA — в портфолио показываем только то, что можем.
-            </div>
-          </div>
-          <div className="about__cell">
-            <div className="k">К · 02</div>
-            <div className="v">
-              0 <em>подрядчиков</em>
-            </div>
-            <div className="p">
-              Весь стек внутри команды: iOS, MAX, веб, backend, инфраструктура.
-            </div>
-          </div>
-          <div className="about__cell">
-            <div className="k">К · 03</div>
-            <div className="v">
-              100% <em>довольных</em>
-            </div>
-            <div className="p">
-              Не закрываем проект, пока клиент не доволен результатом.
-            </div>
-          </div>
-          <div className="about__cell">
-            <div className="k">К · 04</div>
-            <div className="v">
-              4–12 <em>недель</em>
-            </div>
-            <div className="p">
-              Цикл от первого контакта до запуска продукта.
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
@@ -216,7 +165,7 @@ export function AboutContent() {
             lineHeight: 1,
           }}
         >
-          Давайте создадим <em style={{ fontFamily: 'var(--font-serif)', color: 'var(--accent)', fontStyle: 'italic' }}>что-то вместе</em>
+          {a.closingPre}<em style={{ fontFamily: 'var(--font-serif)', color: 'var(--accent)', fontStyle: 'italic' }}>{a.closingEm}</em>
         </h2>
         <Link
           href="/contact"
@@ -225,7 +174,7 @@ export function AboutContent() {
           style={{ marginTop: 40 }}
         >
           <span className="d" />
-          Написать →
+          {a.ctaLabel}
         </Link>
       </section>
     </div>

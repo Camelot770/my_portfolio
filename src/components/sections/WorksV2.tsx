@@ -2,9 +2,11 @@
 
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
+import { useCopy } from '@/components/CopyProvider';
 import { getFeaturedProjects } from '@/data/projects';
 
 export function WorksV2() {
+  const { copy } = useCopy();
   const reelRef = useRef<HTMLDivElement>(null);
   const headRef = useRef<HTMLHeadingElement>(null);
 
@@ -40,17 +42,14 @@ export function WorksV2() {
     <section className="works" id="works">
       <div className="works__head">
         <div>
-          <div className="sec__tag">02 · Избранное</div>
+          <div className="sec__tag">{copy.works.tag}</div>
           <h2 className="sec__head r-mask" ref={headRef}>
             <span className="r-in">
-              Случаи <em>в материале</em>
+              {copy.works.headPlain} <em>{copy.works.headEm}</em>
             </span>
           </h2>
         </div>
-        <div className="works__head-r">
-          Продукты, запущенные в последние два года. Каждый — с боевого
-          запуска, не из концепт-витрины.
-        </div>
+        <div className="works__head-r">{copy.works.description}</div>
       </div>
 
       <div className="works__reel" ref={reelRef} data-cur="drag">
@@ -89,10 +88,8 @@ export function WorksV2() {
       </div>
 
       <div className="works__hint">
-        <span>Тащите → или прокручивайте колесом</span>
-        <span>
-          {String(total).padStart(2, '0')} проектов · 2025—2026
-        </span>
+        <span>{copy.works.hintDrag}</span>
+        <span>{copy.works.hintCount(total)}</span>
       </div>
     </section>
   );

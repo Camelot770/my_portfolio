@@ -1,10 +1,12 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useCopy } from '@/components/CopyProvider';
 import { processSteps } from '@/data/services';
 
 export function ProcessV2() {
   const rootRef = useRef<HTMLElement>(null);
+  const { copy } = useCopy();
 
   useEffect(() => {
     const root = rootRef.current;
@@ -23,16 +25,14 @@ export function ProcessV2() {
     <section className="process" id="process" ref={rootRef}>
       <div className="process__wrap">
         <div className="process__head">
-          <div className="sec__tag">04 · Процесс</div>
+          <div className="sec__tag">{copy.process.tag}</div>
           <h2 className="sec__head r-mask">
             <span className="r-in">
-              От <em>сигнала</em> до запуска
+              {copy.process.headPre} <em>{copy.process.headEm}</em>
+              {copy.process.headPost}
             </span>
           </h2>
-          <p className="process__lead">
-            Прозрачный цикл: вы видите промежуточные результаты, правите
-            курс по ходу, без «потом решим».
-          </p>
+          <p className="process__lead">{copy.process.lead}</p>
         </div>
         <div className="steps">
           {processSteps.map((s) => (

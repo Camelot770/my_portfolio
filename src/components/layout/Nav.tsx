@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { useCopy } from '@/components/CopyProvider';
+import { CopyToggle } from '@/components/ui/CopyToggle';
 import { useMagnet } from '@/components/ui/MagneticButton';
 
 export function Nav() {
@@ -10,6 +12,7 @@ export function Nav() {
   const [hidden, setHidden] = useState(false);
   const ctaRef = useRef<HTMLAnchorElement>(null);
   useMagnet(ctaRef as React.RefObject<HTMLElement>);
+  const { copy } = useCopy();
 
   useEffect(() => {
     let lastY = 0;
@@ -38,21 +41,24 @@ export function Nav() {
         <span className="r">RU·26</span>
       </Link>
       <div className="nav__menu">
-        {link('about', 'Студия')}
-        {link('works', 'Работы')}
-        {link('stack', 'Стек')}
-        {link('process', 'Процесс')}
-        {link('contact', 'Контакт')}
+        {link('about', copy.nav.links.about)}
+        {link('works', copy.nav.links.works)}
+        {link('stack', copy.nav.links.stack)}
+        {link('process', copy.nav.links.process)}
+        {link('contact', copy.nav.links.contact)}
       </div>
-      <a
-        ref={ctaRef}
-        href={isHome ? '#contact' : '/#contact'}
-        className="nav__cta"
-        data-cur="link"
-      >
-        <span className="dot" />
-        Заказать проект
-      </a>
+      <div className="nav__right">
+        <CopyToggle />
+        <a
+          ref={ctaRef}
+          href={isHome ? '#contact' : '/#contact'}
+          className="nav__cta"
+          data-cur="link"
+        >
+          <span className="dot" />
+          {copy.nav.cta}
+        </a>
+      </div>
     </nav>
   );
 }
