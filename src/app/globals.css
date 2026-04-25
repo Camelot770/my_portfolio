@@ -363,6 +363,13 @@ a {
 
 .nav.hidden { transform: translateY(-120%); }
 
+.nav__right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  justify-self: end;
+}
+
 .nav__logo {
   font-family: var(--font-display);
   font-weight: 300;
@@ -1609,6 +1616,48 @@ a {
 .privacy-prose li { list-style: disc; }
 .privacy-prose a:hover { color: var(--accent); }
 
+/* ---------- Copy mode toggle (PRO / DEV) ---------- */
+.copy-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font: 500 10px/1 var(--font-mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+  border: 1px solid rgba(243, 240, 234, 0.16);
+  border-radius: 999px;
+  padding: 6px 6px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+}
+
+.copy-toggle__btn {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: var(--fg-mute);
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  padding: 6px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.copy-toggle__btn:hover { color: var(--fg); }
+
+.copy-toggle__btn.is-active {
+  color: var(--bg);
+  background: var(--fg);
+}
+
+.copy-toggle__sep {
+  color: var(--fg-mute);
+  opacity: 0.4;
+}
+
 /* ---------- Services page grid ---------- */
 .services-grid {
   max-width: 1400px;
@@ -1640,8 +1689,12 @@ a {
 
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
-  .nav { padding: 20px 22px; gap: 16px; }
+  .nav { padding: 20px 22px; gap: 12px; }
   .nav__menu { display: none; }
+  .nav__right { gap: 8px; }
+  .nav__cta { padding: 10px 14px; font-size: 11px; }
+  .copy-toggle { padding: 4px 4px; }
+  .copy-toggle__btn { padding: 5px 8px; font-size: 10px; }
   .hero { padding: 0 22px; }
   .hero__stage { padding: 120px 0 30px; }
   .hero__foot { grid-template-columns: 1fr 1fr; }

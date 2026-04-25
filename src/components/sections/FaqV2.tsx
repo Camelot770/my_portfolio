@@ -1,23 +1,22 @@
 'use client';
 
 import { useState } from 'react';
+import { useCopy } from '@/components/CopyProvider';
 import { faqItems } from '@/data/faq';
 
 export function FaqV2() {
   const [open, setOpen] = useState<string | null>(faqItems[0]?.id ?? null);
+  const { copy } = useCopy();
 
   return (
     <section className="faq" id="faq">
       <div className="faq__wrap">
         <div className="faq__head">
-          <div className="sec__tag">06 · Вопросы</div>
+          <div className="sec__tag">{copy.faq.tag}</div>
           <h2 className="sec__head">
-            Частые <em>вопросы</em>
+            {copy.faq.headPlain} <em>{copy.faq.headEm}</em>
           </h2>
-          <p className="faq__lead">
-            Коротко о цене, сроках, техзадании и формате работы. Если вопроса
-            нет в списке — просто напишите.
-          </p>
+          <p className="faq__lead">{copy.faq.lead}</p>
         </div>
         <div className="faq__list" role="list">
           {faqItems.map((it) => {

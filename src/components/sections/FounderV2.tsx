@@ -1,47 +1,47 @@
 'use client';
 
+import { useCopy } from '@/components/CopyProvider';
+
 export function FounderV2() {
+  const { copy } = useCopy();
+  const f = copy.founder;
   return (
     <section className="founder">
       <div className="founder__img">
         <div className="founder__badge">
           <span className="d" />
-          Основатель · на связи
+          {f.badge}
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/images/my_photo.jpg" alt="Наум Коган — основатель StackLab" />
         <div className="founder__sig">
           <span>
-            <b>Наум Коган</b>Founder · Lead Engineer
+            <b>Наум Коган</b>
+            {f.signRole}
           </span>
           <span>
-            iOS · MAX · Web
+            {f.signMeta1}
             <br />
-            полный цикл
+            {f.signMeta2}
           </span>
         </div>
       </div>
       <div className="founder__body">
-        <div className="sec__tag">05 · Люди</div>
+        <div className="sec__tag">{f.tag}</div>
         <blockquote className="founder__quote">
-          «StackLab — про инженерию, а не про менеджмент. Архитектурные,
-          продуктовые и технические решения{' '}
-          <em>принимаются</em> и <em>исполняются</em> одной командой —
-          от первого созвона до ночного хот-фикса.»
+          {f.quote.lead}
+          <em>{f.quote.verb1}</em>
+          {f.quote.mid}
+          <em>{f.quote.verb2}</em>
+          {f.quote.tail}
         </blockquote>
         <div className="founder__meta">
-          <div className="row">
-            <b>09:00 – 22:00 MSK</b>Прямой канал в Telegram / MAX
-          </div>
-          <div className="row">
-            <b>в течение 30 мин</b>Ответ в рабочие часы
-          </div>
-          <div className="row">
-            <b>Полный цикл</b>От идеи до публикации и поддержки
-          </div>
-          <div className="row">
-            <b>Senior-уровень</b>Архитектура, iOS, MAX, веб — одна команда
-          </div>
+          {f.rows.map((r, i) => (
+            <div className="row" key={i}>
+              <b>{r.b}</b>
+              {r.rest}
+            </div>
+          ))}
         </div>
       </div>
     </section>

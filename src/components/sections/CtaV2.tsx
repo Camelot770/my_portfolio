@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import { useRef } from 'react';
+import { useCopy } from '@/components/CopyProvider';
 import { useMagnet } from '@/components/ui/MagneticButton';
 
 const CtaScene = dynamic(
@@ -14,6 +15,7 @@ export function CtaV2() {
   const altRef = useRef<HTMLAnchorElement>(null);
   useMagnet(primaryRef as React.RefObject<HTMLElement>);
   useMagnet(altRef as React.RefObject<HTMLElement>);
+  const { copy } = useCopy();
 
   return (
     <section className="cta" id="contact">
@@ -25,15 +27,12 @@ export function CtaV2() {
           className="sec__tag"
           style={{ justifyContent: 'center', display: 'inline-flex' }}
         >
-          07 · Контакт
+          {copy.cta.tag}
         </div>
         <h2 className="cta__big">
-          Передайте <em>сигнал</em>.
+          {copy.cta.headPlain} <em>{copy.cta.headEm}</em>.
         </h2>
-        <p className="cta__p">
-          Опишите задачу в одном абзаце — вернёмся в течение 30 минут в
-          рабочие часы MSK с ответом: берёмся, сколько, когда.
-        </p>
+        <p className="cta__p">{copy.cta.p}</p>
         <div className="cta__btns">
           <a
             ref={primaryRef}
@@ -44,7 +43,7 @@ export function CtaV2() {
             data-cur="link"
           >
             <span className="d" />
-            Написать в Telegram →
+            {copy.cta.primary}
           </a>
           <a
             ref={altRef}

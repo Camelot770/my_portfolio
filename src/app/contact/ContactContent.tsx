@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
+import { useCopy } from '@/components/CopyProvider';
 import { useMagnet } from '@/components/ui/MagneticButton';
 
 export function ContactContent() {
@@ -10,18 +11,18 @@ export function ContactContent() {
   useMagnet(tgRef as React.RefObject<HTMLElement>);
   useMagnet(mailRef as React.RefObject<HTMLElement>);
   useMagnet(maxRef as React.RefObject<HTMLElement>);
+  const { copy } = useCopy();
+  const c = copy.contact;
+  const channels = c.channels;
 
   return (
     <div>
       <header className="page" style={{ paddingBottom: 80 }}>
-        <div className="page__tag">Контакт</div>
+        <div className="page__tag">{c.tag}</div>
         <h1 className="page__title">
-          Передайте <em>сигнал</em>.
+          {c.titlePlain} <em>{c.titleEm}</em>.
         </h1>
-        <p className="page__lead">
-          Опишите задачу в одном абзаце — вернёмся в течение 30 минут в
-          рабочие часы MSK с ответом: берёмся, сколько, когда.
-        </p>
+        <p className="page__lead">{c.lead}</p>
       </header>
 
       <section
@@ -50,7 +51,7 @@ export function ContactContent() {
             textDecoration: 'none',
           }}
         >
-          <div className="k">Сигнал · 01</div>
+          <div className="k">{channels[0].k}</div>
           <div
             className="v"
             style={{
@@ -61,13 +62,13 @@ export function ContactContent() {
               letterSpacing: '-0.035em',
             }}
           >
-            Telegram
+            {channels[0].v}
           </div>
           <div
             className="p"
             style={{ marginTop: 12, color: 'var(--fg)', fontSize: 15 }}
           >
-            @Naum0 — прямой канал, отвечаю в рабочие часы.
+            {channels[0].p}
           </div>
         </a>
         <a
@@ -82,7 +83,7 @@ export function ContactContent() {
             textDecoration: 'none',
           }}
         >
-          <div className="k">Сигнал · 02</div>
+          <div className="k">{channels[1].k}</div>
           <div
             className="v"
             style={{
@@ -93,13 +94,13 @@ export function ContactContent() {
               letterSpacing: '-0.035em',
             }}
           >
-            E-mail
+            {channels[1].v}
           </div>
           <div
             className="p"
             style={{ marginTop: 12, color: 'var(--fg)', fontSize: 15 }}
           >
-            stacklab@mail.ru — для подробного брифа.
+            {channels[1].p}
           </div>
         </a>
         <a
@@ -116,7 +117,7 @@ export function ContactContent() {
             textDecoration: 'none',
           }}
         >
-          <div className="k">Сигнал · 03</div>
+          <div className="k">{channels[2].k}</div>
           <div
             className="v"
             style={{
@@ -127,13 +128,13 @@ export function ContactContent() {
               letterSpacing: '-0.035em',
             }}
           >
-            MAX
+            {channels[2].v}
           </div>
           <div
             className="p"
             style={{ marginTop: 12, color: 'var(--fg)', fontSize: 15 }}
           >
-            Официальный контакт StackLab в MAX.
+            {channels[2].p}
           </div>
         </a>
       </section>
@@ -156,7 +157,7 @@ export function ContactContent() {
             lineHeight: 1.3,
           }}
         >
-          Что нужно, чтобы начать?
+          {c.closingTitle}
         </h2>
         <p
           style={{
@@ -166,9 +167,7 @@ export function ContactContent() {
             lineHeight: 1.6,
           }}
         >
-          Просто напишите. Расскажите идею, опишите задачу — разберёмся вместе.
-          Техническое задание не обязательно: достаточно описать идею своими
-          словами.
+          {c.closingP}
         </p>
       </section>
     </div>

@@ -1,20 +1,21 @@
+'use client';
+
 import Link from 'next/link';
+import { useCopy } from '@/components/CopyProvider';
 
 export function SiteFooter() {
+  const { copy } = useCopy();
+  const f = copy.footer;
   return (
     <footer className="footer" id="site-footer">
       <div>
         <div className="footer__brand">
           stacklab<em>/</em>
         </div>
-        <div className="footer__desc">
-          Инженерная студия полного цикла. Mini Apps и чат-боты для MAX и
-          Telegram, нативный iOS, веб-сервисы на Next.js. Архитектура, код и
-          релиз — внутри одной команды.
-        </div>
+        <div className="footer__desc">{f.desc}</div>
       </div>
       <div className="footer__col">
-        <h5>Связь</h5>
+        <h5>{f.contactsHeading}</h5>
         <a href="mailto:stacklab@mail.ru">stacklab@mail.ru</a>
         <a
           href="https://t.me/Naum0"
@@ -32,22 +33,22 @@ export function SiteFooter() {
         </a>
       </div>
       <div className="footer__col">
-        <h5>Направления</h5>
-        <Link href="/services#ios-apps">iOS-приложения</Link>
-        <Link href="/services#telegram-max-apps">MAX Mini Apps и боты</Link>
-        <Link href="/services#telegram-max-apps">Telegram Mini Apps</Link>
-        <Link href="/services#web-development">Веб на Next.js</Link>
+        <h5>{f.directionsHeading}</h5>
+        <Link href="/services#ios-apps">{f.directions.ios}</Link>
+        <Link href="/services#telegram-max-apps">{f.directions.max}</Link>
+        <Link href="/services#telegram-max-apps">{f.directions.tg}</Link>
+        <Link href="/services#web-development">{f.directions.web}</Link>
       </div>
       <div className="footer__col">
-        <h5>Навигация</h5>
-        <Link href="/portfolio">Портфолио</Link>
-        <Link href="/about">О студии</Link>
-        <Link href="/contact">Контакты</Link>
-        <Link href="/privacy">Политика</Link>
+        <h5>{f.navHeading}</h5>
+        <Link href="/portfolio">{f.navLinks.portfolio}</Link>
+        <Link href="/about">{f.navLinks.about}</Link>
+        <Link href="/contact">{f.navLinks.contact}</Link>
+        <Link href="/privacy">{f.navLinks.privacy}</Link>
       </div>
       <div className="footer__foot">
         <span>© StackLab 2024—{new Date().getFullYear()}</span>
-        <span>V2 · сигнал-частота 60 Гц</span>
+        <span>{f.signature}</span>
       </div>
     </footer>
   );

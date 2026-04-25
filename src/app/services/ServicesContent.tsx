@@ -2,10 +2,13 @@
 
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
+import { useCopy } from '@/components/CopyProvider';
 import { services, processSteps } from '@/data/services';
 
 export function ServicesContent() {
   const headRef = useRef<HTMLHeadingElement>(null);
+  const { copy } = useCopy();
+  const sc = copy.services;
 
   useEffect(() => {
     const el = headRef.current;
@@ -22,16 +25,14 @@ export function ServicesContent() {
   return (
     <div>
       <header className="page">
-        <div className="page__tag">Услуги</div>
+        <div className="page__tag">{sc.tag}</div>
         <h1 className="page__title r-mask" ref={headRef}>
           <span className="r-in">
-            Полный <em>цикл</em> разработки
+            {sc.titlePre} <em>{sc.titleEm}</em>
+            {sc.titleSuffix}
           </span>
         </h1>
-        <p className="page__lead">
-          От идеи до работающего продукта. iOS-приложения, MAX и Telegram Mini
-          Apps, боты и веб-сервисы для стартапов, бизнеса и госструктур.
-        </p>
+        <p className="page__lead">{sc.lead}</p>
       </header>
 
       <section className="services-grid">
@@ -89,7 +90,7 @@ export function ServicesContent() {
                   marginBottom: 16,
                 }}
               >
-                Что входит
+                {sc.includesLabel}
               </div>
               <ul
                 style={{
@@ -133,7 +134,7 @@ export function ServicesContent() {
                 }}
               >
                 <div className="k" style={{ color: 'var(--fg-dim)' }}>
-                  Для кого
+                  {sc.forWhomLabel}
                 </div>
                 <p
                   style={{
@@ -154,13 +155,11 @@ export function ServicesContent() {
       <section className="process" style={{ padding: '80px 38px 160px' }}>
         <div className="process__wrap">
           <div className="process__head">
-            <div className="sec__tag">Процесс</div>
+            <div className="sec__tag">{sc.processTag}</div>
             <h2 className="sec__head">
-              Как проходит <em>работа</em>
+              {sc.processHeadPre} <em>{sc.processHeadEm}</em>
             </h2>
-            <p className="process__lead">
-              Прозрачный цикл от первого разговора до запуска продукта.
-            </p>
+            <p className="process__lead">{copy.process.lead}</p>
           </div>
           <div className="steps">
             {processSteps.map((s) => (
@@ -192,7 +191,7 @@ export function ServicesContent() {
             lineHeight: 1,
           }}
         >
-          Готовы <em style={{ fontFamily: 'var(--font-serif)', color: 'var(--accent)', fontStyle: 'italic' }}>начать</em>?
+          {sc.closingPre} <em style={{ fontFamily: 'var(--font-serif)', color: 'var(--accent)', fontStyle: 'italic' }}>{sc.closingEm}</em>{sc.closingSuffix}
         </h2>
         <Link
           href="/contact"
@@ -201,7 +200,7 @@ export function ServicesContent() {
           style={{ marginTop: 40 }}
         >
           <span className="d" />
-          Обсудить проект →
+          {sc.ctaLabel}
         </Link>
       </section>
     </div>

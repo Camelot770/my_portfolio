@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
+import { CopyProvider } from '@/components/CopyProvider';
 import { CustomCursor } from '@/components/ui/CustomCursor';
 import { Grain } from '@/components/ui/Grain';
 import { IntroLoader } from '@/components/ui/IntroLoader';
@@ -19,13 +20,13 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
   const showIntro = pathname === '/';
 
   return (
-    <>
+    <CopyProvider>
       {showIntro && <IntroLoader />}
       <Grain />
       <CustomCursor />
       <Nav />
       <main id="main-content">{children}</main>
       <SiteFooter />
-    </>
+    </CopyProvider>
   );
 }
