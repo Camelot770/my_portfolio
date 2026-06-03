@@ -2,11 +2,12 @@
 
 import { useEffect, useRef } from 'react';
 import { useCopy } from '@/components/CopyProvider';
-import { processSteps } from '@/data/services';
+import { processStepsByLocale } from '@/data/services';
 
 export function ProcessV2() {
   const rootRef = useRef<HTMLElement>(null);
-  const { copy } = useCopy();
+  const { copy, mode } = useCopy();
+  const processSteps = processStepsByLocale[mode];
 
   useEffect(() => {
     const root = rootRef.current;

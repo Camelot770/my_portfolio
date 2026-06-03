@@ -3,12 +3,14 @@
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import { useCopy } from '@/components/CopyProvider';
-import { services, processSteps } from '@/data/services';
+import { servicesByLocale, processStepsByLocale } from '@/data/services';
 
 export function ServicesContent() {
   const headRef = useRef<HTMLHeadingElement>(null);
-  const { copy } = useCopy();
+  const { copy, mode } = useCopy();
   const sc = copy.services;
+  const services = servicesByLocale[mode];
+  const processSteps = processStepsByLocale[mode];
 
   useEffect(() => {
     const el = headRef.current;
@@ -44,7 +46,7 @@ export function ServicesContent() {
             style={{ scrollMarginTop: 100 }}
           >
             <div>
-              <div className="k">№ {String(idx + 1).padStart(2, '0')}</div>
+              <div className="k">{sc.numberPrefix} {String(idx + 1).padStart(2, '0')}</div>
               <h2
                 style={{
                   marginTop: 24,

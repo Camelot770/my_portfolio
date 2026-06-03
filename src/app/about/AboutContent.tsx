@@ -94,7 +94,7 @@ export function AboutContent() {
       >
         {VALUES.map((v) => (
           <div className="about__cell" key={v.num} style={{ minHeight: 240 }}>
-            <div className="k">Ц · {v.num}</div>
+            <div className="k">{a.valuesPrefix} · {v.num}</div>
             <h3
               style={{
                 marginTop: 'auto',
@@ -119,7 +119,7 @@ export function AboutContent() {
           padding: '40px 38px 160px',
         }}
       >
-        <div className="sec__tag">Технологии</div>
+        <div className="sec__tag">{a.techHeading}</div>
         <div
           style={{
             display: 'flex',

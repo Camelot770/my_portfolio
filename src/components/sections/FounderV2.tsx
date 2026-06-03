@@ -15,14 +15,14 @@ export function FounderV2() {
         </div>
         <Image
           src="/images/my_photo.jpg"
-          alt="Наум Коган — основатель StackLab"
+          alt={f.photoAlt}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
           style={{ objectFit: 'cover' }}
         />
         <div className="founder__sig">
           <span>
-            <b>Наум Коган</b>
+            <b>{f.name}</b>
             {f.signRole}
           </span>
           <span>

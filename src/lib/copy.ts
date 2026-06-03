@@ -13,9 +13,9 @@ interface HeroCopy {
   // Title is split into lines for the staggered letter animation.
   // Each line: { text, italic? }
   title: Array<{ text: string; italic?: boolean }>;
-  lead: string; // Text before the emphasised fragment
-  leadEm: string; // The italicised fragment inside the lead
-  leadTail: string; // Text after the emphasised fragment
+  lead: string;
+  leadEm: string;
+  leadTail: string;
   metaLocationLabel: string;
   metaLocationLine1: string;
   metaLocationLine2: string;
@@ -27,7 +27,6 @@ interface HeroCopy {
 
 interface AboutCopy {
   tag: string;
-  // Manifesto is HTML — `<em>` allowed, animated word by word.
   manifestoHtml: string;
   cells: Array<{ k: string; vMain: string; vEm: string; p: string }>;
 }
@@ -62,9 +61,10 @@ interface FounderCopy {
   signMeta1: string;
   signMeta2: string;
   tag: string;
-  // Quote with two emphasised verbs
   quote: { lead: string; verb1: string; mid: string; verb2: string; tail: string };
   rows: Array<{ b: string; rest: string }>;
+  photoAlt: string;
+  name: string;
 }
 
 interface CtaCopy {
@@ -95,6 +95,7 @@ interface FooterCopy {
 interface NavCopy {
   links: { about: string; works: string; stack: string; process: string; contact: string };
   cta: string;
+  skipLink: string;
 }
 
 interface ContactPageCopy {
@@ -118,6 +119,8 @@ interface AboutPageCopy {
   closingPre: string;
   closingEm: string;
   ctaLabel: string;
+  techHeading: string;
+  valuesPrefix: string;
 }
 
 interface ServicesPageCopy {
@@ -135,6 +138,69 @@ interface ServicesPageCopy {
   closingEm: string;
   closingSuffix: string;
   ctaLabel: string;
+  numberPrefix: string;
+}
+
+interface PortfolioPageCopy {
+  tag: string;
+  titlePlain: string;
+  titleEm: string;
+  lead: (shown: number) => string;
+  filters: { all: string; max: string; telegram: string; ios: string; web: string };
+}
+
+interface ProjectDetailCopy {
+  client: string;
+  year: string;
+  stack: string;
+  blocks: { challenge: string; solution: string; result: string; description: string };
+  prev: string;
+  next: string;
+}
+
+interface PrivacySection {
+  n: string;
+  title: string;
+  body: Array<
+    | { kind: 'p'; text: string }
+    | { kind: 'ul'; items: string[] }
+    | { kind: 'pWithMail'; before: string; mail: string; after: string }
+  >;
+}
+
+interface PrivacyCopy {
+  tag: string;
+  titlePlain: string;
+  titleEm: string;
+  effectiveLabel: string;
+  dateLocale: string;
+  sections: PrivacySection[];
+}
+
+interface IntroCopy {
+  geo1: string;
+  geo2Lat: string;
+  geo2Lon: string;
+  label1: string;
+  label2: string;
+  label3: string;
+}
+
+interface NotFoundCopy {
+  titlePre: string;
+  titleEm: string;
+  body: string;
+  ctaHome: string;
+  ctaPortfolio: string;
+}
+
+interface ErrorCopy {
+  tag: string;
+  titlePre: string;
+  titleEm: string;
+  body: string;
+  ctaRetry: string;
+  ctaHome: string;
 }
 
 export interface SiteCopy {
@@ -151,6 +217,12 @@ export interface SiteCopy {
   contact: ContactPageCopy;
   aboutPage: AboutPageCopy;
   services: ServicesPageCopy;
+  portfolioPage: PortfolioPageCopy;
+  projectDetail: ProjectDetailCopy;
+  privacy: PrivacyCopy;
+  intro: IntroCopy;
+  notFound: NotFoundCopy;
+  error: ErrorCopy;
 }
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -235,6 +307,8 @@ export const RU_COPY: SiteCopy = {
       { b: 'Полный цикл', rest: 'От идеи до публикации и сопровождения' },
       { b: 'Уровень', rest: 'Архитектор, iOS-, веб- и backend-разработка' },
     ],
+    photoAlt: 'Наум Коган — основатель StackLab',
+    name: 'Наум Коган',
   },
   cta: {
     tag: '07 · Контакты',
@@ -271,6 +345,7 @@ export const RU_COPY: SiteCopy = {
   nav: {
     links: { about: 'О компании', works: 'Проекты', stack: 'Технологии', process: 'Процесс', contact: 'Контакты' },
     cta: 'Обсудить проект',
+    skipLink: 'Перейти к основному контенту',
   },
   contact: {
     tag: 'Контакты',
@@ -301,6 +376,8 @@ export const RU_COPY: SiteCopy = {
     closingPre: 'Готовы обсудить ',
     closingEm: 'ваш проект',
     ctaLabel: 'Написать →',
+    techHeading: 'Технологии',
+    valuesPrefix: 'Ц',
   },
   services: {
     tag: 'Услуги',
@@ -317,6 +394,106 @@ export const RU_COPY: SiteCopy = {
     closingEm: 'начать',
     closingSuffix: '?',
     ctaLabel: 'Обсудить проект →',
+    numberPrefix: '№',
+  },
+  portfolioPage: {
+    tag: 'Портфолио',
+    titlePlain: 'Работы ',
+    titleEm: 'в материале',
+    lead: (shown) =>
+      `18 запущенных продуктов для бизнеса, госструктур и стартапов. MAX Mini Apps и боты, iOS-приложения, Telegram Mini Apps, веб-сервисы. Ниже — ${shown} кейсов, которые можем показать публично; остальные под NDA.`,
+    filters: { all: 'Все', max: 'MAX', telegram: 'Telegram', ios: 'iOS', web: 'Веб' },
+  },
+  projectDetail: {
+    client: 'Клиент',
+    year: 'Год',
+    stack: 'Стек',
+    blocks: { challenge: 'Задача', solution: 'Решение', result: 'Результат', description: 'Описание' },
+    prev: '← Предыдущий',
+    next: 'Следующий →',
+  },
+  privacy: {
+    tag: 'Политика',
+    titlePlain: 'Политика ',
+    titleEm: 'конфиденциальности',
+    effectiveLabel: 'Дата вступления в силу: ',
+    dateLocale: 'ru-RU',
+    sections: [
+      {
+        n: '01',
+        title: 'Какие данные мы собираем',
+        body: [
+          { kind: 'p', text: 'Сайт носит информационный характер. Мы не собираем персональные данные посетителей автоматически.' },
+          { kind: 'p', text: 'Мы не используем:' },
+          { kind: 'ul', items: ['Формы обратной связи с автоматической обработкой', 'Системы аналитики', 'Сторонние сервисы отслеживания'] },
+          { kind: 'p', text: 'Единственный способ передать нам данные — связаться напрямую по электронной почте или в мессенджерах.' },
+        ],
+      },
+      {
+        n: '02',
+        title: 'Данные при добровольном обращении',
+        body: [
+          { kind: 'p', text: 'Если вы связываетесь с нами по email или в мессенджерах, мы можем получить:' },
+          { kind: 'ul', items: ['Имя', 'Контактные данные (email, номер, username)', 'Содержание сообщения'] },
+          { kind: 'p', text: 'Эти данные используются только для ответа на запрос и обсуждения сотрудничества.' },
+        ],
+      },
+      {
+        n: '03',
+        title: 'Как мы используем данные',
+        body: [
+          { kind: 'p', text: 'Данные используются для:' },
+          { kind: 'ul', items: ['Ответа на вопросы', 'Обсуждения деталей проекта', 'Подготовки коммерческого предложения'] },
+          { kind: 'p', text: 'Мы не передаём данные третьим лицам, не продаём и не используем в маркетинге.' },
+        ],
+      },
+      {
+        n: '04',
+        title: 'Хранение данных',
+        body: [
+          { kind: 'p', text: 'Храним переписку и контакты только на время, необходимое для коммуникации и выполнения обязательств. По запросу удалим все данные.' },
+        ],
+      },
+      {
+        n: '05',
+        title: 'Ваши права',
+        body: [
+          { kind: 'p', text: 'Вы имеете право:' },
+          { kind: 'ul', items: ['Запросить информацию о хранящихся данных', 'Потребовать исправления неточных данных', 'Потребовать удаления данных', 'Отозвать согласие на обработку'] },
+          { kind: 'pWithMail', before: 'Для реализации — напишите на ', mail: 'stacklab@mail.ru', after: '.' },
+        ],
+      },
+      {
+        n: '06',
+        title: 'Безопасность и cookies',
+        body: [
+          { kind: 'p', text: 'Мы принимаем разумные меры для защиты информации от несанкционированного доступа, изменения или уничтожения. Сайт не использует cookies для отслеживания пользователей.' },
+        ],
+      },
+    ],
+  },
+  intro: {
+    geo1: 'МОСКВА · САНКТ-ПЕТЕРБУРГ',
+    geo2Lat: 'ШИРОТА 55.75',
+    geo2Lon: 'ДОЛГОТА 37.61',
+    label1: 'КАЛИБРОВКА СИГНАЛА',
+    label2: 'STACKLAB · ИЗД. 07 · 2026',
+    label3: 'ЗАГРУЗКА / ИНИЦИАЛИЗАЦИЯ',
+  },
+  notFound: {
+    titlePre: 'Сигнал ',
+    titleEm: 'потерян',
+    body: 'Страница была перемещена, удалена или никогда не существовала. Попробуйте начать с главной.',
+    ctaHome: 'На главную',
+    ctaPortfolio: 'Портфолио',
+  },
+  error: {
+    tag: 'Ошибка 500',
+    titlePre: 'Что-то пошло ',
+    titleEm: 'не так',
+    body: 'Страница недоступна. Обновите её или вернитесь на главную.',
+    ctaRetry: 'Повторить',
+    ctaHome: 'На главную',
   },
 };
 
@@ -402,6 +579,8 @@ export const EN_COPY: SiteCopy = {
       { b: 'Full cycle', rest: 'From idea to launch and support' },
       { b: 'Level', rest: 'Architecture, iOS, web and backend development' },
     ],
+    photoAlt: 'Naum Kogan — StackLab founder',
+    name: 'Naum Kogan',
   },
   cta: {
     tag: '07 · Contact',
@@ -438,6 +617,7 @@ export const EN_COPY: SiteCopy = {
   nav: {
     links: { about: 'About', works: 'Projects', stack: 'Stack', process: 'Process', contact: 'Contact' },
     cta: 'Discuss a project',
+    skipLink: 'Skip to main content',
   },
   contact: {
     tag: 'Contact',
@@ -468,6 +648,8 @@ export const EN_COPY: SiteCopy = {
     closingPre: 'Ready to discuss ',
     closingEm: 'your project',
     ctaLabel: 'Get in touch →',
+    techHeading: 'Stack',
+    valuesPrefix: 'V',
   },
   services: {
     tag: 'Services',
@@ -484,6 +666,106 @@ export const EN_COPY: SiteCopy = {
     closingEm: 'start',
     closingSuffix: '?',
     ctaLabel: 'Discuss a project →',
+    numberPrefix: 'No.',
+  },
+  portfolioPage: {
+    tag: 'Portfolio',
+    titlePlain: 'Work ',
+    titleEm: 'in production',
+    lead: (shown) =>
+      `18 shipped products for business, government and startups. MAX Mini Apps and bots, iOS apps, Telegram Mini Apps, web services. Below — ${shown} cases we can share publicly; the rest are under NDA.`,
+    filters: { all: 'All', max: 'MAX', telegram: 'Telegram', ios: 'iOS', web: 'Web' },
+  },
+  projectDetail: {
+    client: 'Client',
+    year: 'Year',
+    stack: 'Stack',
+    blocks: { challenge: 'Challenge', solution: 'Solution', result: 'Result', description: 'Description' },
+    prev: '← Previous',
+    next: 'Next →',
+  },
+  privacy: {
+    tag: 'Privacy',
+    titlePlain: 'Privacy ',
+    titleEm: 'policy',
+    effectiveLabel: 'Effective date: ',
+    dateLocale: 'en-GB',
+    sections: [
+      {
+        n: '01',
+        title: 'What data we collect',
+        body: [
+          { kind: 'p', text: 'This site is informational. We do not collect personal data from visitors automatically.' },
+          { kind: 'p', text: 'We do not use:' },
+          { kind: 'ul', items: ['Contact forms with automatic processing', 'Analytics systems', 'Third-party tracking services'] },
+          { kind: 'p', text: 'The only way to share data with us is to reach out directly by e-mail or via a messenger.' },
+        ],
+      },
+      {
+        n: '02',
+        title: 'Data shared voluntarily',
+        body: [
+          { kind: 'p', text: 'If you contact us by e-mail or via a messenger, we may receive:' },
+          { kind: 'ul', items: ['Name', 'Contact details (e-mail, phone, username)', 'Message contents'] },
+          { kind: 'p', text: 'This data is used only to answer your request and discuss potential cooperation.' },
+        ],
+      },
+      {
+        n: '03',
+        title: 'How we use data',
+        body: [
+          { kind: 'p', text: 'Data is used for:' },
+          { kind: 'ul', items: ['Answering questions', 'Discussing project details', 'Preparing a commercial proposal'] },
+          { kind: 'p', text: 'We do not share data with third parties, do not sell it, and do not use it for marketing.' },
+        ],
+      },
+      {
+        n: '04',
+        title: 'Data retention',
+        body: [
+          { kind: 'p', text: 'We keep correspondence and contact details only for as long as needed for communication and to honour our obligations. Upon request we will delete all data.' },
+        ],
+      },
+      {
+        n: '05',
+        title: 'Your rights',
+        body: [
+          { kind: 'p', text: 'You have the right to:' },
+          { kind: 'ul', items: ['Request information about the data we hold', 'Request corrections to inaccurate data', 'Request data deletion', 'Withdraw consent to processing'] },
+          { kind: 'pWithMail', before: 'To exercise these rights — write to ', mail: 'stacklab@mail.ru', after: '.' },
+        ],
+      },
+      {
+        n: '06',
+        title: 'Security and cookies',
+        body: [
+          { kind: 'p', text: 'We take reasonable measures to protect information from unauthorised access, alteration or destruction. The site does not use cookies to track users.' },
+        ],
+      },
+    ],
+  },
+  intro: {
+    geo1: 'MOSCOW · SAINT PETERSBURG',
+    geo2Lat: 'LAT 55.75',
+    geo2Lon: 'LON 37.61',
+    label1: 'SIGNAL CALIBRATION',
+    label2: 'STACKLAB · ED. 07 · 2026',
+    label3: 'LOADING / INITIALIZATION',
+  },
+  notFound: {
+    titlePre: 'Signal ',
+    titleEm: 'lost',
+    body: 'The page was moved, deleted, or never existed. Try starting from the home page.',
+    ctaHome: 'Home',
+    ctaPortfolio: 'Portfolio',
+  },
+  error: {
+    tag: 'Error 500',
+    titlePre: 'Something went ',
+    titleEm: 'wrong',
+    body: 'This page is unavailable. Refresh it or go back to the home page.',
+    ctaRetry: 'Retry',
+    ctaHome: 'Home',
   },
 };
 

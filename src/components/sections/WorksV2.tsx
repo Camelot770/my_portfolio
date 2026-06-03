@@ -4,10 +4,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import { useCopy } from '@/components/CopyProvider';
-import { getFeaturedProjects } from '@/data/projects';
+import { getFeaturedProjectsForLocale } from '@/data/projects';
 
 export function WorksV2() {
-  const { copy } = useCopy();
+  const { copy, mode } = useCopy();
   const reelRef = useRef<HTMLDivElement>(null);
   const headRef = useRef<HTMLHeadingElement>(null);
 
@@ -36,7 +36,7 @@ export function WorksV2() {
     return () => io.disconnect();
   }, []);
 
-  const projects = getFeaturedProjects();
+  const projects = getFeaturedProjectsForLocale(mode);
   const total = projects.length;
 
   return (

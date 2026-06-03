@@ -3,19 +3,22 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import { projects, getProjectsByCategory } from '@/data/projects';
-
-const FILTERS: Array<{ id: string; label: string }> = [
-  { id: 'all', label: 'Все' },
-  { id: 'max', label: 'MAX' },
-  { id: 'telegram', label: 'Telegram' },
-  { id: 'ios', label: 'iOS' },
-  { id: 'web', label: 'Веб' },
-];
+import { useCopy } from '@/components/CopyProvider';
+import { projectsByLocale, getProjectsByCategoryForLocale } from '@/data/projects';
 
 export function PortfolioContent() {
   const [filter, setFilter] = useState('all');
   const headRef = useRef<HTMLHeadingElement>(null);
+  const { copy, mode } = useCopy();
+  const p = copy.portfolioPage;
+
+  const filters: Array<{ id: string; label: string }> = [
+    { id: 'all', label: p.filters.all },
+    { id: 'max', label: p.filters.max },
+    { id: 'telegram', label: p.filters.telegram },
+    { id: 'ios', label: p.filters.ios },
+    { id: 'web', label: p.filters.web },
+  ];
 
   useEffect(() => {
     const el = headRef.current;
@@ -29,23 +32,18 @@ export function PortfolioContent() {
     return () => io.disconnect();
   }, []);
 
-  const list = getProjectsByCategory(filter);
+  const list = getProjectsByCategoryForLocale(filter, mode);
 
   return (
     <div>
       <header className="page">
-        <div className="page__tag">Портфолио</div>
+        <div className="page__tag">{p.tag}</div>
         <h1 className="page__title r-mask" ref={headRef}>
           <span className="r-in">
-            Работы <em>в материале</em>
+            {p.titlePlain}<em>{p.titleEm}</em>
           </span>
         </h1>
-        <p className="page__lead">
-          18 запущенных продуктов для бизнеса, госструктур и стартапов. MAX
-          Mini Apps и боты, iOS-приложения, Telegram Mini Apps, веб-сервисы.
-          Ниже — {projects.length} кейсов, которые можем показать публично;
-          остальные под NDA.
-        </p>
+        <p className="page__lead">{p.lead(projectsByLocale[mode].length)}</p>
 
         <div
           style={{
@@ -55,7 +53,7 @@ export function PortfolioContent() {
             flexWrap: 'wrap',
           }}
         >
-          {FILTERS.map((f) => {
+          {filters.map((f) => {
             const active = filter === f.id;
             return (
               <button
