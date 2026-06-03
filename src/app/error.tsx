@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
+import { useCopy } from '@/components/CopyProvider';
 
 export default function Error({
   error,
@@ -10,6 +11,9 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const { copy } = useCopy();
+  const e = copy.error;
+
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
       console.error(error);
@@ -27,7 +31,7 @@ export default function Error({
     >
       <div style={{ textAlign: 'center', maxWidth: 640 }}>
         <div className="sec__tag" style={{ justifyContent: 'center' }}>
-          Ошибка 500
+          {e.tag}
         </div>
         <h1
           style={{
@@ -38,7 +42,10 @@ export default function Error({
             letterSpacing: '-0.04em',
           }}
         >
-          Что-то пошло <em style={{ fontFamily: 'var(--font-serif)', color: 'var(--accent)', fontStyle: 'italic' }}>не так</em>
+          {e.titlePre}
+          <em style={{ fontFamily: 'var(--font-serif)', color: 'var(--accent)', fontStyle: 'italic' }}>
+            {e.titleEm}
+          </em>
         </h1>
         <p
           style={{
@@ -48,7 +55,7 @@ export default function Error({
             lineHeight: 1.5,
           }}
         >
-          Страница недоступна. Обновите её или вернитесь на главную.
+          {e.body}
         </p>
         <div
           style={{
@@ -61,11 +68,11 @@ export default function Error({
         >
           <button onClick={reset} className="cta__btn" data-cur="link">
             <span className="d" />
-            Повторить
+            {e.ctaRetry}
           </button>
           <Link href="/" className="cta__btn alt" data-cur="link">
             <span className="d" />
-            На главную
+            {e.ctaHome}
           </Link>
         </div>
       </div>

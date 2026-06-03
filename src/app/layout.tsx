@@ -100,12 +100,6 @@ export default function RootLayout({
         <WebSiteJsonLd />
       </head>
       <body>
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10001] focus:px-4 focus:py-2 focus:bg-accent focus:text-black focus:rounded-md"
-        >
-          Перейти к основному контенту
-        </a>
         <SiteShell>{children}</SiteShell>
       </body>
     </html>

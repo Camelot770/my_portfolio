@@ -2,11 +2,12 @@
 
 import { useState } from 'react';
 import { useCopy } from '@/components/CopyProvider';
-import { faqItems } from '@/data/faq';
+import { faqItemsByLocale } from '@/data/faq';
 
 export function FaqV2() {
+  const { copy, mode } = useCopy();
+  const faqItems = faqItemsByLocale[mode];
   const [open, setOpen] = useState<string | null>(faqItems[0]?.id ?? null);
-  const { copy } = useCopy();
 
   return (
     <section className="faq" id="faq">

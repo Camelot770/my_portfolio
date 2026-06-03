@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useCopy } from '@/components/CopyProvider';
 
 export function IntroLoader({ onDone }: { onDone?: () => void }) {
   const [show, setShow] = useState(true);
@@ -8,6 +9,8 @@ export function IntroLoader({ onDone }: { onDone?: () => void }) {
   const countRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
   const clockRef = useRef<HTMLElement>(null);
+  const { copy } = useCopy();
+  const i = copy.intro;
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -76,9 +79,9 @@ export function IntroLoader({ onDone }: { onDone?: () => void }) {
         </div>
         <div className="intro__clock">
           <b ref={clockRef}>00:00:00 UTC</b>
-          МОСКВА · САНКТ-ПЕТЕРБУРГ
+          {i.geo1}
           <br />
-          ШИРОТА 55.75 · ДОЛГОТА 37.61
+          {i.geo2Lat} · {i.geo2Lon}
         </div>
         <div className="intro__count" ref={countRef}>
           000
@@ -86,11 +89,11 @@ export function IntroLoader({ onDone }: { onDone?: () => void }) {
         <div className="intro__bar" ref={barRef} />
         <div className="intro__labels">
           <span>
-            <b>КАЛИБРОВКА СИГНАЛА</b>
+            <b>{i.label1}</b>
           </span>
-          <span>STACKLAB · ИЗД. 07 · 2026</span>
+          <span>{i.label2}</span>
           <span>
-            <b>ЗАГРУЗКА / ИНИЦИАЛИЗАЦИЯ</b>
+            <b>{i.label3}</b>
           </span>
         </div>
       </div>

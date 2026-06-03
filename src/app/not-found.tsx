@@ -1,6 +1,11 @@
+'use client';
+
 import Link from 'next/link';
+import { useCopy } from '@/components/CopyProvider';
 
 export default function NotFound() {
+  const { copy } = useCopy();
+  const nf = copy.notFound;
   return (
     <div
       style={{
@@ -33,7 +38,10 @@ export default function NotFound() {
             letterSpacing: '-0.035em',
           }}
         >
-          Сигнал <em style={{ fontFamily: 'var(--font-serif)', color: 'var(--accent)', fontStyle: 'italic' }}>потерян</em>
+          {nf.titlePre}
+          <em style={{ fontFamily: 'var(--font-serif)', color: 'var(--accent)', fontStyle: 'italic' }}>
+            {nf.titleEm}
+          </em>
         </h1>
         <p
           style={{
@@ -43,8 +51,7 @@ export default function NotFound() {
             lineHeight: 1.5,
           }}
         >
-          Страница была перемещена, удалена или никогда не существовала.
-          Попробуйте начать с главной.
+          {nf.body}
         </p>
         <div
           style={{
@@ -57,11 +64,11 @@ export default function NotFound() {
         >
           <Link href="/" className="cta__btn" data-cur="link">
             <span className="d" />
-            На главную
+            {nf.ctaHome}
           </Link>
           <Link href="/portfolio" className="cta__btn alt" data-cur="link">
             <span className="d" />
-            Портфолио
+            {nf.ctaPortfolio}
           </Link>
         </div>
       </div>

@@ -2,7 +2,12 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Project } from '@/data/projects';
+import { useCopy } from '@/components/CopyProvider';
+import {
+  Project,
+  getProjectBySlugForLocale,
+  getAdjacentProjectsForLocale,
+} from '@/data/projects';
 
 interface ProjectDetailProps {
   project: Project;
@@ -11,10 +16,18 @@ interface ProjectDetailProps {
 }
 
 export function ProjectDetail({
-  project,
-  prevProject,
-  nextProject,
+  project: fallbackProject,
+  prevProject: fallbackPrev,
+  nextProject: fallbackNext,
 }: ProjectDetailProps) {
+  const { copy, mode } = useCopy();
+  const pd = copy.projectDetail;
+  // Look up the locale-specific version of this project by slug; fall back to
+  // the SSR-provided RU project if (somehow) the slug is missing in this locale.
+  const project = getProjectBySlugForLocale(fallbackProject.slug, mode) ?? fallbackProject;
+  const adjacent = getAdjacentProjectsForLocale(fallbackProject.slug, mode);
+  const prevProject = adjacent.prevProject ?? fallbackPrev;
+  const nextProject = adjacent.nextProject ?? fallbackNext;
   return (
     <article>
       <header className="page">
@@ -57,7 +70,7 @@ export function ProjectDetail({
                 marginBottom: 6,
               }}
             >
-              Клиент
+              {pd.client}
             </b>
             {project.client}
           </div>
@@ -77,7 +90,7 @@ export function ProjectDetail({
                 marginBottom: 6,
               }}
             >
-              Год
+              {pd.year}
             </b>
             {project.year}
           </div>
@@ -97,7 +110,7 @@ export function ProjectDetail({
                 marginBottom: 6,
               }}
             >
-              Стек
+              {pd.stack}
             </b>
             {project.technologies.join(' · ')}
           </div>
@@ -144,10 +157,10 @@ export function ProjectDetail({
           gridTemplateColumns: 'minmax(0, 1fr)',
         }}
       >
-        <Block n="01" title="Задача" text={project.challenge} />
-        <Block n="02" title="Решение" text={project.solution} />
-        <Block n="03" title="Результат" text={project.result} />
-        <Block n="04" title="Описание" text={project.fullDescription} />
+        <Block n="01" title={pd.blocks.challenge} text={project.challenge} />
+        <Block n="02" title={pd.blocks.solution} text={project.solution} />
+        <Block n="03" title={pd.blocks.result} text={project.result} />
+        <Block n="04" title={pd.blocks.description} text={project.fullDescription} />
       </section>
 
       <nav
@@ -175,7 +188,7 @@ export function ProjectDetail({
               marginBottom: 12,
             }}
           >
-            ← Предыдущий
+            {pd.prev}
           </div>
           <div
             style={{
@@ -203,7 +216,7 @@ export function ProjectDetail({
               marginBottom: 12,
             }}
           >
-            Следующий →
+            {pd.next}
           </div>
           <div
             style={{
