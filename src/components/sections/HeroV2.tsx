@@ -52,7 +52,7 @@ export function HeroV2() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const kickerRef = useRef<HTMLDivElement>(null);
   const footRef = useRef<HTMLDivElement>(null);
-  const { copy, mode } = useCopy();
+  const { copy } = useCopy();
   const renderWebGL = useShouldRenderWebGL();
   const LINES = copy.hero.title;
 
@@ -105,9 +105,7 @@ export function HeroV2() {
           <div className="hero__lead">
             {copy.hero.lead}
             <em>{copy.hero.leadEm}</em>
-            {mode === 'pro'
-              ? ' разработки — от проектирования до запуска и сопровождения.'
-              : ' команда полного цикла — от архитектуры до релиза.'}
+            {copy.hero.leadTail}
           </div>
           <div className="hero__meta">
             <b>{copy.hero.metaLocationLabel}</b>
