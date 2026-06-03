@@ -20,18 +20,24 @@ interface CopyContextValue {
 const CopyContext = createContext<CopyContextValue | null>(null);
 
 export function CopyProvider({ children }: { children: React.ReactNode }) {
-  // Default to formal `pro` voice. We hydrate from localStorage on mount.
-  const [mode, setModeState] = useState<CopyMode>('pro');
+  // Default to Russian. We hydrate from localStorage on mount.
+  const [mode, setModeState] = useState<CopyMode>('ru');
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
     try {
       const stored = window.localStorage.getItem(COPY_MODE_STORAGE_KEY);
-      if (stored === 'pro' || stored === 'dev') setModeState(stored);
+      if (stored === 'ru' || stored === 'en') setModeState(stored);
     } catch {
       // ignore — localStorage may be blocked
     }
   }, []);
+
+  // Keep <html lang> in sync with the current locale for accessibility and SEO.
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    document.documentElement.lang = mode;
+  }, [mode]);
 
   const setMode = useCallback((next: CopyMode) => {
     setModeState(next);
@@ -44,7 +50,7 @@ export function CopyProvider({ children }: { children: React.ReactNode }) {
 
   const toggleMode = useCallback(() => {
     setModeState((prev) => {
-      const next: CopyMode = prev === 'pro' ? 'dev' : 'pro';
+      const next: CopyMode = prev === 'ru' ? 'en' : 'ru';
       try {
         window.localStorage.setItem(COPY_MODE_STORAGE_KEY, next);
       } catch {

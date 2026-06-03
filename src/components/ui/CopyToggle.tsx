@@ -8,24 +8,28 @@ export function CopyToggle() {
     <div
       className="copy-toggle"
       role="group"
-      aria-label="Тон голоса сайта"
+      aria-label="Language / Язык"
     >
       <button
         type="button"
-        className={`copy-toggle__btn${mode === 'pro' ? ' is-active' : ''}`}
-        aria-pressed={mode === 'pro'}
-        onClick={() => setMode('pro')}
+        className={`copy-toggle__btn${mode === 'ru' ? ' is-active' : ''}`}
+        aria-pressed={mode === 'ru'}
+        aria-label="Русский"
+        lang="ru"
+        onClick={() => setMode('ru')}
       >
-        PRO
+        RU
       </button>
       <span aria-hidden="true" className="copy-toggle__sep">/</span>
       <button
         type="button"
-        className={`copy-toggle__btn${mode === 'dev' ? ' is-active' : ''}`}
-        aria-pressed={mode === 'dev'}
-        onClick={() => setMode('dev')}
+        className={`copy-toggle__btn${mode === 'en' ? ' is-active' : ''}`}
+        aria-pressed={mode === 'en'}
+        aria-label="English"
+        lang="en"
+        onClick={() => setMode('en')}
       >
-        DEV
+        EN
       </button>
     </div>
   );

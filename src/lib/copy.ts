@@ -1,20 +1,21 @@
-// Two voice modes for the site copy.
-// `pro` — formal, business-oriented language for executives and decision-makers.
-// `dev` — current expressive engineering voice with stack jargon.
+// Two language modes for the site copy.
+// `ru` — Russian, formal/business voice (default).
+// `en` — English translation of the same copy.
 //
-// Default mode is `pro`. The user can switch via the toggle in the nav.
+// The user can switch via the RU / EN toggle in the nav.
 
-export type CopyMode = 'pro' | 'dev';
+export type CopyMode = 'ru' | 'en';
 
-export const COPY_MODE_STORAGE_KEY = 'stacklab-copy-mode';
+export const COPY_MODE_STORAGE_KEY = 'stacklab-locale';
 
 interface HeroCopy {
   kicker: string;
   // Title is split into lines for the staggered letter animation.
   // Each line: { text, italic? }
   title: Array<{ text: string; italic?: boolean }>;
-  lead: string; // Plain text, with a single <em>...</em> wrap allowed (rendered manually)
+  lead: string; // Text before the emphasised fragment
   leadEm: string; // The italicised fragment inside the lead
+  leadTail: string; // Text after the emphasised fragment
   metaLocationLabel: string;
   metaLocationLine1: string;
   metaLocationLine2: string;
@@ -153,9 +154,9 @@ export interface SiteCopy {
 }
 
 // ─────────────────────────────────────────────────────────────────────────
-// PRO — formal, business-friendly voice (default)
+// RU — Russian, formal/business voice (default)
 // ─────────────────────────────────────────────────────────────────────────
-export const PRO_COPY: SiteCopy = {
+export const RU_COPY: SiteCopy = {
   hero: {
     kicker: 'Студия разработки · Москва и вся Россия',
     title: [
@@ -166,6 +167,7 @@ export const PRO_COPY: SiteCopy = {
     ],
     lead: 'Мобильные приложения, мини-приложения для MAX и Telegram, а также веб-сервисы. ',
     leadEm: 'Полный цикл',
+    leadTail: ' разработки — от проектирования до запуска и сопровождения.',
     metaLocationLabel: 'Расположение',
     metaLocationLine1: 'Москва · вся Россия',
     metaLocationLine2: 'RU / EN',
@@ -197,7 +199,7 @@ export const PRO_COPY: SiteCopy = {
     tag: '03 · Технологии',
     headPlain: 'Технологии,',
     headTitle: 'с которыми работаем',
-  items: [
+    items: [
       { labelEm: 'iOS', labelRest: ' / Swift и SwiftUI', meta: 'Нативные приложения · App Store' },
       { labelEm: 'MAX', labelRest: ' Mini Apps и боты', meta: 'Приоритетная платформа' },
       { labelEm: 'Telegram', labelRest: ' Mini Apps и боты', meta: 'Mini Apps · приём платежей' },
@@ -319,172 +321,173 @@ export const PRO_COPY: SiteCopy = {
 };
 
 // ─────────────────────────────────────────────────────────────────────────
-// DEV — original engineering-flavoured voice
+// EN — English translation
 // ─────────────────────────────────────────────────────────────────────────
-export const DEV_COPY: SiteCopy = {
+export const EN_COPY: SiteCopy = {
   hero: {
-    kicker: 'Инженерная студия · Москва и вся Россия',
+    kicker: 'Development studio · Moscow and all of Russia',
     title: [
-      { text: 'Мы строим' },
-      { text: 'софт,', italic: true },
-      { text: 'который хочется' },
-      { text: 'обсуждать.' },
+      { text: 'We build' },
+      { text: 'digital', italic: true },
+      { text: 'products for' },
+      { text: 'business.' },
     ],
-    lead: 'Mini Apps для MAX, Telegram и нативные iOS-приложения. ',
-    leadEm: 'Инженерная',
-    metaLocationLabel: 'Локация',
-    metaLocationLine1: 'Москва · вся Россия',
+    lead: 'Mobile apps, mini apps for MAX and Telegram, and web services. ',
+    leadEm: 'Full-cycle',
+    leadTail: ' development — from design to launch and support.',
+    metaLocationLabel: 'Location',
+    metaLocationLine1: 'Moscow · all of Russia',
     metaLocationLine2: 'RU / EN',
-    metaPortfolioLabel: 'Портфолио',
-    metaPortfolioLine1: '18 запущенных продуктов',
-    metaPortfolioLine2: 'MAX · iOS · Telegram · веб · часть NDA',
-    scroll: 'Скролл↓',
+    metaPortfolioLabel: 'Portfolio',
+    metaPortfolioLine1: '18 shipped projects',
+    metaPortfolioLine2: 'iOS · MAX · Telegram · Web',
+    scroll: 'Scroll ↓',
   },
   about: {
-    tag: '01 · Манифест',
+    tag: '01 · About',
     manifestoHtml:
-      'StackLab — <em>инженерная</em> студия полного цикла. Архитектура, продакшн-код, инфраструктура и релиз — внутри одной команды. Глубокая экспертиза в каждом слое: MAX, Telegram, iOS, веб, интеграции и платежи. Не процессы ради процессов — <em>инженерия</em>, которая доходит до запуска.',
+      'StackLab is a <em>full-cycle</em> development studio. Design, code, infrastructure and support — all within one team. Proven track record on MAX, Telegram, iOS and the web. We work under contract, with transparent timelines and predictable outcomes.',
     cells: [
-      { k: 'К · 01', vMain: '18', vEm: 'запусков', p: 'Работающие продукты в MAX, Telegram, App Store и вебе. Часть проектов под NDA — в портфолио показываем только то, что можем.' },
-      { k: 'К · 02', vMain: '3+', vEm: 'лет', p: 'Средний опыт инженеров в продакшне. Senior-уровень в iOS, MAX, вебе и backend.' },
-      { k: 'К · 03', vMain: '100%', vEm: 'довольных', p: 'Не сдаём проект, пока он не работает идеально. Качество и тестирование — приоритет на каждом этапе.' },
-      { k: 'К · 04', vMain: 'от 1', vEm: 'недели', p: 'Цикл от первого контакта до запуска — от недели, в зависимости от объёма.' },
+      { k: 'M · 01', vMain: '18', vEm: 'projects', p: 'Shipped products on MAX, Telegram, App Store and the web. Some under NDA.' },
+      { k: 'M · 02', vMain: '3+', vEm: 'years', p: 'Average team experience in production engineering. Senior level across the stack.' },
+      { k: 'M · 03', vMain: '100%', vEm: 'happy clients', p: 'A project ships only once the client signs off. The same quality and testing standards apply on every project.' },
+      { k: 'M · 04', vMain: 'from 1', vEm: 'week', p: 'Time to publish — from one week, depending on scope.' },
     ],
   },
   works: {
-    tag: '02 · Избранное',
-    headPlain: 'Случаи',
-    headEm: 'в материале',
-    description: 'Продукты, запущенные в последние два года. Каждый — с боевого запуска, не из концепт-витрины.',
-    hintDrag: 'Тащите → или прокручивайте колесом',
-    hintCount: (n) => `${String(n).padStart(2, '0')} проектов · 2025—2026`,
+    tag: '02 · Projects',
+    headPlain: 'Shipped',
+    headEm: 'projects',
+    description: 'Products launched over the past two years. Each one a real commercial release — not a concept.',
+    hintDrag: 'Drag → or scroll with the wheel',
+    hintCount: (n) => `${String(n).padStart(2, '0')} projects · 2025—2026`,
   },
   stack: {
-    tag: '03 · Инструментарий',
-    headPlain: 'Стек,',
-    headTitle: 'который мы довели до автоматизма',
+    tag: '03 · Stack',
+    headPlain: 'Technologies',
+    headTitle: 'we work with',
     items: [
-      { labelEm: 'iOS', labelRest: ' / Swift + SwiftUI', meta: 'Нативно · AppStore' },
-      { labelEm: 'MAX', labelRest: ' Mini Apps + боты', meta: 'Приоритетная платформа' },
-      { labelEm: 'Telegram', labelRest: ' WebApp + Bot API', meta: 'Mini Apps · платежи' },
-      { labelEm: 'Next.js', labelRest: ' + React', meta: 'SSR · Edge · TypeScript' },
-      { labelEm: 'Node.js', labelRest: ' / Python / FastAPI', meta: 'API · интеграции' },
-      { labelEm: 'Prisma', labelRest: ' + Postgres / SQLite', meta: 'OLTP · хранилища' },
-      { labelEm: 'ЮKassa', labelRest: ' + 1С-МИС', meta: 'Платежи · интеграции' },
+      { labelEm: 'iOS', labelRest: ' / Swift and SwiftUI', meta: 'Native apps · App Store' },
+      { labelEm: 'MAX', labelRest: ' Mini Apps and bots', meta: 'Priority platform' },
+      { labelEm: 'Telegram', labelRest: ' Mini Apps and bots', meta: 'Mini Apps · payments' },
+      { labelEm: 'Next.js', labelRest: ' and React', meta: 'Web services · TypeScript' },
+      { labelEm: 'Node.js', labelRest: ' / Python / FastAPI', meta: 'APIs · integrations' },
+      { labelEm: 'PostgreSQL', labelRest: ' / Prisma / SQLite', meta: 'Databases · storage' },
+      { labelEm: 'YooKassa', labelRest: ' and 1C-MIS', meta: 'Payments · integrations' },
     ],
   },
   process: {
-    tag: '04 · Процесс',
-    headPre: 'От',
-    headEm: 'сигнала',
-    headPost: ' до запуска',
-    lead: 'Прозрачный цикл: вы видите промежуточные результаты, правите курс по ходу, без «потом решим».',
+    tag: '04 · Process',
+    headPre: 'How we',
+    headEm: 'work',
+    headPost: '',
+    lead: 'A transparent process with regular demos of intermediate results and fixed timelines.',
   },
   founder: {
-    badge: 'Основатель · на связи',
-    signRole: 'Founder · Lead Engineer',
+    badge: 'Founder · available',
+    signRole: 'Founder · Technical lead',
     signMeta1: 'iOS · MAX · Web',
-    signMeta2: 'полный цикл',
-    tag: '05 · Люди',
+    signMeta2: 'Full cycle',
+    tag: '05 · Team',
     quote: {
-      lead: '«StackLab — про инженерию, а не про менеджмент. Архитектурные, продуктовые и технические решения ',
-      verb1: 'принимаются',
-      mid: ' и ',
-      verb2: 'исполняются',
-      tail: ' одной командой — от первого созвона до ночного хот-фикса.»',
+      lead: '"We build the company around engineering standards: every project is ',
+      verb1: 'designed',
+      mid: ' by the team and ',
+      verb2: 'delivered',
+      tail: ' to release in-house — no middlemen, no subcontractors."',
     },
     rows: [
-      { b: '09:00 – 22:00 MSK', rest: 'Прямой канал в Telegram / MAX' },
-      { b: 'в течение 30 мин', rest: 'Ответ в рабочие часы' },
-      { b: 'Полный цикл', rest: 'От идеи до публикации и поддержки' },
-      { b: 'Senior-уровень', rest: 'Архитектура, iOS, MAX, веб — одна команда' },
+      { b: 'Hours', rest: '09:00 – 22:00 MSK · Telegram, MAX, e-mail' },
+      { b: 'Response time', rest: 'within 30 minutes during work hours' },
+      { b: 'Full cycle', rest: 'From idea to launch and support' },
+      { b: 'Level', rest: 'Architecture, iOS, web and backend development' },
     ],
   },
   cta: {
-    tag: '07 · Контакт',
-    headPlain: 'Передайте',
-    headEm: 'сигнал',
-    p: 'Опишите задачу в одном абзаце — вернёмся в течение 30 минут в рабочие часы MSK с ответом: берёмся, сколько, когда.',
-    primary: 'Написать в Telegram →',
+    tag: '07 · Contact',
+    headPlain: 'Discuss your',
+    headEm: 'project',
+    p: 'Describe your task in free form. During work hours (MSK) we respond within 30 minutes with an initial estimate of scope, cost and timeline.',
+    primary: 'Message on Telegram →',
   },
   faq: {
-    tag: '06 · Вопросы',
-    headPlain: 'Частые',
-    headEm: 'вопросы',
-    lead: 'Коротко о цене, сроках, техзадании и формате работы. Если вопроса нет в списке — просто напишите.',
+    tag: '06 · FAQ',
+    headPlain: 'Frequently',
+    headEm: 'asked',
+    lead: 'Briefly on pricing, timelines, documentation and how we work. If your question is not on the list — get in touch and we will answer directly.',
   },
   footer: {
-    desc: 'Инженерная студия полного цикла. Mini Apps и чат-боты для MAX и Telegram, нативный iOS, веб-сервисы на Next.js. Архитектура, код и релиз — внутри одной команды.',
-    contactsHeading: 'Связь',
-    directionsHeading: 'Направления',
-    navHeading: 'Навигация',
+    desc: 'A full-cycle development studio. Mobile apps, mini apps for MAX and Telegram, web services. Design, development and launch — all within one team.',
+    contactsHeading: 'Contact',
+    directionsHeading: 'Services',
+    navHeading: 'Navigation',
     directions: {
-      ios: 'iOS-приложения',
-      max: 'MAX Mini Apps и боты',
-      tg: 'Telegram Mini Apps',
-      web: 'Веб на Next.js',
+      ios: 'iOS mobile apps',
+      max: 'Mini Apps and bots for MAX',
+      tg: 'Mini Apps and bots for Telegram',
+      web: 'Web development',
     },
     navLinks: {
-      portfolio: 'Портфолио',
-      about: 'О студии',
-      contact: 'Контакты',
-      privacy: 'Политика',
+      portfolio: 'Portfolio',
+      about: 'About',
+      contact: 'Contact',
+      privacy: 'Privacy policy',
     },
-    signature: 'V2 · сигнал-частота 60 Гц',
+    signature: 'V2 · signal frequency 60 Hz',
   },
   nav: {
-    links: { about: 'Студия', works: 'Работы', stack: 'Стек', process: 'Процесс', contact: 'Контакт' },
-    cta: 'Заказать проект',
+    links: { about: 'About', works: 'Projects', stack: 'Stack', process: 'Process', contact: 'Contact' },
+    cta: 'Discuss a project',
   },
   contact: {
-    tag: 'Контакт',
-    titlePlain: 'Передайте',
-    titleEm: 'сигнал',
-    lead: 'Опишите задачу в одном абзаце — вернёмся в течение 30 минут в рабочие часы MSK с ответом: берёмся, сколько, когда.',
+    tag: 'Contact',
+    titlePlain: 'Get in',
+    titleEm: 'touch',
+    lead: 'Describe your task in free form. During work hours (MSK) we respond within 30 minutes with an initial estimate of scope, cost and timeline.',
     channels: [
-      { k: 'Сигнал · 01', v: 'Telegram', p: '@Naum0 — прямой канал, отвечаю в рабочие часы.' },
-      { k: 'Сигнал · 02', v: 'E-mail', p: 'stacklab@mail.ru — для подробного брифа.' },
-      { k: 'Сигнал · 03', v: 'MAX', p: 'Официальный контакт StackLab в MAX.' },
+      { k: 'Channel · 01', v: 'Telegram', p: '@Naum0 — primary channel during work hours.' },
+      { k: 'Channel · 02', v: 'E-mail', p: 'stacklab@mail.ru — for a detailed brief.' },
+      { k: 'Channel · 03', v: 'MAX', p: 'Official StackLab account on MAX messenger.' },
     ],
-    closingTitle: 'Что нужно, чтобы начать?',
-    closingP: 'Просто напишите. Расскажите идею, опишите задачу — разберёмся вместе. Техническое задание не обязательно: достаточно описать идею своими словами.',
+    closingTitle: 'What do we need to start?',
+    closingP: 'Just describe the idea and the expected outcome. A technical spec is not required — we will help structure the requirements and put it all in writing.',
   },
   aboutPage: {
-    tag: 'О студии',
-    titlePlain: '',
-    titleEm: 'Инженерная',
-    titleSuffix: ' студия полного цикла.',
-    lead: 'StackLab — команда инженеров, которая проектирует, пишет и запускает продукты для MAX, Telegram, iOS и веба. Глубокая экспертиза в каждом слое стека — от клиента до инфраструктуры.',
+    tag: 'About',
+    titlePlain: 'A ',
+    titleEm: 'full-cycle',
+    titleSuffix: ' development studio',
+    lead: 'StackLab is a team of specialists delivering projects on MAX, Telegram, iOS and the web. We support products through every stage: from architecture design to launch and maintenance.',
     values: [
-      { num: '01', title: 'Инженерный подход', description: 'Архитектурные и продуктовые решения принимают инженеры с опытом в продакшне. Меньше согласований — больше качества кода.' },
-      { num: '02', title: 'Качество без шаблонов', description: 'Каждый проект — с нуля под конкретную задачу. Не используем готовые шаблоны для воплощения ваших идей.' },
-      { num: '03', title: 'Ответственность до конца', description: 'Проект не заканчивается, пока вы не довольны результатом. Не пока закончились часы. Не пока вышли сроки.' },
-      { num: '04', title: 'Скорость без суеты', description: 'Математический подход: сначала продумать, потом писать. Делаем правильно с первого раза — потому быстро.' },
+      { num: '01', title: 'Engineering approach', description: 'Architectural and product decisions are made by specialists with production experience. Fewer approvals — higher quality output.' },
+      { num: '02', title: 'Custom development', description: 'Every project is built for a specific client task. We do not reuse template solutions.' },
+      { num: '03', title: 'Accountable for the result', description: 'A project is complete when the client signs off on the result — not when the hours run out or the deadline passes.' },
+      { num: '04', title: 'Speed without losing quality', description: 'Architecture is worked through carefully before development begins. We get it right the first time — that is what makes it fast.' },
     ],
     cellsLead: '',
-    closingPre: 'Давайте создадим ',
-    closingEm: 'что-то вместе',
-    ctaLabel: 'Написать →',
+    closingPre: 'Ready to discuss ',
+    closingEm: 'your project',
+    ctaLabel: 'Get in touch →',
   },
   services: {
-    tag: 'Услуги',
-    titlePre: 'Полный',
-    titleEm: 'цикл',
-    titleSuffix: ' разработки',
-    lead: 'От идеи до работающего продукта. iOS-приложения, MAX и Telegram Mini Apps, боты и веб-сервисы для стартапов, бизнеса и госструктур.',
-    includesLabel: 'Что входит',
-    forWhomLabel: 'Для кого',
-    processTag: 'Процесс',
-    processHeadPre: 'Как проходит',
-    processHeadEm: 'работа',
-    closingPre: 'Готовы',
-    closingEm: 'начать',
+    tag: 'Services',
+    titlePre: 'Full-cycle',
+    titleEm: 'development',
+    titleSuffix: '',
+    lead: 'From design to launch and support. iOS mobile apps, mini apps and bots for MAX and Telegram, web services for business and government organisations.',
+    includesLabel: 'What is included',
+    forWhomLabel: 'For whom',
+    processTag: 'Process',
+    processHeadPre: 'How the',
+    processHeadEm: 'work goes',
+    closingPre: 'Ready to',
+    closingEm: 'start',
     closingSuffix: '?',
-    ctaLabel: 'Обсудить проект →',
+    ctaLabel: 'Discuss a project →',
   },
 };
 
 export const COPY: Record<CopyMode, SiteCopy> = {
-  pro: PRO_COPY,
-  dev: DEV_COPY,
+  ru: RU_COPY,
+  en: EN_COPY,
 };
