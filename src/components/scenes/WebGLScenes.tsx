@@ -200,8 +200,21 @@ export function HeroScene() {
     const onResize = () => resizeRenderer(renderer, canvas, camera);
     window.addEventListener('resize', onResize);
 
-    const clock = new THREE.Clock();
+    let visible = true;
     let raf = 0;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        const wasVisible = visible;
+        visible = entry.isIntersecting;
+        if (visible && !wasVisible && raf === 0) {
+          raf = requestAnimationFrame(tick);
+        }
+      },
+      { threshold: 0 }
+    );
+    io.observe(canvas);
+
+    const clock = new THREE.Clock();
     const tick = () => {
       const t = clock.getElapsedTime();
       mouse.current.sx += (mouse.current.x - mouse.current.sx) * 0.06;
@@ -212,12 +225,14 @@ export function HeroScene() {
       mesh.rotation.x = mouse.current.sy * 0.25;
       points.rotation.y = t * 0.05;
       renderer.render(scene, camera);
-      raf = requestAnimationFrame(tick);
+      if (visible) raf = requestAnimationFrame(tick);
+      else raf = 0;
     };
     raf = requestAnimationFrame(tick);
 
     return () => {
       cancelAnimationFrame(raf);
+      io.disconnect();
       window.removeEventListener('resize', onResize);
       renderer.dispose();
       mat.dispose();
@@ -288,8 +303,21 @@ export function AboutScene() {
     const onResize = () => resizeRenderer(renderer, canvas, camera);
     window.addEventListener('resize', onResize);
 
-    const clock = new THREE.Clock();
+    let visible = true;
     let raf = 0;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        const wasVisible = visible;
+        visible = entry.isIntersecting;
+        if (visible && !wasVisible && raf === 0) {
+          raf = requestAnimationFrame(tick);
+        }
+      },
+      { threshold: 0 }
+    );
+    io.observe(canvas);
+
+    const clock = new THREE.Clock();
     const tick = () => {
       const t = clock.getElapsedTime();
       mouse.current.sx += (mouse.current.x - mouse.current.sx) * 0.06;
@@ -303,12 +331,14 @@ export function AboutScene() {
       geo.attributes.position.needsUpdate = true;
       points.rotation.z = mouse.current.sx * 0.05;
       renderer.render(scene, camera);
-      raf = requestAnimationFrame(tick);
+      if (visible) raf = requestAnimationFrame(tick);
+      else raf = 0;
     };
     raf = requestAnimationFrame(tick);
 
     return () => {
       cancelAnimationFrame(raf);
+      io.disconnect();
       window.removeEventListener('resize', onResize);
       renderer.dispose();
       geo.dispose();
@@ -388,8 +418,21 @@ export function StackScene() {
     const onResize = () => resizeRenderer(renderer, canvas, camera);
     window.addEventListener('resize', onResize);
 
-    const clock = new THREE.Clock();
+    let visible = true;
     let raf = 0;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        const wasVisible = visible;
+        visible = entry.isIntersecting;
+        if (visible && !wasVisible && raf === 0) {
+          raf = requestAnimationFrame(tick);
+        }
+      },
+      { threshold: 0 }
+    );
+    io.observe(canvas);
+
+    const clock = new THREE.Clock();
     const tick = () => {
       const t = clock.getElapsedTime();
       mouse.current.sy += (mouse.current.y - mouse.current.sy) * 0.06;
@@ -397,12 +440,14 @@ export function StackScene() {
       mesh.rotation.y = t * 0.4;
       mesh.rotation.x = t * 0.2 + mouse.current.sy * 0.3;
       renderer.render(scene, camera);
-      raf = requestAnimationFrame(tick);
+      if (visible) raf = requestAnimationFrame(tick);
+      else raf = 0;
     };
     raf = requestAnimationFrame(tick);
 
     return () => {
       cancelAnimationFrame(raf);
+      io.disconnect();
       window.removeEventListener('resize', onResize);
       renderer.dispose();
       mat.dispose();
@@ -476,18 +521,33 @@ export function CtaScene() {
     const onResize = () => resizeRenderer(renderer, canvas, camera);
     window.addEventListener('resize', onResize);
 
-    const clock = new THREE.Clock();
+    let visible = true;
     let raf = 0;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        const wasVisible = visible;
+        visible = entry.isIntersecting;
+        if (visible && !wasVisible && raf === 0) {
+          raf = requestAnimationFrame(tick);
+        }
+      },
+      { threshold: 0 }
+    );
+    io.observe(canvas);
+
+    const clock = new THREE.Clock();
     const tick = () => {
       const t = clock.getElapsedTime();
       mat.uniforms.uTime.value = t;
       renderer.render(scene, camera);
-      raf = requestAnimationFrame(tick);
+      if (visible) raf = requestAnimationFrame(tick);
+      else raf = 0;
     };
     raf = requestAnimationFrame(tick);
 
     return () => {
       cancelAnimationFrame(raf);
+      io.disconnect();
       window.removeEventListener('resize', onResize);
       renderer.dispose();
       mat.dispose();

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import { useCopy } from '@/components/CopyProvider';
 import { getFeaturedProjects } from '@/data/projects';
@@ -76,8 +77,15 @@ export function WorksV2() {
                   <span key={t}>{t}</span>
                 ))}
               </div>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={p.images.preview} alt={p.title} />
+              <Image
+                src={p.images.preview}
+                alt={p.title}
+                fill
+                sizes="(max-width: 768px) 85vw, (max-width: 1200px) 40vw, 30vw"
+                style={{
+                  objectFit: p.previewMode === 'contain' ? 'contain' : 'cover',
+                }}
+              />
             </div>
             <div className="work__info">
               <h3 className="work__title">{p.title}</h3>

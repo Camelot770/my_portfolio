@@ -349,7 +349,7 @@ a {
 }
 
 .intro.done {
-  animation: introout .9s var(--ease-inout) forwards;
+  animation: introout .38s var(--ease-inout) forwards;
 }
 
 @keyframes introout {

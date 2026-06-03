@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import { useRef } from 'react';
 import { useCopy } from '@/components/CopyProvider';
 import { useMagnet } from '@/components/ui/MagneticButton';
+import { useShouldRenderWebGL } from '@/lib/useShouldRenderWebGL';
 
 const CtaScene = dynamic(
   () => import('@/components/scenes/WebGLScenes').then((m) => m.CtaScene),
@@ -16,11 +17,12 @@ export function CtaV2() {
   useMagnet(primaryRef as React.RefObject<HTMLElement>);
   useMagnet(altRef as React.RefObject<HTMLElement>);
   const { copy } = useCopy();
+  const renderWebGL = useShouldRenderWebGL();
 
   return (
     <section className="cta" id="contact">
       <div className="cta__canvas">
-        <CtaScene />
+        {renderWebGL && <CtaScene />}
       </div>
       <div className="cta__inner">
         <div

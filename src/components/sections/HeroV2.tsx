@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import { useEffect, useRef } from 'react';
 import { useCopy } from '@/components/CopyProvider';
+import { useShouldRenderWebGL } from '@/lib/useShouldRenderWebGL';
 
 const HeroScene = dynamic(
   () => import('@/components/scenes/WebGLScenes').then((m) => m.HeroScene),
@@ -52,12 +53,13 @@ export function HeroV2() {
   const kickerRef = useRef<HTMLDivElement>(null);
   const footRef = useRef<HTMLDivElement>(null);
   const { copy, mode } = useCopy();
+  const renderWebGL = useShouldRenderWebGL();
   const LINES = copy.hero.title;
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const introDone = sessionStorage.getItem('sl-intro-done') === '1';
-    const introDelay = introDone ? 200 : 4200;
+    const introDelay = introDone ? 200 : 1500;
 
     const tStart = setTimeout(() => {
       // Reset letters before animating in (handles mode switches that re-render
@@ -80,7 +82,7 @@ export function HeroV2() {
   return (
     <section className="hero" id="top">
       <div className="hero__canvas">
-        <HeroScene />
+        {renderWebGL && <HeroScene />}
       </div>
       <div className="hero__stage">
         <div className="hero__over">
