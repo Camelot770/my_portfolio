@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { projects, getProjectsByCategory } from '@/data/projects';
 
@@ -115,8 +116,15 @@ export function PortfolioContent() {
                   <span key={t}>{t}</span>
                 ))}
               </div>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={p.images.preview} alt={p.title} />
+              <Image
+                src={p.images.preview}
+                alt={p.title}
+                fill
+                sizes="(max-width: 768px) 90vw, 320px"
+                style={{
+                  objectFit: p.previewMode === 'contain' ? 'contain' : 'cover',
+                }}
+              />
             </div>
             <div className="work__info">
               <h3 className="work__title">{p.title}</h3>

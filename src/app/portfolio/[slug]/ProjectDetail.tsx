@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Project } from '@/data/projects';
 
 interface ProjectDetailProps {
@@ -119,15 +120,13 @@ export function ProjectDetail({
             background: 'var(--bg-2)',
           }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={project.images.hero}
             alt={project.title}
+            fill
+            priority
+            sizes="(max-width: 1400px) 100vw, 1400px"
             style={{
-              position: 'absolute',
-              inset: 0,
-              width: '100%',
-              height: '100%',
               objectFit: project.previewMode === 'contain' ? 'contain' : 'cover',
               padding: project.previewMode === 'contain' ? '4%' : 0,
             }}

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useCopy } from '@/components/CopyProvider';
 
 export function FounderV2() {
@@ -12,8 +13,13 @@ export function FounderV2() {
           <span className="d" />
           {f.badge}
         </div>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/images/my_photo.jpg" alt="Наум Коган — основатель StackLab" />
+        <Image
+          src="/images/my_photo.jpg"
+          alt="Наум Коган — основатель StackLab"
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          style={{ objectFit: 'cover' }}
+        />
         <div className="founder__sig">
           <span>
             <b>Наум Коган</b>

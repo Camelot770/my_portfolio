@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import { useEffect, useRef } from 'react';
 import { useCopy } from '@/components/CopyProvider';
+import { useShouldRenderWebGL } from '@/lib/useShouldRenderWebGL';
 
 const StackScene = dynamic(
   () => import('@/components/scenes/WebGLScenes').then((m) => m.StackScene),
@@ -12,6 +13,7 @@ const StackScene = dynamic(
 export function StackV2() {
   const headRef = useRef<HTMLHeadingElement>(null);
   const { copy } = useCopy();
+  const renderWebGL = useShouldRenderWebGL();
   const ITEMS = copy.stack.items;
 
   useEffect(() => {
@@ -29,7 +31,7 @@ export function StackV2() {
   return (
     <section className="stack" id="stack">
       <div className="stack__canvas">
-        <StackScene />
+        {renderWebGL && <StackScene />}
       </div>
       <div className="stack__content">
         <div>

@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import { useEffect, useRef } from 'react';
 import { useCopy } from '@/components/CopyProvider';
+import { useShouldRenderWebGL } from '@/lib/useShouldRenderWebGL';
 
 const AboutScene = dynamic(
   () => import('@/components/scenes/WebGLScenes').then((m) => m.AboutScene),
@@ -12,6 +13,7 @@ const AboutScene = dynamic(
 export function AboutV2() {
   const textRef = useRef<HTMLParagraphElement>(null);
   const { copy } = useCopy();
+  const renderWebGL = useShouldRenderWebGL();
   const TEXT_HTML = copy.about.manifestoHtml;
   const CELLS = copy.about.cells;
 
@@ -43,7 +45,7 @@ export function AboutV2() {
   return (
     <section className="about" id="about">
       <div className="about__canvas">
-        <AboutScene />
+        {renderWebGL && <AboutScene />}
       </div>
       <div className="about__content">
         <div className="sec__tag">{copy.about.tag}</div>

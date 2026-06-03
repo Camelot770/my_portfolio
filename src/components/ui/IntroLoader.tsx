@@ -21,7 +21,7 @@ export function IntroLoader({ onDone }: { onDone?: () => void }) {
     let timer: ReturnType<typeof setTimeout>;
 
     const step = () => {
-      n += Math.max(1, Math.round((100 - n) * 0.06));
+      n += Math.max(2, Math.round((100 - n) * 0.18));
       if (n > 100) n = 100;
       if (countRef.current) {
         countRef.current.textContent = String(n).padStart(3, '0');
@@ -30,7 +30,7 @@ export function IntroLoader({ onDone }: { onDone?: () => void }) {
         barRef.current.style.background = `linear-gradient(to right, var(--accent) ${n}%, #1a1a1c ${n}%)`;
       }
       if (n < 100) {
-        timer = setTimeout(step, 30 + Math.random() * 40);
+        timer = setTimeout(step, 14 + Math.random() * 18);
       } else {
         timer = setTimeout(() => {
           setDone(true);
@@ -38,12 +38,12 @@ export function IntroLoader({ onDone }: { onDone?: () => void }) {
           setTimeout(() => {
             setShow(false);
             onDone?.();
-          }, 900);
-        }, 400);
+          }, 380);
+        }, 180);
       }
     };
 
-    const startT = setTimeout(step, 300);
+    const startT = setTimeout(step, 120);
 
     const clock = clockRef.current;
     let clockInterval: ReturnType<typeof setInterval> | null = null;
