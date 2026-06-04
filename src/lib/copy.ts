@@ -55,16 +55,21 @@ interface ProcessCopy {
   lead: string;
 }
 
-interface FounderCopy {
-  badge: string;
+interface FounderProfile {
+  name: string;
   signRole: string;
   signMeta1: string;
   signMeta2: string;
+  photoSrc: string;
+  photoAlt: string;
+}
+
+interface FounderCopy {
+  badge: string;
   tag: string;
   quote: { lead: string; verb1: string; mid: string; verb2: string; tail: string };
   rows: Array<{ b: string; rest: string }>;
-  photoAlt: string;
-  name: string;
+  profiles: FounderProfile[];
 }
 
 interface CtaCopy {
@@ -289,10 +294,7 @@ export const RU_COPY: SiteCopy = {
     lead: 'Прозрачный процесс с регулярными показами промежуточных результатов и фиксированными сроками.',
   },
   founder: {
-    badge: 'Основатель · на связи',
-    signRole: 'Основатель · технический руководитель',
-    signMeta1: 'iOS · MAX · Веб',
-    signMeta2: 'Полный цикл',
+    badge: 'Основатели · на связи',
     tag: '05 · Команда',
     quote: {
       lead: '«Мы строим компанию вокруг инженерных стандартов: каждый проект ',
@@ -307,8 +309,24 @@ export const RU_COPY: SiteCopy = {
       { b: 'Полный цикл', rest: 'От идеи до публикации и сопровождения' },
       { b: 'Уровень', rest: 'Архитектор, iOS-, веб- и backend-разработка' },
     ],
-    photoAlt: 'Наум Коган — основатель StackLab',
-    name: 'Наум Коган',
+    profiles: [
+      {
+        name: 'Наум Коган',
+        signRole: 'Сооснователь · технический руководитель',
+        signMeta1: 'iOS · MAX · Веб',
+        signMeta2: 'Полный цикл',
+        photoSrc: '/images/my_photo.jpg',
+        photoAlt: 'Наум Коган — сооснователь StackLab',
+      },
+      {
+        name: 'Камиль Исхаков',
+        signRole: 'Сооснователь · разработчик',
+        signMeta1: 'Backend · API · Интеграции',
+        signMeta2: 'Полный цикл',
+        photoSrc: '/images/kamil_photo.jpg',
+        photoAlt: 'Камиль Исхаков — сооснователь StackLab',
+      },
+    ],
   },
   cta: {
     tag: '07 · Контакты',
@@ -561,10 +579,7 @@ export const EN_COPY: SiteCopy = {
     lead: 'A transparent process with regular demos of intermediate results and fixed timelines.',
   },
   founder: {
-    badge: 'Founder · available',
-    signRole: 'Founder · Technical lead',
-    signMeta1: 'iOS · MAX · Web',
-    signMeta2: 'Full cycle',
+    badge: 'Founders · available',
     tag: '05 · Team',
     quote: {
       lead: '"We build the company around engineering standards: every project is ',
@@ -579,8 +594,24 @@ export const EN_COPY: SiteCopy = {
       { b: 'Full cycle', rest: 'From idea to launch and support' },
       { b: 'Level', rest: 'Architecture, iOS, web and backend development' },
     ],
-    photoAlt: 'Naum Kogan — StackLab founder',
-    name: 'Naum Kogan',
+    profiles: [
+      {
+        name: 'Naum Kogan',
+        signRole: 'Co-founder · Technical lead',
+        signMeta1: 'iOS · MAX · Web',
+        signMeta2: 'Full cycle',
+        photoSrc: '/images/my_photo.jpg',
+        photoAlt: 'Naum Kogan — StackLab co-founder',
+      },
+      {
+        name: 'Kamil Iskhakov',
+        signRole: 'Co-founder · Engineer',
+        signMeta1: 'Backend · APIs · integrations',
+        signMeta2: 'Full cycle',
+        photoSrc: '/images/kamil_photo.jpg',
+        photoAlt: 'Kamil Iskhakov — StackLab co-founder',
+      },
+    ],
   },
   cta: {
     tag: '07 · Contact',
