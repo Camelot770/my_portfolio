@@ -1192,6 +1192,13 @@ a {
   align-items: stretch;
 }
 
+.founder__photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-self: start;
+}
+
 .founder__img {
   position: relative;
   aspect-ratio: 4/5;
