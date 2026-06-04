@@ -320,7 +320,7 @@ export const RU_COPY: SiteCopy = {
       },
       {
         name: 'Камиль Исхаков',
-        signRole: 'Сооснователь · директор по росту',
+        signRole: 'Сооснователь · директор по развитию',
         signMeta1: 'Маркетинг · Продажи · Партнёрства',
         signMeta2: 'Полный цикл',
         photoSrc: '/images/kamil_photo.jpg',
