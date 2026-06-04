@@ -320,8 +320,8 @@ export const RU_COPY: SiteCopy = {
       },
       {
         name: 'Камиль Исхаков',
-        signRole: 'Сооснователь · разработчик',
-        signMeta1: 'Backend · API · Интеграции',
+        signRole: 'Сооснователь · директор по росту',
+        signMeta1: 'Маркетинг · Продажи · Партнёрства',
         signMeta2: 'Полный цикл',
         photoSrc: '/images/kamil_photo.jpg',
         photoAlt: 'Камиль Исхаков — сооснователь StackLab',
@@ -605,8 +605,8 @@ export const EN_COPY: SiteCopy = {
       },
       {
         name: 'Kamil Iskhakov',
-        signRole: 'Co-founder · Engineer',
-        signMeta1: 'Backend · APIs · integrations',
+        signRole: 'Co-founder · Growth Lead',
+        signMeta1: 'Marketing · Sales · Partnerships',
         signMeta2: 'Full cycle',
         photoSrc: '/images/kamil_photo.jpg',
         photoAlt: 'Kamil Iskhakov — StackLab co-founder',
