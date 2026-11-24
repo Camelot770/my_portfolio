@@ -20,6 +20,12 @@ const RU_FAQ: FAQItem[] = [
       'Ориентировочно: от 1 до 3 недель для бота или Mini App, от 2 до 4 недель для веб-сервиса, от 1 до 2 месяцев для iOS-приложения. Точные сроки обсуждаем после знакомства с задачей.',
   },
   {
+    id: '7',
+    question: 'Можете встроить ИИ в наш сайт, бот или 1С?',
+    answer:
+      'Да. Подключаем языковые модели к сайтам, чат-ботам MAX и Telegram и внутренним системам. ИИ-ассистент отвечает клиентам, разбирает заявки и документы и работает с данными из 1С, CRM и базы знаний.',
+  },
+  {
     id: '3',
     question: 'Нужно ли вам готовое техническое задание?',
     answer:
@@ -57,6 +63,12 @@ const EN_FAQ: FAQItem[] = [
     question: 'How long will the project take?',
     answer:
       'Roughly: 1 to 3 weeks for a bot or Mini App, 2 to 4 weeks for a web service, 1 to 2 months for an iOS app. Exact timelines are agreed after we understand the task.',
+  },
+  {
+    id: '7',
+    question: 'Can you build AI into our website, bot or 1C?',
+    answer:
+      'Yes. We connect language models to websites, MAX and Telegram chatbots and internal systems. The AI assistant answers customers, sorts requests and documents, and works with data from 1C, your CRM and knowledge base.',
   },
   {
     id: '3',

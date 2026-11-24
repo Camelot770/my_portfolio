@@ -1,12 +1,13 @@
 'use client';
 
-import Link from 'next/link';
 import Image from 'next/image';
 import { useCopy } from '@/components/CopyProvider';
+import { ContactLines } from '@/components/home/HomeContact';
+import { Arrow, StationHead, TLink, lineFor, lineStyle } from '@/components/line/kit';
 import {
-  Project,
-  getProjectBySlugForLocale,
+  type Project,
   getAdjacentProjectsForLocale,
+  getProjectBySlugForLocale,
 } from '@/data/projects';
 
 interface ProjectDetailProps {
@@ -22,274 +23,114 @@ export function ProjectDetail({
 }: ProjectDetailProps) {
   const { copy, mode } = useCopy();
   const pd = copy.projectDetail;
-  // Look up the locale-specific version of this project by slug; fall back to
-  // the SSR-provided RU project if (somehow) the slug is missing in this locale.
+  // Locale-specific version of the project; the SSR (RU) one is the fallback.
   const project = getProjectBySlugForLocale(fallbackProject.slug, mode) ?? fallbackProject;
   const adjacent = getAdjacentProjectsForLocale(fallbackProject.slug, mode);
   const prevProject = adjacent.prevProject ?? fallbackPrev;
   const nextProject = adjacent.nextProject ?? fallbackNext;
+
+  const blocks = [
+    { title: pd.blocks.description, text: project.fullDescription },
+    { title: pd.blocks.challenge, text: project.challenge },
+    { title: pd.blocks.solution, text: project.solution },
+    { title: pd.blocks.result, text: project.result },
+  ].filter((b) => b.text);
+
   return (
-    <article>
-      <header className="page">
-        <Link
-          href="/portfolio"
-          className="page__tag"
-          style={{ cursor: 'none' }}
-          data-cur="link"
-        >
-          ← {project.categoryLabel}
-        </Link>
-        <h1 className="page__title">
-          {project.title}
-        </h1>
-        <p className="page__lead">{project.shortDescription}</p>
-
-        <div
-          style={{
-            marginTop: 50,
-            display: 'flex',
-            gap: 32,
-            flexWrap: 'wrap',
-            paddingTop: 30,
-            borderTop: '1px solid var(--line)',
-          }}
-        >
-          <div
-            style={{
-              font: '500 10px/1.5 var(--font-mono)',
-              color: 'var(--fg-dim)',
-              letterSpacing: '.12em',
-              textTransform: 'uppercase',
-            }}
-          >
-            <b
-              style={{
-                color: 'var(--fg)',
-                display: 'block',
-                fontSize: 12,
-                marginBottom: 6,
-              }}
-            >
-              {pd.client}
-            </b>
-            {project.client}
+    <>
+      <section className="sec page-top" aria-labelledby="case-title">
+        <div className="wrap">
+          <div className="sec__body case-hero">
+            <div>
+              <StationHead level={1} id="case-title" title={project.title} lead={project.shortDescription}>
+                <span className="badge" style={lineStyle(lineFor(project.category))}>
+                  <i />
+                  {project.categoryLabel}
+                </span>
+              </StationHead>
+              <dl className="case-facts">
+                <div>
+                  <dt>{pd.client}</dt>
+                  <dd>{project.client}</dd>
+                </div>
+                <div>
+                  <dt>{pd.year}</dt>
+                  <dd className="t-num">{project.year}</dd>
+                </div>
+                <div>
+                  <dt>{pd.stack}</dt>
+                  <dd>
+                    <ul className="tech">
+                      {project.technologies.map((t) => (
+                        <li key={t}>{t}</li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+            <div className={`case-poster${project.previewMode === 'contain' ? '' : ' case-poster--cover'}`}>
+              <Image
+                src={project.images.hero}
+                alt={project.title}
+                fill
+                priority
+                sizes="(max-width: 899px) 92vw, 44vw"
+              />
+            </div>
           </div>
-          <div
-            style={{
-              font: '500 10px/1.5 var(--font-mono)',
-              color: 'var(--fg-dim)',
-              letterSpacing: '.12em',
-              textTransform: 'uppercase',
-            }}
-          >
-            <b
-              style={{
-                color: 'var(--fg)',
-                display: 'block',
-                fontSize: 12,
-                marginBottom: 6,
-              }}
-            >
-              {pd.year}
-            </b>
-            {project.year}
-          </div>
-          <div
-            style={{
-              font: '500 10px/1.5 var(--font-mono)',
-              color: 'var(--fg-dim)',
-              letterSpacing: '.12em',
-              textTransform: 'uppercase',
-            }}
-          >
-            <b
-              style={{
-                color: 'var(--fg)',
-                display: 'block',
-                fontSize: 12,
-                marginBottom: 6,
-              }}
-            >
-              {pd.stack}
-            </b>
-            {project.technologies.join(' · ')}
-          </div>
-        </div>
-      </header>
-
-      <section
-        style={{
-          maxWidth: 1400,
-          margin: '0 auto',
-          padding: '0 38px 80px',
-        }}
-      >
-        <div
-          style={{
-            position: 'relative',
-            width: '100%',
-            aspectRatio: '16 / 9',
-            overflow: 'hidden',
-            background: 'var(--bg-2)',
-          }}
-        >
-          <Image
-            src={project.images.hero}
-            alt={project.title}
-            fill
-            priority
-            sizes="(max-width: 1400px) 100vw, 1400px"
-            style={{
-              objectFit: project.previewMode === 'contain' ? 'contain' : 'cover',
-              padding: project.previewMode === 'contain' ? '4%' : 0,
-            }}
-          />
         </div>
       </section>
 
-      <section
-        style={{
-          maxWidth: 1400,
-          margin: '0 auto',
-          padding: '40px 38px 120px',
-          display: 'grid',
-          gap: 80,
-          gridTemplateColumns: 'minmax(0, 1fr)',
-        }}
-      >
-        <Block n="01" title={pd.blocks.challenge} text={project.challenge} />
-        <Block n="02" title={pd.blocks.solution} text={project.solution} />
-        <Block n="03" title={pd.blocks.result} text={project.result} />
-        <Block n="04" title={pd.blocks.description} text={project.fullDescription} />
+      <section className="sec sec--tight" aria-label={project.title}>
+        <div className="wrap">
+          <div className="sec__body">
+            <ol className="case-blocks">
+              {blocks.map((b) => (
+                <li key={b.title} className="case-block">
+                  <h2 className="st-title">
+                    <span className="st-ring" data-station aria-hidden="true" />
+                    {b.title}
+                  </h2>
+                  <p>{b.text}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
       </section>
 
-      <nav
-        style={{
-          borderTop: '1px solid var(--line)',
-          padding: '60px 38px',
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: 40,
-          maxWidth: 1400,
-          margin: '0 auto',
-        }}
-      >
-        <Link
-          href={`/portfolio/${prevProject.slug}`}
-          data-cur="link"
-          style={{ display: 'block' }}
-        >
-          <div
-            style={{
-              font: '500 10px/1 var(--font-mono)',
-              color: 'var(--fg-mute)',
-              letterSpacing: '.14em',
-              textTransform: 'uppercase',
-              marginBottom: 12,
-            }}
-          >
-            {pd.prev}
+      <section className="sec sec--tight" aria-label={`${pd.prev} / ${pd.next}`}>
+        <div className="wrap">
+          <div className="sec__body">
+            <nav className="case-nav">
+              <TLink href={`/portfolio/${prevProject.slug}`} aria-label={`${pd.prev}: ${prevProject.title}`}>
+                <span className="case-nav__dir">
+                  <Arrow className="ico ico--back" />
+                  {pd.prev}
+                </span>
+                <strong>{prevProject.title}</strong>
+              </TLink>
+              <TLink href={`/portfolio/${nextProject.slug}`} aria-label={`${pd.next}: ${nextProject.title}`}>
+                <span className="case-nav__dir">
+                  {pd.next}
+                  <Arrow />
+                </span>
+                <strong>{nextProject.title}</strong>
+              </TLink>
+            </nav>
           </div>
-          <div
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(24px, 3vw, 42px)',
-              fontWeight: 300,
-              lineHeight: 1.05,
-              letterSpacing: '-0.03em',
-            }}
-          >
-            {prevProject.title}
-          </div>
-        </Link>
-        <Link
-          href={`/portfolio/${nextProject.slug}`}
-          data-cur="link"
-          style={{ display: 'block', textAlign: 'right' }}
-        >
-          <div
-            style={{
-              font: '500 10px/1 var(--font-mono)',
-              color: 'var(--fg-mute)',
-              letterSpacing: '.14em',
-              textTransform: 'uppercase',
-              marginBottom: 12,
-            }}
-          >
-            {pd.next}
-          </div>
-          <div
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(24px, 3vw, 42px)',
-              fontWeight: 300,
-              lineHeight: 1.05,
-              letterSpacing: '-0.03em',
-            }}
-          >
-            {nextProject.title}
-          </div>
-        </Link>
-      </nav>
-    </article>
-  );
-}
+        </div>
+      </section>
 
-function Block({
-  n,
-  title,
-  text,
-}: {
-  n: string;
-  title: string;
-  text: string;
-}) {
-  return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '80px 1fr',
-        gap: 40,
-        paddingTop: 50,
-        borderTop: '1px solid var(--line)',
-      }}
-    >
-      <div
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontWeight: 300,
-          fontSize: 'clamp(40px, 4vw, 64px)',
-          letterSpacing: '-0.04em',
-          color: 'var(--accent)',
-          lineHeight: 0.9,
-        }}
-      >
-        {n}
-      </div>
-      <div>
-        <h2
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontWeight: 300,
-            fontSize: 'clamp(28px, 3vw, 46px)',
-            letterSpacing: '-0.035em',
-            lineHeight: 1,
-            marginBottom: 24,
-          }}
-        >
-          {title}
-        </h2>
-        <p
-          style={{
-            fontSize: 16,
-            lineHeight: 1.6,
-            color: 'var(--fg-dim)',
-            maxWidth: 820,
-          }}
-        >
-          {text}
-        </p>
-      </div>
-    </div>
+      <section className="sec" aria-labelledby="case-close">
+        <div className="wrap">
+          <div className="sec__body cta__grid">
+            <StationHead id="case-close" title={copy.home.contactTitle} lead={copy.cta.p} />
+            <ContactLines />
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

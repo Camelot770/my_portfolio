@@ -70,6 +70,26 @@ const RU_SERVICES: Service[] = [
     result: 'Сайт, который загружается быстро, выглядит современно и делает то, что должен.',
     icon: 'web',
   },
+  {
+    id: '4',
+    slug: 'ai-integration',
+    title: 'ИИ-интеграции',
+    shortDescription:
+      'Встраиваем ИИ в сайты, чат-боты и процессы бизнеса: ассистенты, обработка заявок, поиск по базе знаний.',
+    fullDescription:
+      'Подключаем языковые модели к сайтам, ботам и внутренним системам компании. ИИ-ассистент отвечает клиентам, разбирает заявки и документы и работает с данными из 1С, CRM и базы знаний — внутри ваших каналов, а не в отдельном чате.',
+    includes: [
+      'ИИ-ассистенты в чат-ботах MAX и Telegram',
+      'ИИ-консультант и умный поиск на сайте',
+      'Обработка заявок, писем и документов',
+      'Интеграция с 1С, CRM и базой знаний',
+    ],
+    forWhom:
+      'Компании, где менеджеры каждый день отвечают на одни и те же вопросы. Сервисы с потоком заявок и документов. Бизнес, которому нужен ИИ на собственных данных.',
+    result:
+      'ИИ, который работает в ваших каналах и системах: отвечает клиентам, разбирает обращения и снимает рутину с команды.',
+    icon: 'ai',
+  },
 ];
 
 const EN_SERVICES: Service[] = [
@@ -130,6 +150,26 @@ const EN_SERVICES: Service[] = [
       'Companies that need an online presence. Startups launching a product landing page. Businesses that need a working tool — not just a page.',
     result: 'A site that loads fast, looks modern and does what it is meant to.',
     icon: 'web',
+  },
+  {
+    id: '4',
+    slug: 'ai-integration',
+    title: 'AI integrations',
+    shortDescription:
+      'We build AI into websites, chatbots and business processes: assistants, request handling, knowledge-base search.',
+    fullDescription:
+      'We connect language models to your websites, bots and internal systems. The AI assistant answers customers, sorts requests and documents, and works with data from 1C, your CRM and knowledge base, inside your own channels rather than in a separate chat.',
+    includes: [
+      'AI assistants in MAX and Telegram chatbots',
+      'AI consultant and smart search on your website',
+      'Processing of requests, emails and documents',
+      'Integration with 1C, CRM and your knowledge base',
+    ],
+    forWhom:
+      'Companies whose managers answer the same questions every day. Services with a steady flow of requests and documents. Businesses that need AI working on their own data.',
+    result:
+      'AI that works inside your channels and systems: it answers customers, sorts requests and takes routine off your team.',
+    icon: 'ai',
   },
 ];
 

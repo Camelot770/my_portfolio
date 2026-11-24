@@ -6,7 +6,7 @@ export function OrganizationJsonLd() {
     url: 'https://stacklab.su',
     logo: 'https://stacklab.su/images/logo.png',
     description:
-      'Студия разработки Mini Apps и чат-ботов для MAX, iOS-приложений и веб-сервисов. Полный цикл: от идеи до запуска.',
+      'Студия разработки Mini Apps и чат-ботов для MAX, ИИ-интеграций, iOS-приложений и веб-сервисов. Полный цикл: от идеи до запуска.',
     email: 'stacklab@mail.ru',
     areaServed: {
       '@type': 'Country',
@@ -16,6 +16,8 @@ export function OrganizationJsonLd() {
       'Разработка Mini Apps для MAX',
       'Разработка чат-ботов для MAX',
       'MAX WebApp разработка',
+      'ИИ-интеграции',
+      'ИИ-ассистенты для бизнеса',
       'iOS-разработка',
       'Telegram Mini Apps',
       'Веб-разработка',
@@ -35,6 +37,15 @@ export function OrganizationJsonLd() {
             name: 'Разработка Mini Apps и ботов для MAX',
             description:
               'Мини-приложения и чат-боты для мессенджера MAX: e-commerce, бронирование, CRM, автоматизация бизнес-процессов, интеграции с платёжными системами.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'ИИ-интеграции',
+            description:
+              'Встраивание ИИ в сайты, чат-боты MAX и Telegram и процессы бизнеса: ИИ-ассистенты, обработка заявок и документов, работа с данными из 1С, CRM и базы знаний.',
           },
         },
         {
