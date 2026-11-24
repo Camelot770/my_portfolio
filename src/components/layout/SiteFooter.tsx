@@ -1,54 +1,86 @@
 'use client';
 
-import Link from 'next/link';
+import Image from 'next/image';
 import { useCopy } from '@/components/CopyProvider';
+import { CONTACTS, TLink, lineStyle } from '@/components/line/kit';
 
 export function SiteFooter() {
   const { copy } = useCopy();
   const f = copy.footer;
+  const h = copy.home;
+
   return (
-    <footer className="footer" id="site-footer">
-      <div>
-        <div className="footer__brand">
-          stacklab<em>/</em>
+    <footer className="ftr">
+      <div className="wrap">
+        <div className="ftr__grid">
+          <div className="ftr__brand">
+            <TLink href="/" aria-label="StackLab">
+              <Image src="/images/logo-trim.png" alt="StackLab" width={344} height={215} />
+            </TLink>
+            <p>{f.desc}</p>
+          </div>
+
+          <div>
+            <h2>{f.directionsHeading}</h2>
+            <ul>
+              <li>
+                <TLink href="/services#telegram-max-apps" className="badge" style={lineStyle('var(--red)')}>
+                  <i />
+                  {f.directions.max}
+                </TLink>
+              </li>
+              <li>
+                <TLink href="/services#telegram-max-apps" className="badge" style={lineStyle('var(--red)')}>
+                  <i />
+                  {f.directions.tg}
+                </TLink>
+              </li>
+              <li>
+                <TLink href="/services#ai-integration" className="badge" style={lineStyle('var(--violet)')}>
+                  <i />
+                  {f.directions.ai}
+                </TLink>
+              </li>
+              <li>
+                <TLink href="/services#web-development" className="badge" style={lineStyle('var(--blue)')}>
+                  <i />
+                  {f.directions.web}
+                </TLink>
+              </li>
+              <li>
+                <TLink href="/services#ios-apps" className="badge" style={lineStyle('var(--green)')}>
+                  <i />
+                  {f.directions.ios}
+                </TLink>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h2>{f.navHeading}</h2>
+            <ul>
+              <li><TLink href="/portfolio">{h.nav.projects}</TLink></li>
+              <li><TLink href="/services">{h.nav.services}</TLink></li>
+              <li><TLink href="/about">{h.nav.about}</TLink></li>
+              <li><TLink href="/contact">{h.nav.contact}</TLink></li>
+            </ul>
+          </div>
+
+          <div>
+            <h2>{f.contactsHeading}</h2>
+            <ul>
+              <li><a href={CONTACTS.telegram} target="_blank" rel="noopener noreferrer">Telegram · @Naum0</a></li>
+              <li><a href={CONTACTS.max} target="_blank" rel="noopener noreferrer">MAX · StackLab</a></li>
+              <li><a href={CONTACTS.mail}>stacklab@mail.ru</a></li>
+              <li className="muted">{h.hours}</li>
+            </ul>
+          </div>
         </div>
-        <div className="footer__desc">{f.desc}</div>
-      </div>
-      <div className="footer__col">
-        <h5>{f.contactsHeading}</h5>
-        <a href="mailto:stacklab@mail.ru">stacklab@mail.ru</a>
-        <a
-          href="https://t.me/Naum0"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          t.me/Naum0
-        </a>
-        <a
-          href="https://max.ru/u/f9LHodD0cOLGKi7i1KndiYLJAU1rf7OCpsTt2VCnnAAN7qe3VUEjR99azyg"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          MAX — StackLab
-        </a>
-      </div>
-      <div className="footer__col">
-        <h5>{f.directionsHeading}</h5>
-        <Link href="/services#ios-apps">{f.directions.ios}</Link>
-        <Link href="/services#telegram-max-apps">{f.directions.max}</Link>
-        <Link href="/services#telegram-max-apps">{f.directions.tg}</Link>
-        <Link href="/services#web-development">{f.directions.web}</Link>
-      </div>
-      <div className="footer__col">
-        <h5>{f.navHeading}</h5>
-        <Link href="/portfolio">{f.navLinks.portfolio}</Link>
-        <Link href="/about">{f.navLinks.about}</Link>
-        <Link href="/contact">{f.navLinks.contact}</Link>
-        <Link href="/privacy">{f.navLinks.privacy}</Link>
-      </div>
-      <div className="footer__foot">
-        <span>© StackLab 2024—{new Date().getFullYear()}</span>
-        <span>{f.signature}</span>
+
+        <div className="ftr__base">
+          <span className="t-num">© StackLab 2024–{new Date().getFullYear()} · {h.rights}</span>
+          <TLink href="/privacy" className="link">{f.navLinks.privacy}</TLink>
+        </div>
       </div>
     </footer>
   );

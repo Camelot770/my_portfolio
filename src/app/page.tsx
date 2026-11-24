@@ -1,25 +1,21 @@
-import { HeroV2 } from '@/components/sections/HeroV2';
-import { Marquee } from '@/components/ui/Marquee';
-import { AboutV2 } from '@/components/sections/AboutV2';
-import { WorksV2 } from '@/components/sections/WorksV2';
-import { StackV2 } from '@/components/sections/StackV2';
-import { ProcessV2 } from '@/components/sections/ProcessV2';
-import { FounderV2 } from '@/components/sections/FounderV2';
-import { FaqV2 } from '@/components/sections/FaqV2';
-import { CtaV2 } from '@/components/sections/CtaV2';
+import { HomeHero } from '@/components/home/HomeHero';
+import { HomeWorks } from '@/components/home/HomeWorks';
+import { HomeLines } from '@/components/home/HomeLines';
+import { HomeProcess } from '@/components/home/HomeProcess';
+import { HomeTeam } from '@/components/home/HomeTeam';
+import { HomeFaq } from '@/components/home/HomeFaq';
+import { HomeContact } from '@/components/home/HomeContact';
 
 export default function Home() {
   return (
     <>
-      <HeroV2 />
-      <Marquee />
-      <AboutV2 />
-      <WorksV2 />
-      <StackV2 />
-      <ProcessV2 />
-      <FounderV2 />
-      <FaqV2 />
-      <CtaV2 />
+      <HomeHero />
+      <HomeWorks />
+      <HomeLines />
+      <HomeProcess />
+      <HomeTeam />
+      <HomeFaq />
+      <HomeContact />
     </>
   );
 }

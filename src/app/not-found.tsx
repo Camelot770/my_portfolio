@@ -1,77 +1,33 @@
 'use client';
 
-import Link from 'next/link';
 import { useCopy } from '@/components/CopyProvider';
+import { BrokenLine } from '@/components/line/BrokenLine';
+import { Arrow, TLink } from '@/components/line/kit';
 
 export default function NotFound() {
   const { copy } = useCopy();
   const nf = copy.notFound;
   return (
-    <div
-      style={{
-        minHeight: '80vh',
-        display: 'grid',
-        placeItems: 'center',
-        padding: '180px 38px 80px',
-      }}
-    >
-      <div style={{ textAlign: 'center', maxWidth: 760 }}>
-        <div
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(120px, 20vw, 280px)',
-            fontWeight: 300,
-            lineHeight: 0.85,
-            letterSpacing: '-0.06em',
-            color: 'var(--accent)',
-          }}
-        >
-          404
-        </div>
-        <h1
-          style={{
-            marginTop: 20,
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(28px, 3.5vw, 54px)',
-            fontWeight: 300,
-            lineHeight: 1,
-            letterSpacing: '-0.035em',
-          }}
-        >
+    <section className="lost" aria-labelledby="lost-title">
+      <div className="wrap">
+        <h1 id="lost-title" className="t-h1">
           {nf.titlePre}
-          <em style={{ fontFamily: 'var(--font-serif)', color: 'var(--accent)', fontStyle: 'italic' }}>
-            {nf.titleEm}
-          </em>
+          {nf.titleEm}
         </h1>
-        <p
-          style={{
-            marginTop: 24,
-            color: 'var(--fg-dim)',
-            fontSize: 16,
-            lineHeight: 1.5,
-          }}
-        >
+        <p className="t-lead muted" style={{ marginTop: 20 }}>
           {nf.body}
         </p>
-        <div
-          style={{
-            marginTop: 40,
-            display: 'inline-flex',
-            gap: 14,
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-          }}
-        >
-          <Link href="/" className="cta__btn" data-cur="link">
-            <span className="d" />
+        <BrokenLine />
+        <div className="lost__actions">
+          <TLink href="/" className="btn btn--lg">
             {nf.ctaHome}
-          </Link>
-          <Link href="/portfolio" className="cta__btn alt" data-cur="link">
-            <span className="d" />
+            <Arrow />
+          </TLink>
+          <TLink href="/portfolio" className="btn btn--lg btn--ghost">
             {nf.ctaPortfolio}
-          </Link>
+          </TLink>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

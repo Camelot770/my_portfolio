@@ -8,36 +8,10 @@ export type CopyMode = 'ru' | 'en';
 
 export const COPY_MODE_STORAGE_KEY = 'stacklab-locale';
 
-interface HeroCopy {
-  kicker: string;
-  // Title is split into lines for the staggered letter animation.
-  // Each line: { text, italic? }
-  title: Array<{ text: string; italic?: boolean }>;
-  lead: string;
-  leadEm: string;
-  leadTail: string;
-  metaLocationLabel: string;
-  metaLocationLine1: string;
-  metaLocationLine2: string;
-  metaPortfolioLabel: string;
-  metaPortfolioLine1: string;
-  metaPortfolioLine2: string;
-  scroll: string;
-}
-
 interface AboutCopy {
   tag: string;
   manifestoHtml: string;
   cells: Array<{ k: string; vMain: string; vEm: string; p: string }>;
-}
-
-interface WorksCopy {
-  tag: string;
-  headPlain: string;
-  headEm: string;
-  description: string;
-  hintDrag: string;
-  hintCount: (count: number) => string;
 }
 
 interface StackCopy {
@@ -92,7 +66,7 @@ interface FooterCopy {
   contactsHeading: string;
   directionsHeading: string;
   navHeading: string;
-  directions: { ios: string; max: string; tg: string; web: string };
+  directions: { ios: string; max: string; tg: string; web: string; ai: string };
   navLinks: { portfolio: string; about: string; contact: string; privacy: string };
   signature: string;
 }
@@ -178,17 +152,9 @@ interface PrivacyCopy {
   titlePlain: string;
   titleEm: string;
   effectiveLabel: string;
-  dateLocale: string;
+  /** the date the current text took effect (last change: operator e-mail, 23 Apr 2026) */
+  effectiveDate: string;
   sections: PrivacySection[];
-}
-
-interface IntroCopy {
-  geo1: string;
-  geo2Lat: string;
-  geo2Lon: string;
-  label1: string;
-  label2: string;
-  label3: string;
 }
 
 interface NotFoundCopy {
@@ -208,10 +174,59 @@ interface ErrorCopy {
   ctaHome: string;
 }
 
+interface HomeCopy {
+  nav: {
+    projects: string;
+    services: string;
+    about: string;
+    contact: string;
+    home: string;
+    menu: string;
+    close: string;
+    cta: string;
+    lang: string;
+  };
+  /** [lead-in ending in the dash, the phrase that should stay together] */
+  heroTitle: [string, string];
+  heroLead: string;
+  heroCta: string;
+  heroSecondary: string;
+  mapLabel: string;
+  stations: {
+    brief: string;
+    request: string;
+    mis: string;
+    webapp: string;
+    launch: string;
+    pay: string;
+    booking: string;
+    ai: string;
+  };
+  worksTitle: string;
+  worksLead: string;
+  worksAll: string;
+  linesTitle: string;
+  linesLead: string;
+  lineNames: Record<'max' | 'ai' | 'web' | 'ios', { title: string; sub: string }>;
+  hubTitle: string;
+  hubText: string;
+  hubTech: string[];
+  linesMore: string;
+  teamTitle: string;
+  valuesTitle: string;
+  teamOnline: string;
+  /** shown outside 09:00–22:00 МСК instead of teamOnline */
+  teamOffline: string;
+  contactTitle: string;
+  hours: string;
+  reply: string;
+  channels: Record<'telegram' | 'max' | 'mail', { name: string; note: string }>;
+  rights: string;
+}
+
 export interface SiteCopy {
-  hero: HeroCopy;
+  home: HomeCopy;
   about: AboutCopy;
-  works: WorksCopy;
   stack: StackCopy;
   process: ProcessCopy;
   founder: FounderCopy;
@@ -225,7 +240,6 @@ export interface SiteCopy {
   portfolioPage: PortfolioPageCopy;
   projectDetail: ProjectDetailCopy;
   privacy: PrivacyCopy;
-  intro: IntroCopy;
   notFound: NotFoundCopy;
   error: ErrorCopy;
 }
@@ -234,43 +248,75 @@ export interface SiteCopy {
 // RU — Russian, formal/business voice (default)
 // ─────────────────────────────────────────────────────────────────────────
 export const RU_COPY: SiteCopy = {
-  hero: {
-    kicker: 'Студия разработки · Москва и вся Россия',
-    title: [
-      { text: 'Создаём' },
-      { text: 'цифровые', italic: true },
-      { text: 'продукты для' },
-      { text: 'бизнеса.' },
-    ],
-    lead: 'Мобильные приложения, мини-приложения для MAX и Telegram, а также веб-сервисы. ',
-    leadEm: 'Полный цикл',
-    leadTail: ' разработки — от проектирования до запуска и сопровождения.',
-    metaLocationLabel: 'Расположение',
-    metaLocationLine1: 'Москва · вся Россия',
-    metaLocationLine2: 'RU / EN',
-    metaPortfolioLabel: 'Портфолио',
-    metaPortfolioLine1: '18 запущенных проектов',
-    metaPortfolioLine2: 'iOS · MAX · Telegram · Веб',
-    scroll: 'Прокрутить ↓',
+  home: {
+    nav: {
+      projects: 'Проекты',
+      services: 'Услуги',
+      about: 'О студии',
+      contact: 'Контакты',
+      home: 'Главная',
+      menu: 'Открыть меню',
+      close: 'Закрыть меню',
+      cta: 'Обсудить проект',
+      lang: 'Язык',
+    },
+    heroTitle: ['Ваши системы\u00A0—', 'одна линия в\u00A0MAX'],
+    heroLead: 'Встраиваем ИИ-ассистентов, 1С и\u00A0оплату в\u00A0сайты, чат-боты и\u00A0Mini\u00A0App в\u00A0MAX. Запуск\u00A0— от\u00A0одной\u00A0недели.',
+    heroCta: 'Обсудить проект',
+    heroSecondary: 'Смотреть проекты',
+    mapLabel:
+      'Схема интеграций: бриф и заявка проходят через 1С МИС и MAX WebApp, подключают ИИ-ассистента, ЮKassa и запись к врачу и приходят к запуску от одной недели.',
+    stations: {
+      brief: 'Бриф',
+      request: 'Заявка',
+      mis: '1С МИС',
+      webapp: 'MAX WebApp',
+      launch: 'Запуск · от 1 недели',
+      pay: 'ЮKassa',
+      booking: 'Запись за 30 с',
+      ai: 'ИИ-ассистент',
+    },
+    worksTitle: 'Проекты, которые уже работают',
+    worksLead:
+      'Восемь из восемнадцати запусков, которые можно показать публично. Остальные — под NDA.',
+    worksAll: 'Все проекты',
+    linesTitle: 'Четыре линии\u00A0— одна команда',
+    linesLead:
+      'Mini Apps и чат-боты, ИИ-интеграции, веб-сервисы и iOS-приложения. Все линии сходятся в одном backend: интеграции с 1С, оплата, ИИ и данные остаются внутри команды.',
+    lineNames: {
+      max: { title: 'MAX и Telegram', sub: 'Mini Apps и чат-боты' },
+      ai: { title: 'ИИ-интеграции', sub: 'В сайты, боты и процессы бизнеса' },
+      web: { title: 'Веб', sub: 'Сайты и веб-сервисы на Next.js' },
+      ios: { title: 'iOS', sub: 'Нативно на Swift и SwiftUI' },
+    },
+    hubTitle: 'Пересадка: общий backend',
+    hubText: 'Каждая линия опирается на собственный backend и интеграции, которые мы пишем сами.',
+    hubTech: ['Node.js', 'Python', 'FastAPI', 'PostgreSQL', 'Prisma', 'LLM', '1С МИС', 'ЮKassa'],
+    linesMore: 'Подробнее об услугах',
+    teamTitle: 'Основатели\u00A0— на линии',
+    valuesTitle: 'Как мы ведём проекты',
+    teamOnline: 'На связи',
+    teamOffline: 'Ответит с 09:00 МСК',
+    contactTitle: 'Обсудим ваш проект',
+    hours: 'Часы связи: 09:00–22:00 МСК',
+    reply: 'Ответ — до 30 минут в рабочие часы',
+    channels: {
+      telegram: { name: 'Telegram', note: '@Naum0 · основной канал' },
+      max: { name: 'MAX', note: 'Официальный аккаунт StackLab' },
+      mail: { name: 'E-mail', note: 'stacklab@mail.ru · для подробного брифа' },
+    },
+    rights: 'Студия разработки StackLab',
   },
   about: {
     tag: '01 · О компании',
     manifestoHtml:
-      'StackLab — студия разработки <em>полного цикла</em>. Проектирование, дизайн, разработка, инфраструктура и сопровождение — внутри одной команды. Опыт реализации проектов для МАХ, Telegram, iOS и веб-платформ. Работаем по договору, с прозрачными сроками и предсказуемым результатом.',
+      'StackLab — студия разработки <em>полного цикла</em>. Проектирование, дизайн, разработка, инфраструктура и сопровождение — внутри одной команды. Опыт реализации проектов для МАХ, Telegram, iOS и веб-платформ. Встраиваем ИИ в сайты, боты и процессы бизнеса. Работаем по договору, с прозрачными сроками и предсказуемым результатом.',
     cells: [
       { k: 'К · 01', vMain: '18', vEm: 'проектов', p: 'Запущенные продукты в MAX, Telegram, App Store и вебе. Часть — под NDA.' },
       { k: 'К · 02', vMain: '3+', vEm: 'лет', p: 'Средний опыт команды в промышленной разработке. Senior-уровень во всех слоях стека.' },
       { k: 'К · 03', vMain: '100%', vEm: 'довольных', p: 'Сдаём проект только после полного согласования с заказчиком. Стандарты качества и тестирования — единые на всех проектах.' },
       { k: 'К · 04', vMain: 'от 1', vEm: 'недели', p: 'Срок до публикации — от одной недели, в зависимости от объёма работ.' },
     ],
-  },
-  works: {
-    tag: '02 · Проекты',
-    headPlain: 'Реализованные',
-    headEm: 'проекты',
-    description: 'Продукты, запущенные за последние два года. Каждый — реальный коммерческий запуск, не концепт.',
-    hintDrag: 'Перетащите → или прокрутите колесом',
-    hintCount: (n) => `${String(n).padStart(2, '0')} проектов · 2025—2026`,
   },
   stack: {
     tag: '03 · Технологии',
@@ -304,7 +350,7 @@ export const RU_COPY: SiteCopy = {
       tail: ' до релиза собственными силами — без посредников и субподрядчиков».',
     },
     rows: [
-      { b: 'Часы связи', rest: '09:00 – 22:00 МСК · Telegram, MAX, e-mail' },
+      { b: 'Часы связи', rest: '09:00–22:00 МСК · Telegram, MAX, e-mail' },
       { b: 'Время ответа', rest: 'до 30 минут в рабочие часы' },
       { b: 'Полный цикл', rest: 'От идеи до публикации и сопровождения' },
       { b: 'Уровень', rest: 'Архитектор, iOS-, веб- и backend-разработка' },
@@ -332,7 +378,7 @@ export const RU_COPY: SiteCopy = {
     tag: '07 · Контакты',
     headPlain: 'Обсудить',
     headEm: 'проект',
-    p: 'Опишите задачу в свободной форме. В рабочие часы (МСК) ответим в течение 30 минут с предварительной оценкой объёма, стоимости и сроков.',
+    p: 'Опишите задачу в свободной форме. В рабочие часы (МСК) ответим в течение 30\u00A0минут с\u00A0предварительной оценкой объёма, стоимости и сроков.',
     primary: 'Написать в Telegram →',
   },
   faq: {
@@ -342,7 +388,7 @@ export const RU_COPY: SiteCopy = {
     lead: 'Кратко о стоимости, сроках, документации и формате работы. Если ответа на вопрос нет в списке — напишите, мы ответим лично.',
   },
   footer: {
-    desc: 'Студия разработки полного цикла. Мобильные приложения, мини-приложения для MAX и Telegram, веб-сервисы. Проектирование, разработка и запуск — внутри одной команды.',
+    desc: 'Студия разработки полного цикла. Мини-приложения для MAX и Telegram, ИИ-интеграции, веб-сервисы и мобильные приложения. Проектирование, разработка и запуск — внутри одной команды.',
     contactsHeading: 'Контакты',
     directionsHeading: 'Направления',
     navHeading: 'Навигация',
@@ -351,6 +397,7 @@ export const RU_COPY: SiteCopy = {
       max: 'Mini Apps и боты для MAX',
       tg: 'Mini Apps и боты для Telegram',
       web: 'Веб-разработка',
+      ai: 'ИИ-интеграции для сайтов и ботов',
     },
     navLinks: {
       portfolio: 'Портфолио',
@@ -369,7 +416,7 @@ export const RU_COPY: SiteCopy = {
     tag: 'Контакты',
     titlePlain: 'Связаться',
     titleEm: 'с нами',
-    lead: 'Опишите задачу в свободной форме. В рабочие часы (МСК) ответим в течение 30 минут с предварительной оценкой объёма, стоимости и сроков.',
+    lead: 'Опишите задачу в свободной форме. В рабочие часы (МСК) ответим в течение 30\u00A0минут с\u00A0предварительной оценкой объёма, стоимости и сроков.',
     channels: [
       { k: 'Канал · 01', v: 'Telegram', p: '@Naum0 — основной канал связи в рабочие часы.' },
       { k: 'Канал · 02', v: 'E-mail', p: 'stacklab@mail.ru — для подробного брифа.' },
@@ -383,7 +430,7 @@ export const RU_COPY: SiteCopy = {
     titlePlain: '',
     titleEm: 'Студия разработки',
     titleSuffix: ' полного цикла',
-    lead: 'StackLab — команда специалистов, реализующая проекты для MAX, Telegram, iOS и веб-платформ. Опыт сопровождения продуктов на всех этапах: от проектирования архитектуры до запуска и поддержки.',
+    lead: 'StackLab — команда специалистов, реализующая проекты для MAX, Telegram, iOS и веб-платформ и встраивающая ИИ в сайты, боты и процессы бизнеса. Опыт сопровождения продуктов на всех этапах: от проектирования архитектуры до запуска и поддержки.',
     values: [
       { num: '01', title: 'Инженерный подход', description: 'Архитектурные и продуктовые решения принимают специалисты с опытом промышленной разработки. Меньше согласований — выше качество результата.' },
       { num: '02', title: 'Индивидуальная разработка', description: 'Каждый проект разрабатывается под конкретную задачу заказчика. Не используем шаблонные решения.' },
@@ -402,7 +449,7 @@ export const RU_COPY: SiteCopy = {
     titlePre: 'Полный',
     titleEm: 'цикл',
     titleSuffix: ' разработки',
-    lead: 'От проектирования до запуска и сопровождения. Мобильные iOS-приложения, мини-приложения и боты для MAX и Telegram, веб-сервисы для бизнеса и государственных организаций.',
+    lead: 'От проектирования до запуска и сопровождения. Мини-приложения и боты для MAX и Telegram, ИИ-интеграции, веб-сервисы и iOS-приложения для бизнеса и государственных организаций.',
     includesLabel: 'Что входит',
     forWhomLabel: 'Для кого',
     processTag: 'Процесс',
@@ -427,15 +474,15 @@ export const RU_COPY: SiteCopy = {
     year: 'Год',
     stack: 'Стек',
     blocks: { challenge: 'Задача', solution: 'Решение', result: 'Результат', description: 'Описание' },
-    prev: '← Предыдущий',
-    next: 'Следующий →',
+    prev: 'Предыдущий',
+    next: 'Следующий',
   },
   privacy: {
     tag: 'Политика',
     titlePlain: 'Политика ',
     titleEm: 'конфиденциальности',
     effectiveLabel: 'Дата вступления в силу: ',
-    dateLocale: 'ru-RU',
+    effectiveDate: '23 апреля 2026 г.',
     sections: [
       {
         n: '01',
@@ -490,17 +537,9 @@ export const RU_COPY: SiteCopy = {
       },
     ],
   },
-  intro: {
-    geo1: 'МОСКВА · САНКТ-ПЕТЕРБУРГ',
-    geo2Lat: 'ШИРОТА 55.75',
-    geo2Lon: 'ДОЛГОТА 37.61',
-    label1: 'КАЛИБРОВКА СИГНАЛА',
-    label2: 'STACKLAB · ИЗД. 07 · 2026',
-    label3: 'ЗАГРУЗКА / ИНИЦИАЛИЗАЦИЯ',
-  },
   notFound: {
-    titlePre: 'Сигнал ',
-    titleEm: 'потерян',
+    titlePre: 'Такой станции ',
+    titleEm: 'нет',
     body: 'Страница была перемещена, удалена или никогда не существовала. Попробуйте начать с главной.',
     ctaHome: 'На главную',
     ctaPortfolio: 'Портфолио',
@@ -519,43 +558,74 @@ export const RU_COPY: SiteCopy = {
 // EN — English translation
 // ─────────────────────────────────────────────────────────────────────────
 export const EN_COPY: SiteCopy = {
-  hero: {
-    kicker: 'Development studio · Moscow and all of Russia',
-    title: [
-      { text: 'We build' },
-      { text: 'digital', italic: true },
-      { text: 'products for' },
-      { text: 'business.' },
-    ],
-    lead: 'Mobile apps, mini apps for MAX and Telegram, and web services. ',
-    leadEm: 'Full-cycle',
-    leadTail: ' development — from design to launch and support.',
-    metaLocationLabel: 'Location',
-    metaLocationLine1: 'Moscow · all of Russia',
-    metaLocationLine2: 'RU / EN',
-    metaPortfolioLabel: 'Portfolio',
-    metaPortfolioLine1: '18 shipped projects',
-    metaPortfolioLine2: 'iOS · MAX · Telegram · Web',
-    scroll: 'Scroll ↓',
+  home: {
+    nav: {
+      projects: 'Projects',
+      services: 'Services',
+      about: 'Studio',
+      contact: 'Contact',
+      home: 'Home',
+      menu: 'Open menu',
+      close: 'Close menu',
+      cta: 'Discuss a project',
+      lang: 'Language',
+    },
+    heroTitle: ['Your systems\u00A0—', 'one line in\u00A0MAX'],
+    heroLead: 'We build AI assistants, 1C and payments into websites, chatbots and MAX Mini\u00A0Apps. Launch in as little as one\u00A0week.',
+    heroCta: 'Discuss a project',
+    heroSecondary: 'See projects',
+    mapLabel:
+      'Integration map: the brief and the request run through 1C MIS and a MAX WebApp, connect an AI assistant, YooKassa and doctor booking, and arrive at a launch from one week.',
+    stations: {
+      brief: 'Brief',
+      request: 'Request',
+      mis: '1C MIS',
+      webapp: 'MAX WebApp',
+      launch: 'Launch · from 1 week',
+      pay: 'YooKassa',
+      booking: 'Booking in 30 s',
+      ai: 'AI assistant',
+    },
+    worksTitle: 'Projects already in service',
+    worksLead: 'Eight of eighteen launches that we can show publicly. The rest are under NDA.',
+    worksAll: 'All projects',
+    linesTitle: 'Four lines, one team',
+    linesLead:
+      'Mini Apps and chatbots, AI integrations, web services and iOS apps. Every line runs into one backend: 1C integrations, payments, AI and data stay inside the team.',
+    lineNames: {
+      max: { title: 'MAX and Telegram', sub: 'Mini Apps and chatbots' },
+      ai: { title: 'AI integrations', sub: 'Into websites, bots and business processes' },
+      web: { title: 'Web', sub: 'Websites and web services on Next.js' },
+      ios: { title: 'iOS', sub: 'Native, in Swift and SwiftUI' },
+    },
+    hubTitle: 'Interchange: shared backend',
+    hubText: 'Every line rests on a backend and integrations that we write ourselves.',
+    hubTech: ['Node.js', 'Python', 'FastAPI', 'PostgreSQL', 'Prisma', 'LLM', '1C MIS', 'YooKassa'],
+    linesMore: 'More about services',
+    teamTitle: 'Founders, on the line',
+    valuesTitle: 'How we run projects',
+    teamOnline: 'Online',
+    teamOffline: 'Replies from 09:00 MSK',
+    contactTitle: 'Let’s discuss your project',
+    hours: 'Hours: 09:00–22:00 Moscow time',
+    reply: 'Reply within 30 minutes during working hours',
+    channels: {
+      telegram: { name: 'Telegram', note: '@Naum0 · main channel' },
+      max: { name: 'MAX', note: 'Official StackLab account' },
+      mail: { name: 'E-mail', note: 'stacklab@mail.ru · for a detailed brief' },
+    },
+    rights: 'StackLab development studio',
   },
   about: {
     tag: '01 · About',
     manifestoHtml:
-      'StackLab is a <em>full-cycle</em> development studio. Design, code, infrastructure and support — all within one team. Proven track record on MAX, Telegram, iOS and the web. We work under contract, with transparent timelines and predictable outcomes.',
+      'StackLab is a <em>full-cycle</em> development studio. Design, code, infrastructure and support — all within one team. Proven track record on MAX, Telegram, iOS and the web. We build AI into websites, bots and business processes. We work under contract, with transparent timelines and predictable outcomes.',
     cells: [
       { k: 'M · 01', vMain: '18', vEm: 'projects', p: 'Shipped products on MAX, Telegram, App Store and the web. Some under NDA.' },
       { k: 'M · 02', vMain: '3+', vEm: 'years', p: 'Average team experience in production engineering. Senior level across the stack.' },
       { k: 'M · 03', vMain: '100%', vEm: 'happy clients', p: 'A project ships only once the client signs off. The same quality and testing standards apply on every project.' },
       { k: 'M · 04', vMain: 'from 1', vEm: 'week', p: 'Time to publish — from one week, depending on scope.' },
     ],
-  },
-  works: {
-    tag: '02 · Projects',
-    headPlain: 'Shipped',
-    headEm: 'projects',
-    description: 'Products launched over the past two years. Each one a real commercial release — not a concept.',
-    hintDrag: 'Drag → or scroll with the wheel',
-    hintCount: (n) => `${String(n).padStart(2, '0')} projects · 2025—2026`,
   },
   stack: {
     tag: '03 · Stack',
@@ -589,7 +659,7 @@ export const EN_COPY: SiteCopy = {
       tail: ' to release in-house — no middlemen, no subcontractors."',
     },
     rows: [
-      { b: 'Hours', rest: '09:00 – 22:00 MSK · Telegram, MAX, e-mail' },
+      { b: 'Hours', rest: '09:00–22:00 MSK · Telegram, MAX, e-mail' },
       { b: 'Response time', rest: 'within 30 minutes during work hours' },
       { b: 'Full cycle', rest: 'From idea to launch and support' },
       { b: 'Level', rest: 'Architecture, iOS, web and backend development' },
@@ -627,7 +697,7 @@ export const EN_COPY: SiteCopy = {
     lead: 'Briefly on pricing, timelines, documentation and how we work. If your question is not on the list — get in touch and we will answer directly.',
   },
   footer: {
-    desc: 'A full-cycle development studio. Mobile apps, mini apps for MAX and Telegram, web services. Design, development and launch — all within one team.',
+    desc: 'A full-cycle development studio. Mini apps for MAX and Telegram, AI integrations, web services and mobile apps. Design, development and launch — all within one team.',
     contactsHeading: 'Contact',
     directionsHeading: 'Services',
     navHeading: 'Navigation',
@@ -636,6 +706,7 @@ export const EN_COPY: SiteCopy = {
       max: 'Mini Apps and bots for MAX',
       tg: 'Mini Apps and bots for Telegram',
       web: 'Web development',
+      ai: 'AI integrations for websites and bots',
     },
     navLinks: {
       portfolio: 'Portfolio',
@@ -668,7 +739,7 @@ export const EN_COPY: SiteCopy = {
     titlePlain: 'A ',
     titleEm: 'full-cycle',
     titleSuffix: ' development studio',
-    lead: 'StackLab is a team of specialists delivering projects on MAX, Telegram, iOS and the web. We support products through every stage: from architecture design to launch and maintenance.',
+    lead: 'StackLab is a team of specialists delivering projects on MAX, Telegram, iOS and the web, and building AI into websites, bots and business processes. We support products through every stage: from architecture design to launch and maintenance.',
     values: [
       { num: '01', title: 'Engineering approach', description: 'Architectural and product decisions are made by specialists with production experience. Fewer approvals — higher quality output.' },
       { num: '02', title: 'Custom development', description: 'Every project is built for a specific client task. We do not reuse template solutions.' },
@@ -687,7 +758,7 @@ export const EN_COPY: SiteCopy = {
     titlePre: 'Full-cycle',
     titleEm: 'development',
     titleSuffix: '',
-    lead: 'From design to launch and support. iOS mobile apps, mini apps and bots for MAX and Telegram, web services for business and government organisations.',
+    lead: 'From design to launch and support. Mini apps and bots for MAX and Telegram, AI integrations, web services and iOS apps for business and government organisations.',
     includesLabel: 'What is included',
     forWhomLabel: 'For whom',
     processTag: 'Process',
@@ -712,15 +783,15 @@ export const EN_COPY: SiteCopy = {
     year: 'Year',
     stack: 'Stack',
     blocks: { challenge: 'Challenge', solution: 'Solution', result: 'Result', description: 'Description' },
-    prev: '← Previous',
-    next: 'Next →',
+    prev: 'Previous',
+    next: 'Next',
   },
   privacy: {
     tag: 'Privacy',
     titlePlain: 'Privacy ',
     titleEm: 'policy',
     effectiveLabel: 'Effective date: ',
-    dateLocale: 'en-GB',
+    effectiveDate: '23 April 2026',
     sections: [
       {
         n: '01',
@@ -775,17 +846,9 @@ export const EN_COPY: SiteCopy = {
       },
     ],
   },
-  intro: {
-    geo1: 'MOSCOW · SAINT PETERSBURG',
-    geo2Lat: 'LAT 55.75',
-    geo2Lon: 'LON 37.61',
-    label1: 'SIGNAL CALIBRATION',
-    label2: 'STACKLAB · ED. 07 · 2026',
-    label3: 'LOADING / INITIALIZATION',
-  },
   notFound: {
-    titlePre: 'Signal ',
-    titleEm: 'lost',
+    titlePre: 'No such ',
+    titleEm: 'station',
     body: 'The page was moved, deleted, or never existed. Try starting from the home page.',
     ctaHome: 'Home',
     ctaPortfolio: 'Portfolio',

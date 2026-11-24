@@ -1,210 +1,78 @@
 'use client';
 
-import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+import type { CSSProperties } from 'react';
 import { useCopy } from '@/components/CopyProvider';
-import { servicesByLocale, processStepsByLocale } from '@/data/services';
+import { ContactLines } from '@/components/home/HomeContact';
+import { HomeProcess } from '@/components/home/HomeProcess';
+import { StationHead } from '@/components/line/kit';
+import { servicesByLocale } from '@/data/services';
+
+const ORDER = [
+  { slug: 'telegram-max-apps', color: 'var(--red)' },
+  { slug: 'ai-integration', color: 'var(--violet)' },
+  { slug: 'web-development', color: 'var(--blue)' },
+  { slug: 'ios-apps', color: 'var(--green)' },
+];
 
 export function ServicesContent() {
-  const headRef = useRef<HTMLHeadingElement>(null);
   const { copy, mode } = useCopy();
-  const sc = copy.services;
+  const c = copy.services;
   const services = servicesByLocale[mode];
-  const processSteps = processStepsByLocale[mode];
-
-  useEffect(() => {
-    const el = headRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => e.isIntersecting && e.target.classList.add('in')),
-      { threshold: 0.2 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
 
   return (
-    <div>
-      <header className="page">
-        <div className="page__tag">{sc.tag}</div>
-        <h1 className="page__title r-mask" ref={headRef}>
-          <span className="r-in">
-            {sc.titlePre} <em>{sc.titleEm}</em>
-            {sc.titleSuffix}
-          </span>
-        </h1>
-        <p className="page__lead">{sc.lead}</p>
-      </header>
+    <>
+      <section className="sec page-top" aria-labelledby="services-title">
+        <div className="wrap">
+          <div className="sec__body">
+            <StationHead level={1} id="services-title" title={`${c.titlePre} ${c.titleEm}${c.titleSuffix}`} lead={c.lead} />
 
-      <section className="services-grid">
-        {services.map((s, idx) => (
-          <div
-            key={s.id}
-            id={s.slug}
-            className="about__cell services-grid__row"
-            style={{ scrollMarginTop: 100 }}
-          >
-            <div>
-              <div className="k">{sc.numberPrefix} {String(idx + 1).padStart(2, '0')}</div>
-              <h2
-                style={{
-                  marginTop: 24,
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 'clamp(28px, 3.2vw, 48px)',
-                  fontWeight: 300,
-                  letterSpacing: '-0.035em',
-                  lineHeight: 1.05,
-                }}
-              >
-                {s.title}
-              </h2>
-              <p
-                style={{
-                  marginTop: 20,
-                  color: 'var(--fg-dim)',
-                  fontSize: 15,
-                  lineHeight: 1.6,
-                  maxWidth: 540,
-                }}
-              >
-                {s.fullDescription}
-              </p>
-              <p
-                style={{
-                  marginTop: 20,
-                  fontFamily: 'var(--font-serif)',
-                  fontStyle: 'italic',
-                  color: 'var(--accent)',
-                  fontSize: 18,
-                  lineHeight: 1.4,
-                  maxWidth: 540,
-                }}
-              >
-                {s.result}
-              </p>
-            </div>
-            <div>
-              <div
-                className="k"
-                style={{
-                  color: 'var(--fg-dim)',
-                  marginBottom: 16,
-                }}
-              >
-                {sc.includesLabel}
-              </div>
-              <ul
-                style={{
-                  listStyle: 'none',
-                  padding: 0,
-                  margin: 0,
-                  display: 'grid',
-                  gap: 10,
-                }}
-              >
-                {s.includes.map((item, i) => (
-                  <li
-                    key={i}
-                    style={{
-                      paddingLeft: 28,
-                      position: 'relative',
-                      color: 'var(--fg)',
-                      fontSize: 15,
-                      lineHeight: 1.55,
-                    }}
-                  >
-                    <span
-                      style={{
-                        position: 'absolute',
-                        left: 0,
-                        top: 10,
-                        width: 14,
-                        height: 1,
-                        background: 'var(--accent)',
-                      }}
-                    />
-                    {item}
+            <ul className="svc-list">
+              {ORDER.map(({ slug, color }) => {
+                const s = services.find((x) => x.slug === slug);
+                if (!s) return null;
+                return (
+                  <li key={slug} id={slug} className="svc-item" style={{ '--line': color } as CSSProperties}>
+                    <div className="svc-item__title">
+                      <span className="svc-item__bar" aria-hidden="true" />
+                      <h2 className="t-h2 st-title">
+                        <span className="st-ring" data-station aria-hidden="true" />
+                        {s.title}
+                      </h2>
+                      <p className="t-body muted">{s.fullDescription}</p>
+                    </div>
+                    <div className="svc-item__body">
+                      <div>
+                        <h3>{c.includesLabel}</h3>
+                        <ul className="stops">
+                          {s.includes.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <h3>{c.forWhomLabel}</h3>
+                        <p className="t-body" style={{ margin: 0 }}>{s.forWhom}</p>
+                      </div>
+                      <p className="callout" style={{ margin: 0 }}>{s.result}</p>
+                    </div>
                   </li>
-                ))}
-              </ul>
-              <div
-                style={{
-                  marginTop: 32,
-                  paddingTop: 24,
-                  borderTop: '1px solid var(--line)',
-                }}
-              >
-                <div className="k" style={{ color: 'var(--fg-dim)' }}>
-                  {sc.forWhomLabel}
-                </div>
-                <p
-                  style={{
-                    marginTop: 12,
-                    color: 'var(--fg-dim)',
-                    fontSize: 14,
-                    lineHeight: 1.55,
-                  }}
-                >
-                  {s.forWhom}
-                </p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </section>
-
-      <section className="process" style={{ padding: '80px 38px 160px' }}>
-        <div className="process__wrap">
-          <div className="process__head">
-            <div className="sec__tag">{sc.processTag}</div>
-            <h2 className="sec__head">
-              {sc.processHeadPre} <em>{sc.processHeadEm}</em>
-            </h2>
-            <p className="process__lead">{copy.process.lead}</p>
-          </div>
-          <div className="steps">
-            {processSteps.map((s) => (
-              <div className="step" key={s.number}>
-                <div className="step__n">{s.number}</div>
-                <div>
-                  <h3 className="step__title">{s.title}</h3>
-                  <p className="step__p">{s.description}</p>
-                </div>
-              </div>
-            ))}
+                );
+              })}
+            </ul>
           </div>
         </div>
       </section>
 
-      <section
-        style={{
-          borderTop: '1px solid var(--line)',
-          padding: '100px 38px',
-          textAlign: 'center',
-        }}
-      >
-        <h2
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(36px, 5vw, 72px)',
-            fontWeight: 300,
-            letterSpacing: '-0.04em',
-            lineHeight: 1,
-          }}
-        >
-          {sc.closingPre} <em style={{ fontFamily: 'var(--font-serif)', color: 'var(--accent)', fontStyle: 'italic' }}>{sc.closingEm}</em>{sc.closingSuffix}
-        </h2>
-        <Link
-          href="/contact"
-          className="cta__btn"
-          data-cur="link"
-          style={{ marginTop: 40 }}
-        >
-          <span className="d" />
-          {sc.ctaLabel}
-        </Link>
+      <HomeProcess title={`${c.processHeadPre} ${c.processHeadEm}`} />
+
+      <section className="sec" aria-labelledby="services-close">
+        <div className="wrap">
+          <div className="sec__body cta__grid">
+            <StationHead id="services-close" title={`${c.closingPre} ${c.closingEm}${c.closingSuffix}`} lead={copy.cta.p} />
+            <ContactLines />
+          </div>
+        </div>
       </section>
-    </div>
+    </>
   );
 }

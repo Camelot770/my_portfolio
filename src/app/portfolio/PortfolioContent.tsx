@@ -1,140 +1,91 @@
 'use client';
 
-import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { useCopy } from '@/components/CopyProvider';
-import { projectsByLocale, getProjectsByCategoryForLocale } from '@/data/projects';
+import { ContactLines } from '@/components/home/HomeContact';
+import { StationHead, TLink, lineFor, lineStyle } from '@/components/line/kit';
+import { getProjectsByCategoryForLocale } from '@/data/projects';
+
+type Filter = 'all' | 'max' | 'telegram' | 'ios' | 'web';
 
 export function PortfolioContent() {
-  const [filter, setFilter] = useState('all');
-  const headRef = useRef<HTMLHeadingElement>(null);
   const { copy, mode } = useCopy();
   const p = copy.portfolioPage;
+  const [filter, setFilter] = useState<Filter>('all');
+  const shown = getProjectsByCategoryForLocale(filter, mode);
+  const total = getProjectsByCategoryForLocale('all', mode).length;
 
-  const filters: Array<{ id: string; label: string }> = [
+  const filters: Array<{ id: Filter; label: string; line?: string }> = [
     { id: 'all', label: p.filters.all },
-    { id: 'max', label: p.filters.max },
-    { id: 'telegram', label: p.filters.telegram },
-    { id: 'ios', label: p.filters.ios },
-    { id: 'web', label: p.filters.web },
+    { id: 'max', label: p.filters.max, line: lineFor('max') },
+    { id: 'telegram', label: p.filters.telegram, line: lineFor('telegram') },
+    { id: 'web', label: p.filters.web, line: lineFor('web') },
+    { id: 'ios', label: p.filters.ios, line: lineFor('ios') },
   ];
 
-  useEffect(() => {
-    const el = headRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => e.isIntersecting && e.target.classList.add('in')),
-      { threshold: 0.2 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  const list = getProjectsByCategoryForLocale(filter, mode);
-
   return (
-    <div>
-      <header className="page">
-        <div className="page__tag">{p.tag}</div>
-        <h1 className="page__title r-mask" ref={headRef}>
-          <span className="r-in">
-            {p.titlePlain}<em>{p.titleEm}</em>
-          </span>
-        </h1>
-        <p className="page__lead">{p.lead(projectsByLocale[mode].length)}</p>
+    <>
+      <section className="sec page-top" aria-labelledby="portfolio-title">
+        <div className="wrap">
+          <div className="sec__body">
+            <StationHead level={1} id="portfolio-title" title={`${p.titlePlain}${p.titleEm}`} lead={p.lead(total)} />
 
-        <div
-          style={{
-            marginTop: 60,
-            display: 'flex',
-            gap: 6,
-            flexWrap: 'wrap',
-          }}
-        >
-          {filters.map((f) => {
-            const active = filter === f.id;
-            return (
-              <button
-                key={f.id}
-                onClick={() => setFilter(f.id)}
-                data-cur="link"
-                style={{
-                  font: '500 11px/1 var(--font-mono)',
-                  letterSpacing: '.12em',
-                  textTransform: 'uppercase',
-                  padding: '10px 18px',
-                  borderRadius: 999,
-                  border: `1px solid ${active ? 'var(--accent)' : 'rgba(243,240,234,.15)'}`,
-                  background: active ? 'var(--accent)' : 'transparent',
-                  color: active ? '#000' : 'var(--fg-dim)',
-                  cursor: 'none',
-                  transition: 'all .3s var(--ease)',
-                }}
-              >
-                {f.label}
-              </button>
-            );
-          })}
+            <div className="filters" role="group" aria-label={p.tag}>
+              {filters.map((f) => (
+                <button
+                  key={f.id}
+                  type="button"
+                  aria-pressed={filter === f.id}
+                  onClick={() => setFilter(f.id)}
+                  style={f.line ? lineStyle(f.line) : undefined}
+                >
+                  {f.line ? <i aria-hidden="true" /> : null}
+                  {f.label}
+                </button>
+              ))}
+            </div>
+
+            <ul className="cases" aria-live="polite">
+              {shown.map((project, i) => (
+                <li key={project.slug}>
+                  <TLink href={`/portfolio/${project.slug}`} className="case-card">
+                    <span
+                      className={`case-card__media${project.previewMode === 'contain' ? '' : ' case-card__media--cover'}`}
+                    >
+                      <Image
+                        src={project.images.preview}
+                        alt={project.title}
+                        fill
+                        priority={i < 2}
+                        sizes="(max-width: 767px) 92vw, 44vw"
+                      />
+                    </span>
+                    <span className="case-card__head">
+                      <h2>{project.title}</h2>
+                      <span className="t-num" style={{ fontWeight: 800 }}>{project.year}</span>
+                    </span>
+                    <span className="badge" style={lineStyle(lineFor(project.category))}>
+                      <i />
+                      {project.categoryLabel}
+                    </span>
+                    <p>{project.shortDescription}</p>
+                  </TLink>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </header>
-
-      <section
-        style={{
-          padding: '40px 38px 200px',
-          display: 'grid',
-          gap: 24,
-          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-          maxWidth: 1400,
-          margin: '0 auto',
-        }}
-      >
-        {list.map((p, i) => (
-          <Link
-            href={`/portfolio/${p.slug}`}
-            className="work"
-            key={p.id}
-            data-cur="view"
-            style={{ width: 'auto' }}
-          >
-            <div
-              className={`work__media${
-                p.previewMode === 'contain' ? ' work__media--contain' : ''
-              }`}
-            >
-              <div className="work__idx">
-                <span className="ac">
-                  {String(i + 1).padStart(2, '0')}
-                </span>{' '}
-                / {String(list.length).padStart(2, '0')}
-              </div>
-              <div className="work__stack">
-                {p.technologies.slice(0, 3).map((t) => (
-                  <span key={t}>{t}</span>
-                ))}
-              </div>
-              <Image
-                src={p.images.preview}
-                alt={p.title}
-                fill
-                sizes="(max-width: 768px) 90vw, 320px"
-                style={{
-                  objectFit: p.previewMode === 'contain' ? 'contain' : 'cover',
-                }}
-              />
-            </div>
-            <div className="work__info">
-              <h3 className="work__title">{p.title}</h3>
-              <div className="work__year">
-                <b>{p.year}</b>
-                {p.categoryLabel}
-              </div>
-            </div>
-            <p className="work__desc">{p.shortDescription}</p>
-          </Link>
-        ))}
       </section>
-    </div>
+
+      <section className="sec" aria-labelledby="portfolio-close">
+        <div className="wrap">
+          <div className="sec__body cta__grid">
+            <StationHead id="portfolio-close" title={copy.home.contactTitle} lead={copy.cta.p} />
+            <ContactLines />
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

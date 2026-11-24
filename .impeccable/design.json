@@ -1,0 +1,500 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-24T00:30:33Z",
+  "title": "Design System: StackLab",
+  "extensions": {
+    "colorMeta": {
+      "red": {
+        "role": "primary",
+        "displayName": "Route Red",
+        "canonical": "#e4251b",
+        "tonalRamp": [
+          "#1e0000",
+          "#4c0402",
+          "#7f0604",
+          "#b70d08",
+          "#ea2e22",
+          "#fe7463",
+          "#ffb3a7",
+          "#fee9e5"
+        ]
+      },
+      "violet": {
+        "role": "secondary",
+        "displayName": "AI Line Violet",
+        "canonical": "#8c3fc8",
+        "tonalRamp": [
+          "#140023",
+          "#360355",
+          "#5c0a8d",
+          "#7f31b9",
+          "#a158de",
+          "#c185f9",
+          "#dab8fe",
+          "#f3eafe"
+        ]
+      },
+      "blue": {
+        "role": "secondary",
+        "displayName": "Web Line Blue",
+        "canonical": "#0a6fd8",
+        "tonalRamp": [
+          "#000b1f",
+          "#01244e",
+          "#014083",
+          "#085fba",
+          "#2981ea",
+          "#67a7fb",
+          "#a7ccfd",
+          "#e4f0ff"
+        ]
+      },
+      "green": {
+        "role": "secondary",
+        "displayName": "iOS Line Green",
+        "canonical": "#11a24a",
+        "tonalRamp": [
+          "#001003",
+          "#022e10",
+          "#005120",
+          "#0e7534",
+          "#1a9c49",
+          "#4ec06d",
+          "#91dfa0",
+          "#dcf7e0"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Signage Ink",
+        "canonical": "#16171a",
+        "tonalRamp": [
+          "#0a0b0e",
+          "#242528",
+          "#414245",
+          "#606164",
+          "#818285",
+          "#a4a5a7",
+          "#c8c9cb",
+          "#eeeeef"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Platform Grey",
+        "canonical": "#565961",
+        "tonalRamp": [
+          "#0a0b0e",
+          "#23252b",
+          "#3f4249",
+          "#5e6169",
+          "#7f828a",
+          "#a2a5ac",
+          "#c7c9ce",
+          "#eeeef0"
+        ]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Dim Grey",
+        "canonical": "#8b8e95",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#232529",
+          "#404247",
+          "#5e6167",
+          "#7f8289",
+          "#a2a5ac",
+          "#c7c9ce",
+          "#edeef0"
+        ]
+      },
+      "unlit": {
+        "role": "neutral",
+        "displayName": "Unlit Track",
+        "canonical": "#dcdde0",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#252526",
+          "#414243",
+          "#606163",
+          "#818285",
+          "#a4a5a8",
+          "#c8c9cc",
+          "#eeeef1"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#e6e7e9",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252526",
+          "#414243",
+          "#606162",
+          "#818284",
+          "#a4a5a7",
+          "#c8c9cb",
+          "#edeef0"
+        ]
+      },
+      "tint": {
+        "role": "neutral",
+        "displayName": "Enamel Tint",
+        "canonical": "#f4f4f2",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252524",
+          "#424241",
+          "#616160",
+          "#828281",
+          "#a5a5a3",
+          "#c9c9c7",
+          "#eeeeec"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "White Enamel",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Home hero headline only. Fluid clamp(2.5rem, 1.1rem + 4.2vw, 4.75rem), about 76px at 1440; the break falls after the dash."
+      },
+      "h1": {
+        "displayName": "Headline",
+        "purpose": "Inner-page titles, 404 and error. Fluid clamp(2.375rem, 1.2rem + 3.4vw, 4.25rem)."
+      },
+      "h2": {
+        "displayName": "Section headline",
+        "purpose": "Every section's station heading. Fluid clamp(2rem, 1.2rem + 2.4vw, 3.5rem); service titles on /services use clamp(1.75rem, 1.1rem + 1.8vw, 2.75rem)."
+      },
+      "h3": {
+        "displayName": "Title",
+        "purpose": "Line names, founders' names, the hub. Fluid clamp(1.3125rem, 1.08rem + 0.7vw, 1.75rem)."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "The paragraph under a heading: ink in the hero (34ch), Platform Grey under section headings (44ch). Fluid clamp(1.1875rem, 1rem + 0.55vw, 1.5rem)."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text at 66ch. Numerals lining throughout, tabular for years, hours and counts."
+      },
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "Sublines, hours, notes and list descriptions, in Platform Grey."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Pill labels: 1.125rem default, 1rem small, 1.25rem large."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Line badges and caption labels; nav stations use 700 at 1rem."
+      },
+      "chip": {
+        "displayName": "Chip",
+        "purpose": "Tech chips; the language switch uses 800 at this size."
+      }
+    },
+    "shadows": [
+      {
+        "name": "train-lift",
+        "value": "0 6px 14px rgba(22, 23, 26, 0.16)",
+        "purpose": "Under the capsule trains on the page rail and the process track."
+      },
+      {
+        "name": "floating-caption",
+        "value": "0 8px 24px rgba(22, 23, 26, 0.14)",
+        "purpose": "The white caption pill sitting on a poster."
+      },
+      {
+        "name": "header-hairline",
+        "value": "0 1px 0 #e6e7e9",
+        "purpose": "The solid header's bottom edge: a rule, not elevation."
+      },
+      {
+        "name": "ring-frame",
+        "value": "inset 0 0 0 2px #16171a",
+        "purpose": "Not elevation: the 2px ink ring around pictures, ghost pills, tags, filters and the language switch."
+      },
+      {
+        "name": "ring-station",
+        "value": "inset 0 0 0 6px #16171a",
+        "purpose": "Not elevation: a heading station's ring (4px nav, 7px line stops and process, 8px map and hub, 9px contact stations; #dcdde0 before it is reached)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Default curve: hovers, rings lighting, the red sweep, reveals, lines drawing themselves."
+      },
+      {
+        "name": "ease-wipe",
+        "value": "cubic-bezier(0.7, 0, 0.25, 1)",
+        "purpose": "A train pulling out and braking: only for things that cross the whole frame (the poster wipe)."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.65, 0, 0.35, 1)",
+        "purpose": "The mobile sheet closing; the current-page station sliding to the new page."
+      },
+      {
+        "name": "ease-exit",
+        "value": "cubic-bezier(0.4, 0, 1, 1)",
+        "purpose": "The outgoing page in a view transition (0.26s, fading and rising 10px)."
+      },
+      {
+        "name": "ease-train",
+        "value": "cubic-bezier(0.45, 0, 0.55, 1)",
+        "purpose": "Map trains easing at each end of their back-and-forth run (5-20s per loop)."
+      },
+      {
+        "name": "duration-press",
+        "value": "0.18s",
+        "purpose": "Pill press, scaling to 0.97."
+      },
+      {
+        "name": "duration-color",
+        "value": "0.2s",
+        "purpose": "Colour, background and ring-colour changes (0.2-0.25s)."
+      },
+      {
+        "name": "duration-ring",
+        "value": "0.35s",
+        "purpose": "Station rings lighting, the red core growing, arrow nudges."
+      },
+      {
+        "name": "duration-sweep",
+        "value": "0.45s",
+        "purpose": "The red sweep through a pill, the FAQ answer opening, the header hiding."
+      },
+      {
+        "name": "duration-sheet",
+        "value": "0.6s",
+        "purpose": "The mobile sheet's circular reveal (0.55s closing)."
+      },
+      {
+        "name": "duration-wipe",
+        "value": "0.75s",
+        "purpose": "The poster train crossing the frame."
+      },
+      {
+        "name": "duration-draw",
+        "value": "1.5s",
+        "purpose": "The hero map drawing itself once (service lines draw in 1.2s)."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "multi-column",
+        "value": "600px"
+      },
+      {
+        "name": "tablet",
+        "value": "768px"
+      },
+      {
+        "name": "split-blocks",
+        "value": "900px"
+      },
+      {
+        "name": "sticky-poster",
+        "value": "1000px"
+      },
+      {
+        "name": "route-strip",
+        "value": "1100px"
+      },
+      {
+        "name": "hero-map-beside",
+        "value": "1200px"
+      },
+      {
+        "name": "horizontal-lines",
+        "value": "1240px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Pill Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The ink pill, the only filled button, in its large, default and small sizes, with the arrow link as the secondary action. Hover runs the red line through the pill.",
+      "html": "<div class=\"ds-cta\"><a class=\"ds-btn ds-btn--lg\" href=\"#contact\">Обсудить проект<svg class=\"ds-btn__ico\" viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path d=\"M4 12h15M13 6l6 6-6 6\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a><a class=\"ds-btn\" href=\"#contact\">Обсудить проект<svg class=\"ds-btn__ico\" viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path d=\"M4 12h15M13 6l6 6-6 6\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a><a class=\"ds-btn ds-btn--sm\" href=\"#contact\">Обсудить проект</a><a class=\"ds-arrow-link\" href=\"#works\"><span>Смотреть проекты</span><svg class=\"ds-arrow-link__ico\" viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path d=\"M4 12h15M13 6l6 6-6 6\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a></div>",
+      "css": ".ds-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; } .ds-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 56px; padding: 0 28px; border: 0; border-radius: 999px; font-family: var(--font, 'Golos Text', system-ui, sans-serif); font-weight: 800; font-size: 1.125rem; letter-spacing: -0.01em; line-height: 1; white-space: nowrap; text-decoration: none; cursor: pointer; isolation: isolate; overflow: hidden; transition: transform 0.18s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)), background-color 0.25s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-btn::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--red, #e4251b); transform: scaleX(0); transform-origin: left center; transition: transform 0.45s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-btn:hover::before { transform: scaleX(1); } .ds-btn:active { transform: scale(0.97); } .ds-btn:focus-visible { outline: 3px solid var(--blue, #0a6fd8); outline-offset: 3px; } .ds-btn { background: var(--ink, #16171a); color: var(--paper, #ffffff); } .ds-btn__ico { width: 1em; height: 1em; flex: none; transition: transform 0.35s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-btn:hover .ds-btn__ico { transform: translateX(3px); } .ds-btn--sm { min-height: 46px; padding: 0 20px; font-size: 1rem; } .ds-btn--lg { min-height: 64px; padding: 0 32px; font-size: 1.25rem; } .ds-arrow-link { display: inline-flex; align-items: center; gap: 10px; color: var(--ink, #16171a); font-family: var(--font, 'Golos Text', system-ui, sans-serif); font-weight: 800; font-size: 1.0625rem; line-height: 1.2; text-decoration: none; } .ds-arrow-link span { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.24em; text-decoration-color: transparent; transition: text-decoration-color 0.2s; } .ds-arrow-link:hover span { text-decoration-color: currentColor; } .ds-arrow-link__ico { width: 1em; height: 1em; flex: none; transition: transform 0.35s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-arrow-link:hover .ds-arrow-link__ico { transform: translateX(4px); } .ds-arrow-link:focus-visible { outline: 3px solid var(--blue, #0a6fd8); outline-offset: 3px; border-radius: 6px; }"
+    },
+    {
+      "name": "Ghost Pill Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Transparent pill with a 2px ink ring; on hover the ring turns red and the same red sweep fills it. Used for 'all projects' and the second action on 404.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#works\">Все проекты<svg class=\"ds-btn-ghost__ico\" viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path d=\"M4 12h15M13 6l6 6-6 6\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
+      "css": ".ds-btn-ghost { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 56px; padding: 0 28px; border: 0; border-radius: 999px; font-family: var(--font, 'Golos Text', system-ui, sans-serif); font-weight: 800; font-size: 1.125rem; letter-spacing: -0.01em; line-height: 1; white-space: nowrap; text-decoration: none; cursor: pointer; isolation: isolate; overflow: hidden; transition: transform 0.18s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)), background-color 0.25s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-btn-ghost::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--red, #e4251b); transform: scaleX(0); transform-origin: left center; transition: transform 0.45s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-btn-ghost:hover::before { transform: scaleX(1); } .ds-btn-ghost:active { transform: scale(0.97); } .ds-btn-ghost:focus-visible { outline: 3px solid var(--blue, #0a6fd8); outline-offset: 3px; } .ds-btn-ghost { background: transparent; color: var(--ink, #16171a); box-shadow: inset 0 0 0 2px var(--ink, #16171a); } .ds-btn-ghost:hover { color: var(--paper, #ffffff); box-shadow: inset 0 0 0 2px var(--red, #e4251b); } .ds-btn-ghost__ico { width: 1em; height: 1em; flex: none; transition: transform 0.35s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-btn-ghost:hover .ds-btn-ghost__ico { transform: translateX(3px); }"
+    },
+    {
+      "name": "Line Badge Legend",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "The scheme's legend, as in the footer's directions: a 14px disc in the line colour beside a 700 label. Telegram rides the red line with MAX; violet is ИИ-интеграции only.",
+      "html": "<ul class=\"ds-legend\"><li><a class=\"ds-badge ds-badge--max\" href=\"#\"><i></i>Mini Apps и боты для MAX</a></li><li><a class=\"ds-badge ds-badge--max\" href=\"#\"><i></i>Mini Apps и боты для Telegram</a></li><li><a class=\"ds-badge ds-badge--ai\" href=\"#\"><i></i>ИИ-интеграции для сайтов и ботов</a></li><li><a class=\"ds-badge ds-badge--web\" href=\"#\"><i></i>Веб-разработка</a></li><li><a class=\"ds-badge ds-badge--ios\" href=\"#\"><i></i>Мобильные iOS-приложения</a></li></ul>",
+      "css": ".ds-legend { display: grid; gap: 11px; margin: 0; padding: 0; list-style: none; } .ds-badge { display: inline-flex; align-items: center; gap: 9px; color: var(--ink, #16171a); font-family: var(--font, 'Golos Text', system-ui, sans-serif); font-weight: 700; font-size: 0.9375rem; line-height: 1; white-space: nowrap; text-decoration: none; } .ds-badge i { width: 14px; height: 14px; border-radius: 50%; background: var(--line, var(--ink, #16171a)); flex: none; } .ds-badge:hover { color: var(--red, #e4251b); } .ds-badge:focus-visible { outline: 3px solid var(--blue, #0a6fd8); outline-offset: 3px; border-radius: 6px; } .ds-badge--max { --line: var(--red, #e4251b); } .ds-badge--ai { --line: var(--violet, #8c3fc8); } .ds-badge--web { --line: var(--blue, #0a6fd8); } .ds-badge--ios { --line: var(--green, #11a24a); }"
+    },
+    {
+      "name": "Filter Chips",
+      "kind": "chip",
+      "refersTo": "filter-chip",
+      "description": "Portfolio filters: 46px pills with a 2px ink ring and a 12px line dot. Pressed fills ink with a white halo round the dot; unpressed hover is Enamel Tint.",
+      "html": "<div class=\"ds-filters\" role=\"group\" aria-label=\"Портфолио\"><button type=\"button\" class=\"ds-filter\" aria-pressed=\"true\">Все</button><button type=\"button\" class=\"ds-filter ds-filter--max\" aria-pressed=\"false\"><i></i>MAX</button><button type=\"button\" class=\"ds-filter ds-filter--max\" aria-pressed=\"false\"><i></i>Telegram</button><button type=\"button\" class=\"ds-filter ds-filter--web\" aria-pressed=\"false\"><i></i>Веб</button><button type=\"button\" class=\"ds-filter ds-filter--ios\" aria-pressed=\"false\"><i></i>iOS</button></div>",
+      "css": ".ds-filters { display: flex; flex-wrap: wrap; gap: 10px; } .ds-filter { display: inline-flex; align-items: center; gap: 9px; min-height: 46px; padding: 0 18px; border: 0; border-radius: 999px; background: transparent; color: var(--ink, #16171a); box-shadow: inset 0 0 0 2px var(--ink, #16171a); font-family: var(--font, 'Golos Text', system-ui, sans-serif); font-weight: 800; font-size: 0.9375rem; line-height: 1; cursor: pointer; transition: background-color 0.2s, color 0.2s; } .ds-filter i { width: 12px; height: 12px; border-radius: 50%; background: var(--line, var(--ink, #16171a)); } .ds-filter[aria-pressed='true'] { background: var(--ink, #16171a); color: var(--paper, #ffffff); } .ds-filter[aria-pressed='true'] i { box-shadow: 0 0 0 2px var(--paper, #ffffff); } .ds-filter[aria-pressed='false']:hover { background: var(--tint, #f4f4f2); } .ds-filter:focus-visible { outline: 3px solid var(--blue, #0a6fd8); outline-offset: 3px; } .ds-filter--max { --line: var(--red, #e4251b); } .ds-filter--web { --line: var(--blue, #0a6fd8); } .ds-filter--ios { --line: var(--green, #11a24a); }"
+    },
+    {
+      "name": "Route Strip Header",
+      "kind": "nav",
+      "description": "Desktop header right side: four nav stations joined by ink dashes (the current page's station is red), the RU/EN switch and the small ink pill. Below 1100px all three fold into a 48px ink menu button.",
+      "html": "<div class=\"ds-hdr\"><nav aria-label=\"Навигация\"><ul class=\"ds-strip\"><li><a href=\"#\" aria-current=\"page\"><span class=\"ds-strip__ring\"></span>Проекты</a></li><li><a href=\"#\"><span class=\"ds-strip__ring\"></span>Услуги</a></li><li><a href=\"#\"><span class=\"ds-strip__ring\"></span>О студии</a></li><li><a href=\"#\"><span class=\"ds-strip__ring\"></span>Контакты</a></li></ul></nav><div class=\"ds-lang\" role=\"group\" aria-label=\"Язык\"><button type=\"button\" lang=\"ru\" aria-pressed=\"true\">RU</button><button type=\"button\" lang=\"en\" aria-pressed=\"false\">EN</button></div><a class=\"ds-hdr__cta\" href=\"#contact\">Обсудить проект</a></div>",
+      "css": ".ds-hdr { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; color: var(--ink, #16171a); font-family: var(--font, 'Golos Text', system-ui, sans-serif); } .ds-strip { display: flex; align-items: center; margin: 0; padding: 0; list-style: none; } .ds-strip li { display: flex; align-items: center; } .ds-strip li + li::before { content: ''; width: 22px; height: 4px; margin: 0 10px; border-radius: 2px; background: var(--ink, #16171a); } .ds-strip a { display: inline-flex; align-items: center; gap: 9px; padding: 8px 2px; color: var(--ink, #16171a); font-weight: 700; font-size: 1rem; text-decoration: none; } .ds-strip__ring { width: 16px; height: 16px; border-radius: 50%; background: var(--paper, #ffffff); box-shadow: inset 0 0 0 4px var(--ink, #16171a); flex: none; transition: box-shadow 0.25s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)), background-color 0.25s; } .ds-strip a:hover .ds-strip__ring { background: var(--ink, #16171a); } .ds-strip a[aria-current='page'] .ds-strip__ring { background: var(--red, #e4251b); box-shadow: inset 0 0 0 4px var(--red, #e4251b); } .ds-strip a:focus-visible { outline: 3px solid var(--blue, #0a6fd8); outline-offset: 3px; border-radius: 6px; } .ds-lang { display: inline-flex; align-items: center; padding: 3px; border-radius: 999px; box-shadow: inset 0 0 0 2px var(--ink, #16171a); } .ds-lang button { min-width: 40px; height: 34px; padding: 0 10px; border: 0; border-radius: 999px; background: transparent; color: var(--ink, #16171a); font-family: var(--font, 'Golos Text', system-ui, sans-serif); font-weight: 800; font-size: 0.875rem; cursor: pointer; transition: background-color 0.2s, color 0.2s; } .ds-lang button[aria-pressed='true'] { background: var(--ink, #16171a); color: var(--paper, #ffffff); } .ds-lang button[aria-pressed='false']:hover { background: var(--tint, #f4f4f2); } .ds-lang button:focus-visible { outline: 3px solid var(--blue, #0a6fd8); outline-offset: 3px; } .ds-hdr__cta { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 56px; padding: 0 28px; border: 0; border-radius: 999px; font-family: var(--font, 'Golos Text', system-ui, sans-serif); font-weight: 800; font-size: 1.125rem; letter-spacing: -0.01em; line-height: 1; white-space: nowrap; text-decoration: none; cursor: pointer; isolation: isolate; overflow: hidden; transition: transform 0.18s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)), background-color 0.25s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-hdr__cta::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--red, #e4251b); transform: scaleX(0); transform-origin: left center; transition: transform 0.45s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-hdr__cta:hover::before { transform: scaleX(1); } .ds-hdr__cta:active { transform: scale(0.97); } .ds-hdr__cta:focus-visible { outline: 3px solid var(--blue, #0a6fd8); outline-offset: 3px; } .ds-hdr__cta { min-height: 46px; padding: 0 20px; font-size: 1rem; background: var(--ink, #16171a); color: var(--paper, #ffffff); }"
+    },
+    {
+      "name": "Station Heading",
+      "kind": "custom",
+      "refersTo": "station-ring",
+      "description": "How every section joins the route: its heading's station hangs on the rail in the left gutter. Passed stations take an ink ring, the current one a red core; stations ahead stay unlit. A white train rides the rail at the reading line. These states follow the reader's scroll, never hover.",
+      "html": "<div class=\"ds-route\"><span class=\"ds-route__rail\"><span class=\"ds-route__fill\"></span><span class=\"ds-route__train\"></span></span><section class=\"ds-route__sec\"><h2 class=\"ds-route__title\"><span class=\"ds-route__ring is-lit is-here\"></span>Проекты, которые уже работают</h2><p class=\"ds-route__lead\">Восемь из восемнадцати запусков, которые можно показать публично. Остальные — под NDA.</p></section><section class=\"ds-route__sec\"><h2 class=\"ds-route__title\"><span class=\"ds-route__ring\"></span>Четыре линии — одна команда</h2></section></div>",
+      "css": ".ds-route { position: relative; display: grid; gap: 64px; padding: 8px 0 8px 72px; color: var(--ink, #16171a); font-family: var(--font, 'Golos Text', system-ui, sans-serif); } .ds-route__rail { position: absolute; left: 11px; top: 36px; bottom: 36px; width: 6px; border-radius: 999px; background: var(--unlit, #dcdde0); } .ds-route__fill { position: absolute; left: 0; right: 0; top: 0; height: 55%; border-radius: 999px; background: var(--red, #e4251b); } .ds-route__train { position: absolute; left: 50%; top: 55%; width: 20px; height: 44px; margin: -22px 0 0 -10px; border-radius: 999px; background: var(--paper, #ffffff); box-shadow: inset 0 0 0 5px var(--ink, #16171a), 0 6px 14px rgba(22, 23, 26, 0.16); } .ds-route__title { position: relative; margin: 0; font-weight: 800; font-size: clamp(2rem, 1.2rem + 2.4vw, 3.5rem); line-height: 1.02; letter-spacing: -0.03em; text-wrap: balance; } .ds-route__ring { position: absolute; left: -72px; top: calc(0.5lh - 14px); z-index: 2; width: 28px; height: 28px; border-radius: 50%; background: var(--paper, #ffffff); box-shadow: inset 0 0 0 6px var(--unlit, #dcdde0); transition: box-shadow 0.35s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-route__ring::after { content: ''; position: absolute; inset: 10px; border-radius: 50%; background: var(--red, #e4251b); transform: scale(0); transition: transform 0.35s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-route__ring.is-lit { box-shadow: inset 0 0 0 6px var(--ink, #16171a); } .ds-route__ring.is-here::after { transform: scale(1); } .ds-route__lead { max-width: 44ch; margin: 20px 0 0; color: var(--ink-2, #565961); font-weight: 500; font-size: clamp(1.1875rem, 1rem + 0.55vw, 1.5rem); line-height: 1.34; letter-spacing: -0.01em; text-wrap: pretty; }"
+    },
+    {
+      "name": "Service Lines and Hub",
+      "kind": "custom",
+      "refersTo": "hub",
+      "description": "«Четыре линии — одна команда»: each service is a 14px line in its own colour with four ink-ringed stations, and all four end at the hub, a white interchange panel with an 8px ink ring. Shown in the drawn state every line rests in; on the site each line draws itself once from the left on first view (1.2s, 0.18s apart). The block closes on the arrow link to /services.",
+      "html": "<div class=\"ds-lines\"><div class=\"ds-line ds-line--max\"><h3 class=\"ds-line__name\"><i></i>MAX и Telegram</h3><div class=\"ds-line__track\"><span class=\"ds-line__bar\"></span><ol class=\"ds-line__stops\"><li>Разработка Mini App для MAX и Telegram</li><li>Чат-боты для MAX с навигацией и автоматизацией</li><li>Подключение платёжных систем (ЮKassa и др.)</li><li>Личные кабинеты, CRM и аналитика внутри мессенджера</li></ol></div></div><div class=\"ds-line ds-line--ai\"><h3 class=\"ds-line__name\"><i></i>ИИ-интеграции</h3><div class=\"ds-line__track\"><span class=\"ds-line__bar\"></span><ol class=\"ds-line__stops\"><li>ИИ-ассистенты в чат-ботах MAX и Telegram</li><li>ИИ-консультант и умный поиск на сайте</li><li>Обработка заявок, писем и документов</li><li>Интеграция с 1С, CRM и базой знаний</li></ol></div></div><div class=\"ds-line ds-line--web\"><h3 class=\"ds-line__name\"><i></i>Веб</h3><div class=\"ds-line__track\"><span class=\"ds-line__bar\"></span><ol class=\"ds-line__stops\"><li>Проектирование структуры и логики</li><li>Дизайн и вёрстка</li><li>Разработка функционала</li><li>Запуск и настройка хостинга</li></ol></div></div><div class=\"ds-line ds-line--ios\"><h3 class=\"ds-line__name\"><i></i>iOS</h3><div class=\"ds-line__track\"><span class=\"ds-line__bar\"></span><ol class=\"ds-line__stops\"><li>Проектирование архитектуры и логики приложения</li><li>Дизайн интерфейса</li><li>Разработка и тестирование</li><li>Подготовка к публикации и релиз в App Store</li></ol></div></div><div class=\"ds-hub\"><h3>Пересадка: общий backend</h3><p>Каждая линия опирается на собственный backend и интеграции, которые мы пишем сами.</p><ul><li>Node.js</li><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>LLM</li><li>1С МИС</li><li>ЮKassa</li></ul></div><div class=\"ds-lines__foot\"><a class=\"ds-lines__more\" href=\"#services\"><span>Подробнее об услугах</span><svg class=\"ds-lines__more-ico\" viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path d=\"M4 12h15M13 6l6 6-6 6\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a></div></div>",
+      "css": ".ds-lines { display: grid; gap: 40px; color: var(--ink, #16171a); font-family: var(--font, 'Golos Text', system-ui, sans-serif); } .ds-line { display: grid; grid-template-columns: minmax(140px, 0.9fr) minmax(0, 3fr); gap: 16px 28px; align-items: start; } .ds-line--max { --line: var(--red, #e4251b); } .ds-line--ai { --line: var(--violet, #8c3fc8); } .ds-line--web { --line: var(--blue, #0a6fd8); } .ds-line--ios { --line: var(--green, #11a24a); } .ds-line__name { display: flex; align-items: center; gap: 12px; margin: 0; font-weight: 800; font-size: clamp(1.3125rem, 1.08rem + 0.7vw, 1.75rem); line-height: 1.12; letter-spacing: -0.018em; } .ds-line__name i { width: 22px; height: 22px; border-radius: 50%; background: var(--line); flex: none; } .ds-line__track { position: relative; } .ds-line__bar { position: absolute; left: 0; right: 0; top: 9px; height: 14px; border-radius: 7px; background: var(--line); transform-origin: left center; } .ds-line__stops { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 0; padding: 0; list-style: none; } .ds-line__stops li { display: grid; gap: 16px; align-content: start; padding-right: 8px; font-weight: 600; font-size: 0.9375rem; line-height: 1.35; overflow-wrap: break-word; } .ds-line__stops li::before { content: ''; width: 32px; height: 32px; border-radius: 50%; background: var(--paper, #ffffff); box-shadow: inset 0 0 0 7px var(--ink, #16171a); } .ds-hub { display: grid; gap: 14px; padding: 32px 28px; border-radius: 32px; background: var(--paper, #ffffff); box-shadow: inset 0 0 0 8px var(--ink, #16171a); } .ds-hub h3 { margin: 0; font-weight: 800; font-size: clamp(1.3125rem, 1.08rem + 0.7vw, 1.75rem); line-height: 1.12; letter-spacing: -0.018em; } .ds-hub p { margin: 0; color: var(--ink-2, #565961); font-weight: 600; font-size: 0.9375rem; line-height: 1.5; } .ds-hub ul { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 0; padding: 0; list-style: none; } .ds-hub li { padding: 9px 12px; border-radius: 999px; background: var(--tint, #f4f4f2); font-weight: 700; font-size: 0.875rem; line-height: 1; } .ds-lines__foot { margin-top: 8px; } .ds-lines__more { display: inline-flex; align-items: center; gap: 10px; color: var(--ink, #16171a); font-weight: 800; font-size: 1.0625rem; line-height: 1.2; text-decoration: none; } .ds-lines__more span { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.24em; text-decoration-color: transparent; transition: text-decoration-color 0.2s; } .ds-lines__more:hover span { text-decoration-color: currentColor; } .ds-lines__more-ico { width: 1em; height: 1em; flex: none; transition: transform 0.35s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-lines__more:hover .ds-lines__more-ico { transform: translateX(4px); } .ds-lines__more:focus-visible { outline: 3px solid var(--blue, #0a6fd8); outline-offset: 3px; border-radius: 6px; }"
+    },
+    {
+      "name": "Contact Route",
+      "kind": "custom",
+      "refersTo": "contact-station",
+      "description": "Every channel is a station on one 14px red route that runs in from the left: 64px white discs with 9px ink rings. Hover or focus fills the station red and slides a white arrow in.",
+      "html": "<ul class=\"ds-chan\"><li><a href=\"#\"><span class=\"ds-chan__st\"><svg class=\"ds-chan__ico\" viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path d=\"M4 12h15M13 6l6 6-6 6\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><span class=\"ds-chan__txt\"><span class=\"ds-chan__name\">Telegram</span><span class=\"ds-chan__note\">@Naum0 · основной канал</span></span></a></li><li><a href=\"#\"><span class=\"ds-chan__st\"><svg class=\"ds-chan__ico\" viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path d=\"M4 12h15M13 6l6 6-6 6\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><span class=\"ds-chan__txt\"><span class=\"ds-chan__name\">MAX</span><span class=\"ds-chan__note\">Официальный аккаунт StackLab</span></span></a></li><li><a href=\"#\"><span class=\"ds-chan__st\"><svg class=\"ds-chan__ico\" viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path d=\"M4 12h15M13 6l6 6-6 6\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><span class=\"ds-chan__txt\"><span class=\"ds-chan__name\">E-mail</span><span class=\"ds-chan__note\">stacklab@mail.ru · для подробного брифа</span></span></a></li></ul>",
+      "css": ".ds-chan { --st: 64px; --ring: 9px; --row: 92px; --run-in: 120px; position: relative; display: grid; gap: 18px; margin: 0; padding: 0 0 0 var(--run-in); list-style: none; color: var(--ink, #16171a); font-family: var(--font, 'Golos Text', system-ui, sans-serif); } .ds-chan::before { content: ''; position: absolute; left: calc(var(--run-in) + var(--st) / 2 - 7px); top: calc(var(--row) / 2); bottom: calc(var(--row) / 2); width: 14px; background: var(--red, #e4251b); } .ds-chan a { position: relative; display: grid; grid-template-columns: var(--st) minmax(0, 23rem); align-items: center; min-height: var(--row); color: inherit; text-decoration: none; } .ds-chan li:first-child a::before { content: ''; position: absolute; right: calc(100% - var(--st) / 2); top: 50%; width: calc(var(--run-in) + var(--st) / 2); height: 14px; margin-top: -7px; border-radius: 7px 0 0 7px; background: var(--red, #e4251b); } .ds-chan__st { position: relative; z-index: 1; display: grid; place-items: center; width: var(--st); height: var(--st); border-radius: 50%; background: var(--paper, #ffffff); box-shadow: inset 0 0 0 var(--ring) var(--ink, #16171a); transition: background-color 0.3s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)), box-shadow 0.3s; } .ds-chan__ico { width: 22px; height: 22px; color: var(--paper, #ffffff); opacity: 0; transform: translateX(-6px); transition: opacity 0.3s, transform 0.4s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-chan__txt { display: grid; gap: 2px; padding-left: 22px; } .ds-chan__name { font-weight: 800; font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2.25rem); line-height: 1.05; letter-spacing: -0.03em; } .ds-chan__note { color: var(--ink-2, #565961); font-weight: 600; font-size: 0.9375rem; } .ds-chan a:hover .ds-chan__st, .ds-chan a:focus-visible .ds-chan__st { background: var(--red, #e4251b); box-shadow: inset 0 0 0 var(--ring) var(--red, #e4251b); } .ds-chan a:hover .ds-chan__ico, .ds-chan a:focus-visible .ds-chan__ico { opacity: 1; transform: none; } .ds-chan a:focus-visible { outline: 3px solid var(--blue, #0a6fd8); outline-offset: 3px; border-radius: 6px; }"
+    },
+    {
+      "name": "Poster Frame",
+      "kind": "card",
+      "refersTo": "poster",
+      "description": "The 4:5 poster beside the works list: Enamel Tint ground, a 2px ink ring drawn above the picture, a floating white caption pill. When the project changes, a band of its line colour crosses the frame on the braking curve; hovering replays it here.",
+      "html": "<figure class=\"ds-poster ds-poster--max\"><span class=\"ds-poster__wipe\"></span><figcaption class=\"ds-poster__cap\"><span class=\"ds-poster__badge\"><i></i>Здоровье семьи</span><span class=\"ds-poster__year\">2026</span></figcaption></figure>",
+      "css": ".ds-poster { position: relative; width: min(100%, 320px); aspect-ratio: 4 / 5; margin: 0; overflow: hidden; border-radius: 28px; background: var(--tint, #f4f4f2); color: var(--ink, #16171a); font-family: var(--font, 'Golos Text', system-ui, sans-serif); } .ds-poster::after { content: ''; position: absolute; inset: 0; z-index: 5; border-radius: inherit; box-shadow: inset 0 0 0 2px var(--ink, #16171a); pointer-events: none; } .ds-poster--max { --line: var(--red, #e4251b); } .ds-poster__wipe { position: absolute; top: 0; bottom: 0; left: 0; z-index: 3; width: 18%; background: var(--line); transform: translateX(-100%); pointer-events: none; } @media (prefers-reduced-motion: no-preference) { .ds-poster:hover .ds-poster__wipe { animation: ds-poster-train 0.75s var(--ease-wipe, cubic-bezier(0.7, 0, 0.25, 1)) both; } } @keyframes ds-poster-train { from { transform: translateX(-100%); } to { transform: translateX(555.6%); } } .ds-poster__cap { position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 4; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 18px; border-radius: 999px; background: var(--paper, #ffffff); box-shadow: 0 8px 24px rgba(22, 23, 26, 0.14); font-weight: 700; font-size: 0.9375rem; line-height: 1; } .ds-poster__badge { display: inline-flex; align-items: center; gap: 9px; white-space: nowrap; } .ds-poster__badge i { width: 14px; height: 14px; border-radius: 50%; background: var(--line); flex: none; } .ds-poster__year { font-variant-numeric: tabular-nums lining-nums; }"
+    },
+    {
+      "name": "FAQ Timetable",
+      "kind": "custom",
+      "refersTo": "faq-toggle",
+      "description": "A timetable list (2px ink rule on top, hairline rows) with a 44px ring toggle: hover fills it ink; open turns it 45° into a red cross and the answer slides open.",
+      "html": "<ul class=\"ds-faq\"><li class=\"ds-faq__item is-open\"><h3><button type=\"button\" class=\"ds-faq__q\" aria-expanded=\"true\"><span>Сколько стоит разработка?</span><span class=\"ds-faq__icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path d=\"M12 4v16M4 12h16\" stroke=\"currentColor\" stroke-width=\"2.8\" stroke-linecap=\"round\"/></svg></span></button></h3><div class=\"ds-faq__a\"><div><p>Зависит от сложности проекта. Простой бот для MAX или Telegram и большое iOS-приложение — разные объёмы работы. Напишите с описанием задачи, и мы дадим конкретную оценку.</p></div></div></li><li class=\"ds-faq__item\"><h3><button type=\"button\" class=\"ds-faq__q\" aria-expanded=\"false\"><span>Можете встроить ИИ в наш сайт, бот или 1С?</span><span class=\"ds-faq__icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path d=\"M12 4v16M4 12h16\" stroke=\"currentColor\" stroke-width=\"2.8\" stroke-linecap=\"round\"/></svg></span></button></h3><div class=\"ds-faq__a\"><div><p>Да. Подключаем языковые модели к сайтам, чат-ботам MAX и Telegram и внутренним системам.</p></div></div></li></ul>",
+      "css": ".ds-faq { max-width: 980px; margin: 0; padding: 0; list-style: none; border-top: 2px solid var(--ink, #16171a); color: var(--ink, #16171a); font-family: var(--font, 'Golos Text', system-ui, sans-serif); } .ds-faq__item { border-bottom: 1px solid var(--rule, #e6e7e9); } .ds-faq h3 { margin: 0; } .ds-faq__q { display: grid; grid-template-columns: 1fr 44px; align-items: center; gap: 20px; width: 100%; padding: 24px 0; border: 0; background: none; color: inherit; text-align: left; cursor: pointer; font-family: inherit; font-weight: 800; font-size: clamp(1.125rem, 1rem + 0.45vw, 1.375rem); line-height: 1.25; letter-spacing: -0.015em; } .ds-faq__q:focus-visible { outline: 3px solid var(--blue, #0a6fd8); outline-offset: 3px; border-radius: 6px; } .ds-faq__icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; box-shadow: inset 0 0 0 3px var(--ink, #16171a); transition: background-color 0.25s, color 0.25s, transform 0.45s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-faq__icon svg { width: 18px; height: 18px; } .ds-faq__q:hover .ds-faq__icon { background: var(--ink, #16171a); color: var(--paper, #ffffff); } .ds-faq__item.is-open .ds-faq__icon { transform: rotate(45deg); background: var(--red, #e4251b); color: var(--paper, #ffffff); box-shadow: inset 0 0 0 3px var(--red, #e4251b); } .ds-faq__a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.45s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-faq__item.is-open .ds-faq__a { grid-template-rows: 1fr; } .ds-faq__a > div { overflow: hidden; } .ds-faq__a p { max-width: 70ch; margin: 0; padding: 0 64px 28px 0; color: var(--ink-2, #565961); font-size: 1.0625rem; line-height: 1.55; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Line Scheme",
+    "overview": "«Схема линий»: the site is a metro scheme printed on white enamel. StackLab's services are coloured lines, the systems a client already runs (MAX, 1С МИС, ЮKassa, live schedules, an AI assistant) are stations, and every page is one route the reader rides from heading to heading. The world's whole vocabulary is the scheme's own: thick round-capped lines, white stations with heavy ink rings, small white trains, ink signage, and a legend of coloured discs. Case images and the founders' portraits are the destinations the lines lead to.\n\nThe register is municipal signage set for a formal Russian business reader. One heavy grotesque with full Cyrillic speaks at 800 weight, big and tightly tracked; reading text stays plain and neutral; lists read like timetables; white ground does the separating. Colour is rationed by meaning: red is the route and whatever is lit or current, and violet, blue and green only ever name their lines. Depth is drawn with rings and rules rather than lit with shadows. Motion is the scheme coming alive (lines draw themselves once, trains run, the route fills red behind the reader), and every frame is complete and legible at rest.\n\nThe world refuses two category defaults by name: the dark agency showreel (black ground, neon accent, WebGL blob, kinetic type) and the white SaaS template (a centred hero over rows of three icon cards). A product constraint sets its budget: the site must stay fast on weak machines and slow mobile connections, so everything is drawn in CSS and inline SVG. The existing StackLab logo stays unchanged, top left (44px tall, 36px below 1100px) and in the footer (52px).",
+    "keyCharacteristics": [
+      "White enamel ground with ink signage; no dark sections.",
+      "Four line colours, one per service line; red doubles as the lit route.",
+      "Stations are white discs with heavy ink rings; interchanges are larger rings.",
+      "Thick round-capped strokes; on a scheme, segments run horizontal, vertical or at 45° only.",
+      "One typeface, Golos Text, with signage at 800 and tight tracking.",
+      "Every content page is one route: a rail in the left gutter, a station at every section heading.",
+      "Flat surfaces: rings and rules, never a drop shadow on anything static.",
+      "Pills for every control; 26–28px rounded frames for every picture."
+    ],
+    "rules": [
+      {
+        "name": "The One Colour, One Line Rule",
+        "body": "Each colour draws one line, and wherever a service, project or direction is named the mapping is fixed: MAX & Telegram Mini Apps and bots red, ИИ-интеграции violet, Web blue, iOS green. Telegram rides the red line with MAX and never gets its own colour. A project's badge, filter dot and poster wipe take its platform's line. A new colour arrives only with a new service line.",
+        "section": "colors"
+      },
+      {
+        "name": "The Lit Route Rule",
+        "body": "Route elements have three states: unlit (an Unlit Track ring or track), lit (an ink ring) and here (a red core or a red fill). Progress, the current page and the active item are red; hover darkens to ink or runs red, except on the hero map, where a hovered station fills with its own line's colour.",
+        "section": "colors"
+      },
+      {
+        "name": "The Enamel Ground Rule",
+        "body": "Line colours fill lines, discs, badges, the poster's passing train and the red state fills; they never fill a section, card or panel. Surfaces are White Enamel, with Enamel Tint as the only second surface.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Voice Rule",
+        "body": "Golos Text sets everything: display, signage, body, labels and the station names on the map. Hierarchy comes from weight and size; there is no second family, no serif and no monospace.",
+        "section": "typography"
+      },
+      {
+        "name": "The Signage Weight Rule",
+        "body": "Headings, names, station labels and buttons are 800 with negative tracking, from −0.035em at display to −0.018em at title and never tighter. Reading text stays at 400–600; 700 belongs to small labels, links, chips and the founders' pull quote.",
+        "section": "typography"
+      },
+      {
+        "name": "The Route Rule",
+        "body": "Every content page is one route. Each section opens with a station heading hung on the rail in the left gutter; the rail runs from the first station to the last, Unlit Track ahead of the reader and red behind, with a white train at the reading line (mid-viewport). Below the hero, content never starts left of the rail indent; a section without a station heading is off the route. Only the home hero (the map is where the route begins) and the 404 and error pages (the broken line) sit outside the rail.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat Enamel Rule",
+        "body": "Static surfaces never cast shadows. A shadow means \"this rides on top\": trains and floating caption pills only. Borders are rings, not shadows.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Ring Rule",
+        "body": "Every outline around a shape is an inset ring in ink (Unlit Track before it is reached, red when it is here), drawn inside the element so it never shifts layout: 2px for frames, ghost controls and tags; 3–4px for small toggles, indicators and nav stations; 5–9px for stations and trains, growing with the disc. The only plain borders are the horizontal rules of lists and the footer.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Round-Cap Rule",
+        "body": "Every visible line end is round, and every segment on a scheme runs horizontal, vertical or at 45°. A line may end square only where it runs under a station or the hub.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do open every section with a station heading so it hangs on the route, and keep content at the rail indent (72px; 44px on phones).",
+      "Do take a line colour only from the line mapping: MAX & Telegram red, ИИ-интеграции violet, Web blue, iOS green.",
+      "Do move route stations and tracks through unlit (#dcdde0), lit (ink) and here (red).",
+      "Do draw stations as white discs with inset ink rings sized to the disc (16/4, 28/6, 32–34/7, 64/9px).",
+      "Do draw scheme lines horizontal, vertical or at 45°, round-capped, with a white casing where one line crosses another without a station.",
+      "Do keep calls to action to the ink pill (46, 56 or 64px), the ghost pill and the arrow link.",
+      "Do lay out lists as timetables: a 2px ink rule on top, 1px #e6e7e9 hairlines between rows.",
+      "Do frame case pictures on Enamel Tint with a 2px inset ink ring at 26–28px radius; contain logos with 7–9% padding and let photographs cover.",
+      "Do draw icons as inline SVG on a 24-unit grid with one round-capped stroke (2.6px; 2.8px for the plus).",
+      "Do keep every frame complete at rest: lines and stations are drawn by default, motion arms only when reduced motion is off, trains pause off-screen, and durations follow distance (0.18s press, 0.2–0.35s colour and rings, 0.45s sweeps and accordions, 0.75s cross-frame wipes on the braking curve, 1.2–1.5s for lines drawing themselves).",
+      "Do theme the browser's own surfaces from the palette: red selection and caret, an ink scrollbar thumb that turns red on hover, and a 3px blue focus ring at 3px offset."
+    ],
+    "donts": [
+      "Don't build the dark agency showreel (black ground, neon accent, WebGL blob, kinetic type) or the white SaaS template (a centred hero over rows of three icon cards).",
+      "Don't fill a section, card or panel with a line colour, or set running text in one; green and Dim Grey never set text at all.",
+      "Don't add a colour without adding a service line, and don't split Telegram off the red line.",
+      "Don't give a static surface a drop shadow; only trains and floating caption pills carry the soft ink shadow.",
+      "Don't bring in a second typeface, a monospace \"tech\" voice, or headings below 800.",
+      "Don't set a text label above a heading; a line badge sits beside or below the title.",
+      "Don't use Unicode arrows or emoji as icons.",
+      "Don't reach for WebGL, video or other heavy effects; the world is drawn in CSS and inline SVG so it stays fast on weak devices and slow connections."
+    ]
+  }
+}
